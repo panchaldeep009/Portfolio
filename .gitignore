@@ -1,0 +1,13 @@
+.vscode
+.DS_Store
+.psd
+.ai
+.sass-cache
+*.css.map
+.vscode
+
+assets
+node_modules
+non-optimized-images
+
+package-lock.json

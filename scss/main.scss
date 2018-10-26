@@ -1,0 +1,10 @@
+// Import var and modules
+@import '_reset';
+@import '_mixins';
+
+@import '_variables';
+
+body{
+    overflow-x: hidden;
+    font-family: $font;
+}
