@@ -7,4 +7,29 @@
 body{
     overflow-x: hidden;
     font-family: $font;
+    min-height: 200vh;
+}
+h1{
+    font-size: 5em;
+}
+.frostGlass{
+    position: fixed;
+    top: 50px;
+    left: 50px;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 10px;
+    border-top: 2px solid #FFF;
+    border-left: .5px solid rgba(#FFF, .5);
+    box-shadow: 15px 15px 55px rgba(#000, .25);
+    .backgroundImage{
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        width: calc(100% + 40px);
+        height: calc(100% + 40px);
+        background-attachment: fixed;
+        filter: blur(10px);
+    }
 }
