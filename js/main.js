@@ -4,14 +4,36 @@
     
     // CSS Variables
     var cssVar = window.getComputedStyle(document.body);
-    const codeSectionColor = cssVar.getPropertyValue('--codeBackground');
-    const designSectionColor = cssVar.getPropertyValue('--designBackground');
+    const codeSectionColor = cssVar.getPropertyValue('--codeBackground').trim();
+    const designSectionColor = cssVar.getPropertyValue('--designBackground').trim();
+
+    // Update DuoFilter with theme Color
+
+    var remapColor = function(filter,color, index) {
+        let colR = filter.querySelector('feFuncR');
+        let colRVal = colR.getAttribute('tableValues').split(' ');
+        colRVal[index] = (parseInt(color.substr(1, 2), 16)) / 255;
+        colR.setAttribute('tableValues', colRVal.join(' '));
+        
+        let colG = filter.querySelector('feFuncG');
+        let colGVal = colG.getAttribute('tableValues').split(' ');
+        colGVal[index] = (parseInt(color.substr(3, 2), 16)) / 255;
+        colG.setAttribute('tableValues', colGVal.join(' '));
+        
+        let colB = filter.querySelector('feFuncB');
+        let colBVal = colB.getAttribute('tableValues').split(' ');
+        colBVal[index] = (parseInt(color.substr(5, 2), 16)) / 255;
+        colB.setAttribute('tableValues', colBVal.join(' '));
+    };
+    remapColor(document.querySelector('#duoToneFilter'),codeSectionColor, 0);
+    remapColor(document.querySelector('#duoToneFilter'),designSectionColor, 1);
+
 
     [    // Code Section
         document.querySelector('#codeSection'),
         // Design Section
         document.querySelector('#designSection')  
-        
+
     ].forEach(section => {
         // Selecting logo and animate stroke
         section.querySelector('.logoSVG')
@@ -47,5 +69,9 @@
                 }, 1000);
 
             }, false);
+
+        section.addEventListener('click', function(){
+            console.log(this.id);
+        })
     })
 })();

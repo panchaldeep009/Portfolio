@@ -15,6 +15,24 @@
 
 </head>
 <body>
+    <svg width="0" height="0">
+        <defs>
+            <filter id="duoToneFilter">
+                    <feColorMatrix type="matrix" result="gray"
+                        values="1 0 0 0 0
+                                1 0 0 0 0
+                                1 0 0 0 0
+                                0 0 0 1 0" >
+                    </feColorMatrix>
+                    <feComponentTransfer color-interpolation-filters="sRGB"> 
+                        <feFuncR type="table" tableValues="0 1"></feFuncR>
+                        <feFuncG type="table" tableValues="0 1"></feFuncG>
+                        <feFuncB type="table" tableValues="0 1"></feFuncB>
+                        <feFuncA type="table" tableValues="0 1"></feFuncA>
+                    </feComponentTransfer>        
+            </filter>
+        </defs>
+    </svg>
     <section id="codeSection">
         <h1 class="hidden">Code Section</h1>
         <object class="logoSVG" type="image/svg+xml"
@@ -27,8 +45,11 @@
         <object class="logoSVG" type="image/svg+xml"
             data="images/logo.svg">
         </object>
+        <object id="avatarSVG" type="image/svg+xml"
+            data="images/myAvatar.svg">
+        </object>
     </section>
-    
+
     <script src="js/main.js"></script>
 </body>
 </html>
