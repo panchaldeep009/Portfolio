@@ -1,11 +1,17 @@
 // Variables for Colors
 
-$codeBackground: #292d3e;
-$designBackground: #E5E5E5;
+:root{
+    --codeBackground : #292d3e;
+    --designBackground : #E5E5E5;
+}
+$codeBackground: var(--codeBackground);
+$designBackground: var(--designBackground);
 
 $black: #272727;
 $dark: #3b3b3b;
 $white: #ebebeb;
+
+// classes to fetch variable value
 
 // // Variables for Fonts
 

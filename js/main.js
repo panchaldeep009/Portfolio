@@ -1,15 +1,22 @@
 "use strict";
 (() => {
     // Logo animation
-    [
-        // Code Section
+    
+    // CSS Variables
+    var cssVar = window.getComputedStyle(document.body);
+    const codeSectionColor = cssVar.getPropertyValue('--codeBackground');
+    const designSectionColor = cssVar.getPropertyValue('--designBackground');
+
+    [    // Code Section
         document.querySelector('#codeSection'),
-        document.querySelector('#designSection'),
+        // Design Section
+        document.querySelector('#designSection')  
+        
     ].forEach(section => {
         // Selecting logo and animate stroke
         section.querySelector('.logoSVG')
             .addEventListener('load', function(){
-                
+
                 this.contentDocument
                     .querySelectorAll('svg polyline, svg circle, svg path')
                     .forEach(svgElement => {
@@ -18,7 +25,7 @@
                             svgElement.getTotalLength();
                         svgElement.style.stroke = 
                             section.id == 'codeSection' ?
-                            "#e5e5e5" : "#292d3e";
+                            designSectionColor : codeSectionColor;
                     });
 
                 setTimeout(() => {
@@ -38,6 +45,7 @@
                             svgElement.style.strokeDashoffset = 0;
                         });
                 }, 1000);
+
             }, false);
     })
 })();

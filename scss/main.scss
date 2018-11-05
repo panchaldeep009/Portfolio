@@ -8,7 +8,9 @@
 
 #codeSection,
 #designSection{
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     .logoSVG{
         position: absolute;
         top: 30px;
@@ -23,10 +25,18 @@
     width: 100%;
     height: 100vh;
     background-color: $codeBackground;
+    
+    @include mask(url(../images/homeMaskLeft.svg));
+    @include mask-size(100%, 100%);
+    mask-type: alpha;
 }
 #designSection{
     display: flex;
     width: 100%;
     height: 100vh;
     background-color: $designBackground;
+
+    @include mask(url(../images/homeMaskRight.svg));
+    @include mask-size(100%, 100%);
+    mask-type: alpha;
 }
