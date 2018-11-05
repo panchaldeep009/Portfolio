@@ -1,0 +1,11 @@
+body{
+    overflow-x: hidden;
+    font-family: $font;
+    min-height: 100vh;
+}
+h1{
+    font-size: 5em;
+}
+.hidden{
+    display: none;
+}

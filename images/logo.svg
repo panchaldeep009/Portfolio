@@ -1,0 +1,23 @@
+<svg version="1.1" viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <style type="text/css">
+        .st1{
+            fill:none;
+            
+            stroke-width:2.5;
+            stroke-miterlimit:10;
+            stroke-linecap:square;
+        }
+        .dashoffsetTransition{
+            -moz-transition:    stroke-dashoffset .5s;
+            -o-transition:      stroke-dashoffset .5s;
+            -webkit-transition: stroke-dashoffset .5s;
+            transition:         stroke-dashoffset .5s;
+        }
+    </style>
+    <circle class="st1" cx="149" cy="59" r="15">
+    </circle>
+    <path class="st1" d="M 126.3 66.5 c -2.7 4.2 -7.4 6.9 -12.7 6.9 c -8.3 0 -15.1 -6.8 -15.1 -15.1 s 6.8 -15.1 15.1 -15.1 s 15.1 6.8 15.1 15.1"/>
+    <path class="st1" d="M 90.4 66.5 c -2.7 4.1 -7.4 6.9 -12.7 6.9 c -8.3 0 -15.1 -6.8 -15.1 -15.1 s 6.8 -15.1 15.1 -15.1 s 15.1 6.8 15.1 15.1"/>
+    <circle class="st1" cx="34.1" cy="51.2" r="22.4"/>
+    <path id="centerLine" class="st1" d="M 56.5,5.4 L 56.5,58.4 L 133.8,58.4 L 133.8,92"/>
+</svg>
