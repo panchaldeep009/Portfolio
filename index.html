@@ -4,6 +4,7 @@
 
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="manifest" href="manifest.webmanifest">
 
     <title>Deep Panchal : Interactive Media Designer</title>
 
@@ -18,18 +19,18 @@
     <svg width="0" height="0">
         <defs>
             <filter id="duoToneFilter">
-                    <feColorMatrix type="matrix" result="gray"
-                        values="1 0 0 0 0
-                                1 0 0 0 0
-                                1 0 0 0 0
-                                0 0 0 1 0" >
-                    </feColorMatrix>
-                    <feComponentTransfer color-interpolation-filters="sRGB"> 
-                        <feFuncR type="table" tableValues="0 1"></feFuncR>
-                        <feFuncG type="table" tableValues="0 1"></feFuncG>
-                        <feFuncB type="table" tableValues="0 1"></feFuncB>
-                        <feFuncA type="table" tableValues="0 1"></feFuncA>
-                    </feComponentTransfer>        
+                <feColorMatrix type="matrix" result="gray"
+                    values="1 0 0 0 0
+                            1 0 0 0 0
+                            1 0 0 0 0
+                            0 0 0 1 0" >
+                </feColorMatrix>
+                <feComponentTransfer color-interpolation-filters="sRGB"> 
+                    <feFuncR type="table" tableValues="0 1"></feFuncR>
+                    <feFuncG type="table" tableValues="0 1"></feFuncG>
+                    <feFuncB type="table" tableValues="0 1"></feFuncB>
+                    <feFuncA type="table" tableValues="0 1"></feFuncA>
+                </feComponentTransfer>        
             </filter>
         </defs>
     </svg>
@@ -38,6 +39,9 @@
         <object class="logoSVG" type="image/svg+xml"
             data="images/logo.svg">
         </object>
+        <object class="avatarSVG" type="image/svg+xml"
+            data="images/myAvatar.svg">
+        </object>
     </section>
 
     <section id="designSection">
@@ -45,7 +49,7 @@
         <object class="logoSVG" type="image/svg+xml"
             data="images/logo.svg">
         </object>
-        <object id="avatarSVG" type="image/svg+xml"
+        <object class="avatarSVG" type="image/svg+xml"
             data="images/myAvatar.svg">
         </object>
     </section>

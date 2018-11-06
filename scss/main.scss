@@ -18,15 +18,12 @@
         width: 150px;
         @include transform( translateX(-50%) );
     }
-    #avatarSVG{
+    .avatarSVG{
         position: absolute;
         top: 50%;
         left: 50%;
         width: 400px;
         @include transform( translate(-50%,-50%) );
-        
-        -webkit-filter: url(#duoToneFilter); 
-        filter: url(#duoToneFilter);
     }
 }
 
@@ -39,6 +36,10 @@
     @include mask(url(../images/homeMaskLeft.svg));
     @include mask-size(100%, 100%);
     mask-type: alpha;
+    .avatarSVG{
+        -webkit-filter: url(#duoToneFilter); 
+        filter: url(#duoToneFilter);
+    }
 }
 #designSection{
     display: flex;
@@ -49,8 +50,4 @@
     @include mask(url(../images/homeMaskRight.svg));
     @include mask-size(100%, 100%);
     mask-type: alpha;
-    #avatarSVG{
-        -webkit-filter: url(#duoToneFilter); 
-        filter: url(#duoToneFilter);
-    }
 }
