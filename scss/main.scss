@@ -50,4 +50,8 @@
     @include mask(url(../images/homeMaskRight.svg));
     @include mask-size(100%, 100%);
     mask-type: alpha;
+    .avatarSVG{
+        -webkit-filter: url(#duoToneFilter); 
+        filter: url(#duoToneFilter);
+    }
 }
