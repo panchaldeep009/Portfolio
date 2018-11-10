@@ -12,7 +12,7 @@
 						S 900,900,900,1000
 						L 0,1000 L 0,0 L 900,0" >
 				<animate attributeType="XML" attributeName="d"
-					id="codeSideDefualtAnimation"
+					begin="codeCenter.end" id="codeSideDefaultAnimation"
 					dur="35s" fill="freeze" repeatCount="indefinite"
 					values="
 						M 900,0 
@@ -38,15 +38,15 @@
 						L 0,1000 L 0,0 L 900,0"/>
 				<animate attributeType="XML" attributeName="d"
 					begin="none" id="codeCenter"
-					dur=".2s" fill="freeze" repeatCount="1"
+					dur=".4s" fill="freeze" repeatCount="1"
 					to="
 						M 900,0 
-						C 900,0,900,00,900,00 
-						S 900,00,900,00
-						S 800,62.5,800,25
-						S 1000,562.5,1000,750
-						S 900,1000,900,1000
-						L 0,100 L 0,0 L 90,0"/>
+						C 900,0,900,00,900,200 
+						S 900,200,900,400
+						S 900,400,900,600
+						S 900,600,900,800
+						S 900,900,900,1000
+						L 0,1000 L 0,0 L 900,0"/>
 				<animate attributeType="XML" attributeName="d"
 					begin="none" id="codeCloseHalf"
 					dur=".2s" fill="freeze" repeatCount="1"
@@ -57,7 +57,7 @@
 						S 900,400,900,600
 						S 400,600,400,800
 						S 100,900,100,1000
-						L 0,1000 L 0,0 L 100,0"/>
+						L 0,1000 L 0,0 L 1000,0"/>
 				<animate attributeType="XML" attributeName="d"
 					begin="none" id="codeOpenHalf"
 					dur=".2s" fill="freeze" repeatCount="1"
@@ -65,21 +65,21 @@
 						M 900,0 
 						C 900,0,1100,00,1100,200 
 						S 900,200,900,400
-						S 1600,400,1600,60
-						S 1000,600,1000,80
-						S 1300,900,1300,100
+						S 1600,400,1600,600
+						S 1000,600,1000,800
+						S 1300,900,1300,1000
 						L 0,1000 L 0,0 L 900,0"/>
 				<animate attributeType="XML" attributeName="d"
 					begin="codeCloseHalf.end" id="codeClose"
 					dur=".3s" fill="freeze" repeatCount="1"
 					to="
-						M 100,0 
-						C 100,0,100,00,100,200 
-						S 100,200,100,400
-						S 100,400,100,600
-						S 100,600,100,800
-						S 100,900,100,1000
-						L 0,1000 L 0,0 L 100,0"/>
+						M 200,0 
+						C 200,0,200,0,200,200 
+						S 200,200,200,400
+						S 200,400,200,600
+						S 200,600,200,800
+						S 200,900,200,1000
+						L 0,1000 L 0,0 L 200,0"/>
 				<animate attributeType="XML" attributeName="d"
 					begin="codeOpenHalf.end" id="codeOpen"
 					dur=".3s" fill="freeze" repeatCount="1"
@@ -101,9 +101,9 @@
 					S 900,400,900,600
 					S 900,600,900,800
 					S 900,900,900,1000
-					L 1800,100 L 1800,0 L 900,0">
+					L 1800,1000 L 1800,0 L 900,0">
 				<animate attributeType="XML" attributeName="d"
-					id="designSideDefaultAnimation"
+					begin="designCenter.end" id="designSideDefaultAnimation"
 					dur="35s" fill="freeze" repeatCount="indefinite"
 					values="
 						M 900,0 
@@ -129,14 +129,14 @@
 						L 1800,1000 L 1800,0 L 900,0"/>
 				<animate attributeType="XML" attributeName="d"
 					begin="none" id="designCenter"
-					dur=".2s" fill="freeze" repeatCount="1"
+					dur=".4s" fill="freeze" repeatCount="1"
 					to="
 						M 900,0 
-						C 900,0,900,00,900,00 
-						S 900,00,900,00
-						S 800,62.5,800,250
-						S 1000,562.5,1000,750
-						S 900,1000,900,1000
+						C 900,0,900,00,900,200 
+						S 900,200,900,400
+						S 900,400,900,600
+						S 900,600,900,800
+						S 900,900,900,1000
 						L 1800,1000 L 1800,0 L 900,0"/>
 				<animate attributeType="XML" attributeName="d"
 					begin="none" id="designOpenHalf"
@@ -155,7 +155,7 @@
 					to="
 						M 900,0 
 						C 900,0,1100,00,1100,200 
-						S 900,20,90,40
+						S 900,200,900,400
 						S 1600,400,1600,600
 						S 1000,600,1000,800
 						S 1300,900,1300,1000

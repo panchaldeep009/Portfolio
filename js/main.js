@@ -7,30 +7,17 @@
     var cssVar = window.getComputedStyle(document.body);
     const codeSectionColor = cssVar.getPropertyValue('--codeBackground').trim(),
         designSectionColor = cssVar.getPropertyValue('--designBackground').trim();
-
-    // To Resize Background
-    window
-        .addEventListener('resize', resizeBackground,false);
-    resizeBackground();
-    function resizeBackground(){
-        let docHeight = document.body.clientHeight;
-        let docWidth = document.body.clientWidth;
-        let background = document.querySelector("#backgroundSVG");
-        if(docWidth/docHeight < 1.8){
-            background.style.width = (docHeight*1.9)+"px";
-            background.style.height = docHeight+"px";
-        } else {
-            background.style.width = docWidth+"px";
-            background.style.height = (docWidth*0.58)+"px";
-        }
-    }
+    
+    let codeSectionToggleButton = document.querySelector("#codeBtn"),
+        designSectionToggleButton = document.querySelector("#designBtn"),
+        aboutSectionToggleButton = document.querySelector("#aboutBtn");
 
     // Change Background Colors to match theme
     
     document.querySelector('#backgroundSVG')
         .addEventListener('load', function(){
 
-            let content = this.contentDocument;
+            var content = this.contentDocument;
             var remapColor = function(filter,color, index) {
                 let colR = filter.querySelector('feFuncR'),
                     colRVal = colR.getAttribute('tableValues').split(' ');
@@ -54,8 +41,67 @@
             content.querySelector('#codeSectionBGColor').setAttribute('fill', codeSectionColor);
             content.querySelector('#designSectionBGColor').setAttribute('fill', designSectionColor);
             
+            var initialStage = function(){
+                content.querySelector('#myAvatarShape').setAttribute('filter', 'url(#duoToneFilter)');
+                content.querySelector('#myAvatar').setAttribute('filter', 'url(#duoToneFilter)');
+                content.querySelector('#codeCenter').beginElement();
+                content.querySelector('#designCenter').beginElement();
+                codeSectionToggleButton.setAttribute('data-status', 'close');
+                designSectionToggleButton.setAttribute('data-status', 'close');
+                aboutSectionToggleButton.setAttribute('data-status', 'close');
+            }
+
+            codeSectionToggleButton.addEventListener('click', function(){
+                if(this.dataset.status == 'open'){
+                    initialStage();
+                } else {
+                    content.querySelector('#codeOpenHalf').beginElement();
+                    content.querySelector('#designCloseHalf').beginElement();
+                    this.setAttribute('data-status', 'open');
+                    content.querySelector('#myAvatarShape').setAttribute('filter', '');
+                }
+            }, false);
+            designSectionToggleButton.addEventListener('click', function(){
+                if(this.dataset.status == 'open'){
+                    initialStage();
+                } else {
+                    content.querySelector('#codeCloseHalf').beginElement();
+                    content.querySelector('#designOpenHalf').beginElement();
+                    this.setAttribute('data-status', 'open');
+                    content.querySelector('#myAvatar').setAttribute('filter', '');
+                }
+            }, false);
+            aboutSectionToggleButton.addEventListener('click', function(){
+                if(this.dataset.status == 'open'){
+                    initialStage();
+                } else {
+                    content.querySelector('#myAvatarShape').setAttribute('filter', 'url(#duoToneFilter)');
+                    content.querySelector('#myAvatar').setAttribute('filter', 'url(#duoToneFilter)');
+                    content.querySelector('#codeCloseHalf').beginElement();
+                    content.querySelector('#designCloseHalf').beginElement();
+                    this.setAttribute('data-status', 'open');
+                }
+            }, false);
             this.style.opacity = 1;
         });
+
+    // To Resize Background
+    window
+        .addEventListener('resize', resizeBackground,false);
+    resizeBackground();
+    function resizeBackground(){
+        let docHeight = document.body.clientHeight;
+        let docWidth = document.body.clientWidth;
+        let background = document.querySelector("#backgroundSVG");
+        if(docWidth/docHeight < 1.8){
+            background.style.width = (docHeight*1.9)+"px";
+            background.style.height = docHeight+"px";
+        } else {
+            background.style.width = docWidth+"px";
+            background.style.height = (docWidth*0.58)+"px";
+        }
+    }
+
     // Logo animation
     
     // [    // Code Section
