@@ -6,6 +6,23 @@
 
 @import '_default';
 
+#backgroundSVG{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: -100;
+    pointer-events: none;
+    opacity: 0;
+    @include transform( translate(-50%, -50%) );
+}
+.autoHeight{
+    width: 100%;
+    height: auto;
+}
+.autoWidth{
+    width: auto;
+    height: 100vh;
+}
 #codeSection,
 #designSection{
     position: absolute;
