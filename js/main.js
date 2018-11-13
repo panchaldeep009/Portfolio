@@ -112,6 +112,7 @@
                     else if(window.scrollY < 200 && currentSection != 'initial' ){
                         initialSectionOpen();
                         document.querySelector('#background').style.height = '100vh';
+                        window.scrollTo(0,0);
                     }
                 });
 
