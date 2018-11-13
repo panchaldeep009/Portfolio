@@ -5,15 +5,25 @@
 @import '_variables';
 
 @import '_default';
-
-#backgroundSVG{
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    z-index: -100;
-    pointer-events: none;
-    opacity: 0;
-    @include transform( translate(-50%, -50%) );
+body{
+    height: 200vh;
+}
+#background{
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+    cursor: grab;
+    #backgroundSVG{
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        z-index: -100;
+        pointer-events: none;
+        opacity: 0;
+        @include transform( translate(-50%, -50%) );
+    }
 }
 .autoHeight{
     width: 100%;
@@ -22,6 +32,12 @@
 .autoWidth{
     width: auto;
     height: 100vh;
+}
+.noButtonStyle{
+    padding: 0;
+    border-radius: 0;
+    background-color: transparent;
+    color: $black;
 }
 #codeSection,
 #designSection{
@@ -43,7 +59,27 @@
         @include transform( translate(-50%,-50%) );
     }
 }
+#codeBtn{
+    position: fixed;
+    top:50%;
+    left: calc(50% - 16vw);
 
+    @include transform( translate(-100%,-50%) );
+    font-family: $codeFont;
+    font-weight: 800;
+    font-size: 35px;
+    color: $codeGreen;
+}
+#designBtn{
+    position: fixed;
+    top:50%;
+    left: calc(50% + 14vw);
+    cursor: pointer;
+    @include transform( translate(0%,-50%) );
+    object{
+        pointer-events: none;
+    }
+}
 #codeSection{
     display: flex;
     width: 100%;
@@ -70,5 +106,20 @@
     .avatarSVG{
         -webkit-filter: url(#duoToneFilter); 
         filter: url(#duoToneFilter);
+    }
+}
+
+@media screen and (max-width: 768px){
+    #codeBtn{
+        position: fixed;
+        top:50%;
+        left: calc(50% - 15vw);
+        @include transform( translate(-100%,-50%) rotate(-90deg));
+    }
+    #designBtn{
+        position: fixed;
+        top:50%;
+        left: calc(50% + 5vw);
+        @include transform( translate(0%,-50%) rotate(90deg));
     }
 }

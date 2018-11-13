@@ -2,10 +2,12 @@
 
 :root{
     --codeBackground : #292d3e;
-    --designBackground : #EEEEEE;
+    --codeGreen : #00c617;
+    --designBackground : #ffffff;
     --yellowColor : #ffae00;
 }
 $codeBackground: var(--codeBackground);
+$codeGreen: var(--codeGreen);
 $designBackground: var(--designBackground);
 $yellowColor: var(--yellowColor);
 

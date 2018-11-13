@@ -1,5 +1,4 @@
 "use strict";
-
 (() => {
     // Document Height Width
 
@@ -7,17 +6,29 @@
     var cssVar = window.getComputedStyle(document.body);
     const codeSectionColor = cssVar.getPropertyValue('--codeBackground').trim(),
         designSectionColor = cssVar.getPropertyValue('--designBackground').trim();
-    
-    let codeSectionToggleButton = document.querySelector("#codeBtn"),
-        designSectionToggleButton = document.querySelector("#designBtn"),
-        aboutSectionToggleButton = document.querySelector("#aboutBtn");
+
+    //  Variable for current section Status.
+    var currentSection = 'initial';
+
+    // Section open Button
+    let codeSectionButton = document.querySelector("#codeBtn"),
+        designSectionButton = document.querySelector("#designBtn");
 
     // Change Background Colors to match theme
     
     document.querySelector('#backgroundSVG')
         .addEventListener('load', function(){
 
-            var content = this.contentDocument;
+            // functions for Stages
+            var codeSectionOpen, 
+                designSectionOpen, 
+                initialSectionOpen, 
+                centerSectionOpen;
+
+            // define current content
+            let content = this.contentDocument;
+            
+            // Change color of dual tone filter in svg
             var remapColor = function(filter,color, index) {
                 let colR = filter.querySelector('feFuncR'),
                     colRVal = colR.getAttribute('tableValues').split(' ');
@@ -34,64 +45,116 @@
                 colBVal[index] = (parseInt(color.substr(5, 2), 16)) / 255;
                 colB.setAttribute('tableValues', colBVal.join(' '));
             };
-
             remapColor(content.querySelector('#duoToneFilter'),codeSectionColor, 0);
             remapColor(content.querySelector('#duoToneFilter'),designSectionColor, 1);
-            
+
+            // Change background color to theme color
             content.querySelector('#codeSectionBGColor').setAttribute('fill', codeSectionColor);
             content.querySelector('#designSectionBGColor').setAttribute('fill', designSectionColor);
             
-            var initialStage = function(){
+            initialSectionOpen = function(){
                 content.querySelector('#myAvatarShape').setAttribute('filter', 'url(#duoToneFilter)');
                 content.querySelector('#myAvatar').setAttribute('filter', 'url(#duoToneFilter)');
                 content.querySelector('#codeCenter').beginElement();
                 content.querySelector('#designCenter').beginElement();
-                codeSectionToggleButton.setAttribute('data-status', 'close');
-                designSectionToggleButton.setAttribute('data-status', 'close');
-                aboutSectionToggleButton.setAttribute('data-status', 'close');
+                currentSection = 'initial';
+            };
+            initialSectionOpen();
+
+            codeSectionOpen = function(){
+                content.querySelector('#codeOpenHalf').beginElement();
+                content.querySelector('#designCloseHalf').beginElement();
+                content.querySelector('#myAvatarShape').setAttribute('filter', '');
+                currentSection = 'code';
+            };
+
+            designSectionOpen = function(){
+                content.querySelector('#codeCloseHalf').beginElement();
+                content.querySelector('#designOpenHalf').beginElement();
+                content.querySelector('#myAvatar').setAttribute('filter', '');
+                currentSection = 'design';
+            };
+            centerSectionOpen = function(){
+                content.querySelector('#myAvatarShape').setAttribute('filter', 'url(#duoToneFilter)');
+                content.querySelector('#myAvatar').setAttribute('filter', 'url(#duoToneFilter)');
+                content.querySelector('#codeCloseHalf').beginElement();
+                content.querySelector('#designCloseHalf').beginElement();
+                currentSection = 'center';
+            };
+
+            window
+                .addEventListener('scroll', function(e){
+                    if(window.scrollY > 200 && currentSection != 'center'){
+                        centerSectionOpen();
+                        document.querySelector('#background').style.height = 0;
+                    }
+                    else if(window.scrollY < 200 && currentSection != 'initial' ){
+                        initialSectionOpen();
+                        document.querySelector('#background').style.height = '100vh';
+                    }
+                });
+
+            // Detect Mouse Swipe and switch Section
+            let cursorX = 0;
+            document.querySelector('#background').onmousedown = function(e) {
+                this.style.cssText = ` 
+                    cursor: grabbing;
+                    cursor: -moz-grabbing;
+                    cursor: -webkit-grabbing;`;
+                cursorX = e.clientX;
+            }
+            document.querySelector('#background').onmouseup = function(e) {
+                this.style.cssText = ` 
+                    cursor: grab;
+                    cursor: -moz-grab;
+                    cursor: -webkit-grab;`;
+                if(cursorX < e.clientX){
+                    sectionSwitch('left');
+                } else if(cursorX > e.clientX){
+                    sectionSwitch('right');
+                }
+
             }
 
-            codeSectionToggleButton.addEventListener('click', function(){
-                if(this.dataset.status == 'open'){
-                    initialStage();
-                } else {
-                    content.querySelector('#codeOpenHalf').beginElement();
-                    content.querySelector('#designCloseHalf').beginElement();
-                    this.setAttribute('data-status', 'open');
-                    content.querySelector('#myAvatarShape').setAttribute('filter', '');
+            // Detect Finger Swipe and switch Section
+            document.querySelector('#background')
+                .addEventListener('touchstart', touchStart, false);        
+            document.querySelector('#background')
+                .addEventListener('touchend', touchEnd, false);
+
+            function touchStart(e){
+                cursorX = e.targetTouches[0].clientX;
+            }
+            function touchEnd(e){
+                if(cursorX < e.changedTouches[0].clientX){
+                    sectionSwitch('left');
+                } else if(cursorX > e.changedTouches[0].clientX){
+                    sectionSwitch('right');
                 }
-            }, false);
-            designSectionToggleButton.addEventListener('click', function(){
-                if(this.dataset.status == 'open'){
-                    initialStage();
-                } else {
-                    content.querySelector('#codeCloseHalf').beginElement();
-                    content.querySelector('#designOpenHalf').beginElement();
-                    this.setAttribute('data-status', 'open');
-                    content.querySelector('#myAvatar').setAttribute('filter', '');
+            }
+            function sectionSwitch(dragStatus){
+                if(dragStatus == 'left' &&
+                    currentSection == 'initial'){
+                    codeSectionOpen();
+                } else if(dragStatus == 'right' &&
+                    currentSection == 'initial'){
+                        designSectionOpen();
+                } else if(
+                    (dragStatus == 'left' && currentSection == 'design') ||
+                    (dragStatus == 'right' && currentSection == 'code') ){
+                    initialSectionOpen();
                 }
-            }, false);
-            aboutSectionToggleButton.addEventListener('click', function(){
-                if(this.dataset.status == 'open'){
-                    initialStage();
-                } else {
-                    content.querySelector('#myAvatarShape').setAttribute('filter', 'url(#duoToneFilter)');
-                    content.querySelector('#myAvatar').setAttribute('filter', 'url(#duoToneFilter)');
-                    content.querySelector('#codeCloseHalf').beginElement();
-                    content.querySelector('#designCloseHalf').beginElement();
-                    this.setAttribute('data-status', 'open');
-                }
-            }, false);
+            }
+
             this.style.opacity = 1;
         });
-
     // To Resize Background
     window
         .addEventListener('resize', resizeBackground,false);
     resizeBackground();
     function resizeBackground(){
-        let docHeight = document.body.clientHeight;
-        let docWidth = document.body.clientWidth;
+        let docHeight = window.innerHeight;
+        let docWidth = window.innerWidth;
         let background = document.querySelector("#backgroundSVG");
         if(docWidth/docHeight < 1.8){
             background.style.width = (docHeight*1.9)+"px";
@@ -102,6 +165,15 @@
         }
     }
 
+    document.querySelector('#designBtnSVG')
+        .addEventListener('load', function(){
+            let content = this.contentDocument;
+            content.querySelector('#designDrawing').beginElement();
+            // console.log([
+            //     content.querySelector('#desingerStroke').getTotalLength(),
+            //     content.querySelector('#iDot').getTotalLength()
+            // ]);
+        });
     // Logo animation
     
     // [    // Code Section
