@@ -14,6 +14,7 @@
     let codeSectionButton = document.querySelector("#codeBtn"),
         designSectionButton = document.querySelector("#designBtn");
 
+
     // Change Background Colors to match theme
     
     document.querySelector('#backgroundSVG')
@@ -51,13 +52,18 @@
             // Change background color to theme color
             content.querySelector('#codeSectionBGColor').setAttribute('fill', codeSectionColor);
             content.querySelector('#designSectionBGColor').setAttribute('fill', designSectionColor);
-            
+
+            // Functions for switching Stages
             initialSectionOpen = function(){
                 content.querySelector('#myAvatarShape').setAttribute('filter', 'url(#duoToneFilter)');
                 content.querySelector('#myAvatar').setAttribute('filter', 'url(#duoToneFilter)');
                 content.querySelector('#codeCenter').beginElement();
                 content.querySelector('#designCenter').beginElement();
                 currentSection = 'initial';
+                TweenMax.to(codeSectionButton, .5, {opacity : 1});
+                TweenMax.to(designSectionButton, .5, {opacity : 1});
+                codeSectionButton.style.pointerEvents = 'auto';
+                designSectionButton.style.pointerEvents = 'auto';
             };
             initialSectionOpen();
 
@@ -66,6 +72,10 @@
                 content.querySelector('#designCloseHalf').beginElement();
                 content.querySelector('#myAvatarShape').setAttribute('filter', '');
                 currentSection = 'code';
+                TweenMax.to(codeSectionButton, .5, {opacity : 0});
+                TweenMax.to(designSectionButton, .5, {opacity : 0});
+                codeSectionButton.style.pointerEvents = 'none';
+                designSectionButton.style.pointerEvents = 'none';
             };
 
             designSectionOpen = function(){
@@ -73,6 +83,10 @@
                 content.querySelector('#designOpenHalf').beginElement();
                 content.querySelector('#myAvatar').setAttribute('filter', '');
                 currentSection = 'design';
+                TweenMax.to(codeSectionButton, .5, {opacity : 0});
+                TweenMax.to(designSectionButton, .5, {opacity : 0});
+                codeSectionButton.style.pointerEvents = 'none';
+                designSectionButton.style.pointerEvents = 'none';
             };
             centerSectionOpen = function(){
                 content.querySelector('#myAvatarShape').setAttribute('filter', 'url(#duoToneFilter)');
@@ -80,8 +94,15 @@
                 content.querySelector('#codeCloseHalf').beginElement();
                 content.querySelector('#designCloseHalf').beginElement();
                 currentSection = 'center';
+                TweenMax.to(codeSectionButton, .5, {opacity : 0});
+                TweenMax.to(designSectionButton, .5, {opacity : 0});
+                codeSectionButton.style.pointerEvents = 'none';
+                designSectionButton.style.pointerEvents = 'none';
             };
-
+            // switching section event
+            codeSectionButton.addEventListener('click', codeSectionOpen, false);
+            designSectionButton.addEventListener('click', designSectionOpen, false);
+            // Open from center on scroll Down 
             window
                 .addEventListener('scroll', function(e){
                     if(window.scrollY > 200 && currentSection != 'center'){
@@ -132,6 +153,8 @@
                     sectionSwitch('right');
                 }
             }
+
+            // Switch section based on swipe direction
             function sectionSwitch(dragStatus){
                 if(dragStatus == 'left' &&
                     currentSection == 'initial'){
@@ -148,6 +171,7 @@
 
             this.style.opacity = 1;
         });
+
     // To Resize Background
     window
         .addEventListener('resize', resizeBackground,false);
@@ -164,16 +188,14 @@
             background.style.height = (docWidth*0.58)+"px";
         }
     }
-
+    
+    // Design button animation
     document.querySelector('#designBtnSVG')
         .addEventListener('load', function(){
             let content = this.contentDocument;
             content.querySelector('#designDrawing').beginElement();
-            // console.log([
-            //     content.querySelector('#desingerStroke').getTotalLength(),
-            //     content.querySelector('#iDot').getTotalLength()
-            // ]);
         });
+
     // Logo animation
     
     // [    // Code Section

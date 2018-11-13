@@ -78,6 +78,7 @@ body{
     @include transform( translate(0%,-50%) );
     object{
         pointer-events: none;
+        height: 120px;
     }
 }
 #codeSection{
@@ -121,5 +122,18 @@ body{
         top:50%;
         left: calc(50% + 5vw);
         @include transform( translate(0%,-50%) rotate(90deg));
+    }
+}
+
+@media screen and (max-width: 420px){
+    #codeBtn{
+        left: calc(50% - 10vw);
+        font-size: 30px;
+    }
+    #designBtn{
+        left: calc(50% + 6vw);
+        object{
+            height: 80px;
+        }
     }
 }
