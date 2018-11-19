@@ -99,6 +99,8 @@
                 codeSectionButton.style.pointerEvents = 'none';
                 designSectionButton.style.pointerEvents = 'none';
             };
+
+
             // switching section event
             codeSectionButton.addEventListener('click', codeSectionOpen, false);
             designSectionButton.addEventListener('click', designSectionOpen, false);
@@ -169,7 +171,7 @@
                     initialSectionOpen();
                 }
             }
-
+            
             this.style.opacity = 1;
         });
 

@@ -69,6 +69,9 @@ body{
     font-weight: 800;
     font-size: 35px;
     color: $codeGreen;
+
+    white-space: nowrap;
+    overflow-x: hidden;
 }
 #designBtn{
     position: fixed;
