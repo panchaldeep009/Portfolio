@@ -28,8 +28,8 @@
     
     <main id="homeContent">
         <section id="centerContent">
-            <button class="noButtonStyle" id="codeBtn">&#60;!-- Coder</button>
-            <button class="noButtonStyle" id="designBtn">
+            <button class="noButtonStyle" id="codeBtn" data-link="/#/code">&#60;!-- Coder</button>
+            <button class="noButtonStyle" id="designBtn" data-link="/#/design">
                 <object id="designBtnSVG" type="image/svg+xml"
                     data="images/designerStroke.svg">
                 </object>
@@ -37,18 +37,24 @@
         </section>
         <section id="codeContent">
             <div class="introduction">
-                <span class="greeting codeGreenText">// Hello World</span>
                 <p class="introText"> 
-                    I<span class="codePinkText">'</span>m <br/>
-                    <span class="codeBlueText">{</span> 
-                        DEEP PANCHAL
-                    <span class="codeBlueText">}</span>
-                    <span class="codeYellowText">;</span><br/>
-                    <span class="codeRedText">&lt;?</span>
-                    <span class="codeLightGreenText"> A_WEB_DEVELOPER</span>
-                    <span class="codeRedText">/&gt;</span>
+                    <div class="iM">
+                        I<span class="codePinkText">'</span>m <br/>
+                    </div>
+                    <div class="name">
+                        <span class="codeBlueText">{</span> 
+                            DEEP PANCHAL
+                        <span class="codeBlueText">}</span>
+                        <span class="codeYellowText">;</span>
+                    </div>
+                    <div class="title">
+                        <span class="codeRedText">&lt;?</span>
+                        <span id="codeTitle" class="codeLightGreenText"> A_WEB_DEVELOPER</span>
+                        <span class="codeRedText">/&gt;</span>
+                    </div>
                 </p>
             </div>
+            <div class="greeting codeGreenText">// Hello World</div>
             <div class="headTag">
                 <p class="openTag">
                     <span class="codeRedText">&lt;</span>

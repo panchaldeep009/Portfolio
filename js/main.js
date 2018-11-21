@@ -64,22 +64,33 @@
                 content.querySelector('#designCenter').beginElement();
                 currentSection = 'initial';
                 TweenMax.to(homeContent, .25, {opacity : 1, right : "-200%"});
+                TweenMax.to(content.querySelector('#myAvatarShape'), .25, {x : 0, y : 0});
+                TweenMax.to(content.querySelector('#myAvatar'), .25, {x : 0});
                 homeContent.style.pointerEvents = 'auto';
             };
-            initialSectionOpen();
-
             codeSectionOpen = function(){
                 content.querySelector('#codeOpenHalf').beginElement();
                 content.querySelector('#designCloseHalf').beginElement();
                 content.querySelector('#myAvatarShape').setAttribute('filter', '');
                 currentSection = 'code';
                 TweenMax.to(homeContent, .25, {opacity : 1, right : "-300%"});
+                TweenMax.to(content.querySelector('#myAvatarShape'), .25, {x : 0, y : 30});
+                let codeTitle = document.querySelector('#codeTitle');
+                TweenMax.fromTo(codeTitle, 
+                    codeTitle.innerHTML.length*0.08, {width : 0}, {
+                    width : codeTitle.offsetWidth, 
+                    ease:SteppedEase.config(codeTitle.innerHTML.length-1)
+                }).delay(.5);
+                TweenMax.fromTo(codeTitle, .5, 
+                    {borderRight: '12px solid white'}, 
+                    {borderRight: '12px solid transparent'}).repeat(-1);
             };
             codeWorkOpen = function(){
                 content.querySelector('#designEnd').beginElement();
                 content.querySelector('#codeWide').beginElement();
                 currentSection = 'codeSkills';
                 TweenMax.to(homeContent, .25, {opacity : 1, right : "-400%"});
+                TweenMax.to(content.querySelector('#myAvatarShape'), .4, {x : "1200"});
             };
             designSectionOpen = function(){
                 content.querySelector('#codeCloseHalf').beginElement();
@@ -87,12 +98,14 @@
                 content.querySelector('#myAvatar').setAttribute('filter', '');
                 currentSection = 'design';
                 TweenMax.to(homeContent, .25, {opacity : 1, right : "-100%"});
+                TweenMax.to(content.querySelector('#myAvatar'), .25, {x : 0});
             };
             designWorkOpen = function(){
                 content.querySelector('#codeEnd').beginElement();
                 content.querySelector('#designWide').beginElement();
                 currentSection = 'designSkills';
                 TweenMax.to(homeContent, .25, {opacity : 1, right : "0%"});
+                TweenMax.to(content.querySelector('#myAvatar'), .25, {x : -1200});
             };
             centerSectionOpen = function(){
                 content.querySelector('#myAvatarShape').setAttribute('filter', 'url(#duoToneFilter)');
@@ -104,20 +117,37 @@
                 homeContent.style.pointerEvents = 'none';
             };
 
+            window.addEventListener("hashchange", switchSectionBasedOnUrl, false);
+            switchSectionBasedOnUrl();
+            function switchSectionBasedOnUrl(){
+                if(window.location.href.includes('#/code/work')){
+                    codeWorkOpen();
+                } else if(window.location.href.includes('#/code')){
+                    codeSectionOpen();
+                } else if(window.location.href.includes('#/design/work')){
+                    designWorkOpen();
+                } else if(window.location.href.includes('#/design')){
+                    designSectionOpen();
+                } else if(window.location.href.includes('#/about')){
+                    centerSectionOpen();
+                } else if(window.location.href.includes('#/home')){
+                    initialSectionOpen();
+                } else {
+                    initialSectionOpen();
+                }
+            }
 
             // switching section event
-            codeSectionButton.addEventListener('click', codeSectionOpen, false);
-            designSectionButton.addEventListener('click', designSectionOpen, false);
+            //codeSectionButton.addEventListener('click', codeSectionOpen, false);
+            //designSectionButton.addEventListener('click', designSectionOpen, false);
             // Open from center on scroll Down 
             window
                 .addEventListener('scroll', function(e){
                     if(window.scrollY > 200 && currentSection != 'center'){
-                        centerSectionOpen();
-                        document.querySelector('#background').style.height = 0;
+                        window.location.href = '/#/about';
                     }
                     else if(window.scrollY < 200 && currentSection != 'initial' ){
-                        initialSectionOpen();
-                        document.querySelector('#background').style.height = '100vh';
+                        window.location.href = '/#';
                         window.scrollTo(0,0);
                     }
                 });
@@ -170,26 +200,26 @@
             function sectionSwitch(dragStatus){
                 if(dragStatus == 'left' &&
                     currentSection == 'initial'){
-                    codeSectionOpen();
+                    window.location.href = '/#/code';
                 } else if(dragStatus == 'right' &&
                     currentSection == 'initial'){
-                    designSectionOpen();
+                    window.location.href = '/#/design';
                 } else if(
                     (dragStatus == 'left' && currentSection == 'design') ||
                     (dragStatus == 'right' && currentSection == 'code') ){
-                    initialSectionOpen();
+                    window.location.href = '/#';
                 } else if(dragStatus == 'left' &&
                     currentSection == 'code'){
-                    codeWorkOpen();
+                    window.location.href = '/#/code/work';
                 } else if(dragStatus == 'right' &&
                     currentSection == 'design'){
-                    designWorkOpen();
+                    window.location.href = '/#/design/work';
                 } else if(dragStatus == 'right' &&
                     currentSection == 'codeSkills'){
-                    codeSectionOpen();
+                    window.location.href = '/#/code';
                 } else if(dragStatus == 'left' &&
                     currentSection == 'designSkills'){
-                    designSectionOpen();
+                    window.location.href = '/#/design';
                 }
             }
 
@@ -221,7 +251,12 @@
             let content = this.contentDocument;
             content.querySelector('#designDrawing').beginElement();
         });
-
+    document.querySelectorAll('[data-link]').forEach(element => {
+            element.style.cursor = "pointer";
+            element.addEventListener('click', function() {
+                window.location.href = this.dataset.link;
+            }, true);
+        });
     // Logo animation
     
     // [    // Code Section
