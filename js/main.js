@@ -14,15 +14,18 @@
     let codeSectionButton = document.querySelector("#codeBtn"),
         designSectionButton = document.querySelector("#designBtn");
 
-
+    // Sections
+    let homeContent = document.querySelector('#homeContent');
     // Change Background Colors to match theme
     
     document.querySelector('#backgroundSVG')
         .addEventListener('load', function(){
 
             // functions for Stages
-            var codeSectionOpen, 
-                designSectionOpen, 
+            var codeSectionOpen,
+                codeWorkOpen, 
+                designSectionOpen,
+                designWorkOpen,
                 initialSectionOpen, 
                 centerSectionOpen;
 
@@ -60,10 +63,8 @@
                 content.querySelector('#codeCenter').beginElement();
                 content.querySelector('#designCenter').beginElement();
                 currentSection = 'initial';
-                TweenMax.to(codeSectionButton, .5, {opacity : 1});
-                TweenMax.to(designSectionButton, .5, {opacity : 1});
-                codeSectionButton.style.pointerEvents = 'auto';
-                designSectionButton.style.pointerEvents = 'auto';
+                TweenMax.to(homeContent, .25, {opacity : 1, right : "-200%"});
+                homeContent.style.pointerEvents = 'auto';
             };
             initialSectionOpen();
 
@@ -72,21 +73,26 @@
                 content.querySelector('#designCloseHalf').beginElement();
                 content.querySelector('#myAvatarShape').setAttribute('filter', '');
                 currentSection = 'code';
-                TweenMax.to(codeSectionButton, .5, {opacity : 0});
-                TweenMax.to(designSectionButton, .5, {opacity : 0});
-                codeSectionButton.style.pointerEvents = 'none';
-                designSectionButton.style.pointerEvents = 'none';
+                TweenMax.to(homeContent, .25, {opacity : 1, right : "-300%"});
             };
-
+            codeWorkOpen = function(){
+                content.querySelector('#designEnd').beginElement();
+                content.querySelector('#codeWide').beginElement();
+                currentSection = 'codeSkills';
+                TweenMax.to(homeContent, .25, {opacity : 1, right : "-400%"});
+            };
             designSectionOpen = function(){
                 content.querySelector('#codeCloseHalf').beginElement();
                 content.querySelector('#designOpenHalf').beginElement();
                 content.querySelector('#myAvatar').setAttribute('filter', '');
                 currentSection = 'design';
-                TweenMax.to(codeSectionButton, .5, {opacity : 0});
-                TweenMax.to(designSectionButton, .5, {opacity : 0});
-                codeSectionButton.style.pointerEvents = 'none';
-                designSectionButton.style.pointerEvents = 'none';
+                TweenMax.to(homeContent, .25, {opacity : 1, right : "-100%"});
+            };
+            designWorkOpen = function(){
+                content.querySelector('#codeEnd').beginElement();
+                content.querySelector('#designWide').beginElement();
+                currentSection = 'designSkills';
+                TweenMax.to(homeContent, .25, {opacity : 1, right : "0%"});
             };
             centerSectionOpen = function(){
                 content.querySelector('#myAvatarShape').setAttribute('filter', 'url(#duoToneFilter)');
@@ -94,10 +100,8 @@
                 content.querySelector('#codeCloseHalf').beginElement();
                 content.querySelector('#designCloseHalf').beginElement();
                 currentSection = 'center';
-                TweenMax.to(codeSectionButton, .5, {opacity : 0});
-                TweenMax.to(designSectionButton, .5, {opacity : 0});
-                codeSectionButton.style.pointerEvents = 'none';
-                designSectionButton.style.pointerEvents = 'none';
+                TweenMax.to(homeContent, .25, {opacity : 0});
+                homeContent.style.pointerEvents = 'none';
             };
 
 
@@ -118,42 +122,47 @@
                     }
                 });
 
+
+            //*********************************** */
             // Detect Mouse Swipe and switch Section
             let cursorX = 0;
-            document.querySelector('#background').onmousedown = function(e) {
-                this.style.cssText = ` 
+
+            homeContent
+                .onmousedown = function(e) {
+                this.style.cssText += ` 
                     cursor: grabbing;
                     cursor: -moz-grabbing;
                     cursor: -webkit-grabbing;`;
                 cursorX = e.clientX;
             }
-            document.querySelector('#background').onmouseup = function(e) {
-                this.style.cssText = ` 
+            homeContent
+                .onmouseup = function(e) {
+                this.style.cssText += ` 
                     cursor: grab;
                     cursor: -moz-grab;
                     cursor: -webkit-grab;`;
-                if(cursorX < e.clientX){
-                    sectionSwitch('left');
-                } else if(cursorX > e.clientX){
+                if((cursorX - e.clientX) > 150){
                     sectionSwitch('right');
+                } else if((e.clientX - cursorX) > 150){
+                    sectionSwitch('left');
                 }
 
             }
-
-            // Detect Finger Swipe and switch Section
-            document.querySelector('#background')
+            // Detect Finger on Background Swipe and switch Section
+            homeContent
                 .addEventListener('touchstart', touchStart, false);        
-            document.querySelector('#background')
+            homeContent
                 .addEventListener('touchend', touchEnd, false);
 
             function touchStart(e){
                 cursorX = e.targetTouches[0].clientX;
             }
+
             function touchEnd(e){
-                if(cursorX < e.changedTouches[0].clientX){
-                    sectionSwitch('left');
-                } else if(cursorX > e.changedTouches[0].clientX){
+                if((cursorX - e.changedTouches[0].clientX) > 150){
                     sectionSwitch('right');
+                } else if((e.changedTouches[0].clientX - cursorX) > 150){
+                    sectionSwitch('left');
                 }
             }
 
@@ -164,14 +173,28 @@
                     codeSectionOpen();
                 } else if(dragStatus == 'right' &&
                     currentSection == 'initial'){
-                        designSectionOpen();
+                    designSectionOpen();
                 } else if(
                     (dragStatus == 'left' && currentSection == 'design') ||
                     (dragStatus == 'right' && currentSection == 'code') ){
                     initialSectionOpen();
+                } else if(dragStatus == 'left' &&
+                    currentSection == 'code'){
+                    codeWorkOpen();
+                } else if(dragStatus == 'right' &&
+                    currentSection == 'design'){
+                    designWorkOpen();
+                } else if(dragStatus == 'right' &&
+                    currentSection == 'codeSkills'){
+                    codeSectionOpen();
+                } else if(dragStatus == 'left' &&
+                    currentSection == 'designSkills'){
+                    designSectionOpen();
                 }
             }
-            
+
+            //*********************************** */
+
             this.style.opacity = 1;
         });
 

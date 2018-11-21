@@ -9,7 +9,7 @@ body{
     height: 200vh;
 }
 #background{
-    position: relative;
+    position: absolute;
     height: 100vh;
     width: 100%;
     cursor: -webkit-grab;
@@ -39,80 +39,79 @@ body{
     background-color: transparent;
     color: $black;
 }
-#codeSection,
-#designSection{
-    position: absolute;
-    top: 0;
-    left: 0;
-    .logoSVG{
-        position: absolute;
-        top: 30px;
-        left: 50%;
-        width: 150px;
-        @include transform( translateX(-50%) );
-    }
-    .avatarSVG{
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 400px;
-        @include transform( translate(-50%,-50%) );
-    }
-}
-#codeBtn{
-    position: fixed;
-    top:50%;
-    left: calc(50% - 16vw);
-
-    @include transform( translate(-100%,-50%) );
-    font-family: $codeFont;
-    font-weight: 800;
-    font-size: 35px;
-    color: $codeGreen;
-
-    white-space: nowrap;
-    overflow-x: hidden;
-}
-#designBtn{
-    position: fixed;
-    top:50%;
-    left: calc(50% + 14vw);
-    cursor: pointer;
-    @include transform( translate(0%,-50%) );
-    object{
-        pointer-events: none;
-        height: 120px;
-    }
-}
-#codeSection{
+#homeContent{
     display: flex;
-    width: 100%;
-    height: 100vh;
-    background-color: $codeBackground;
-    
-    @include mask(url(../images/homeMaskLeft.svg));
-    @include mask-size(100%, 100%);
-    mask-type: alpha;
-    .avatarSVG{
-        -webkit-filter: url(#duoToneFilter); 
-        filter: url(#duoToneFilter);
+    max-height: 100vh;
+    overflow: hidden;
+    width: 500%;
+    flex-direction: row-reverse;
+    position: fixed;
+    right: -200%;
+
+    section{
+        width: 100%;
+        height: 100vh;
+        position: relative;
+    }
+    #centerContent{
+        order: 3;
+        #codeBtn{
+            position: absolute;
+            top:50%;
+            left: calc(50% - 16vw);
+        
+            @include transform( translate(-100%,-50%) );
+            font-family: $codeFont;
+            font-weight: 800;
+            font-size: 35px;
+            color: $codeGreen;
+        
+            white-space: nowrap;
+            overflow-x: hidden;
+        }
+        #designBtn{
+            position: absolute;
+            top:50%;
+            left: calc(50% + 14vw);
+            cursor: pointer;
+            @include transform( translate(0%,-50%) );
+            object{
+                pointer-events: none;
+                height: 120px;
+            }
+        }
+    }
+    #codeContent{
+        font-family: $codeFont;
+        color: white;
+        font-weight: 500;
+        order: 4;
+        .introduction{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            @include transform( translate(-50%, -50%) );
+        }
+    }
+    #codeContentSkillsAndWork{
+        font-family: $codeFont;
+        color: white;
+        font-weight: 500;
+        background-color: $codePink;
+        opacity: .5;
+        order: 5;
+    }
+    #designContent{
+        background-color: $codeLightGreen;
+        opacity: .5;
+        order: 2;
+    }
+    #designContentSkillsAndWork{
+        background-color: $codeRed;
+        opacity: .5;
+        order: 1;
     }
 }
-#designSection{
-    display: flex;
-    width: 100%;
-    height: 100vh;
-    background-color: $designBackground;
-
-    @include mask(url(../images/homeMaskRight.svg));
-    @include mask-size(100%, 100%);
-    mask-type: alpha;
-    .avatarSVG{
-        -webkit-filter: url(#duoToneFilter); 
-        filter: url(#duoToneFilter);
-    }
-}
-
 @media screen and (max-width: 768px){
     #codeBtn{
         position: fixed;

@@ -10,6 +10,11 @@ h1{
 .hidden{
     display: none;
 }
+.hiding{
+    opacity: 0;
+    pointer-events: none;
+    @include transition( opacity .3s );
+}
 button{
     font-family: $designFont;
     padding: .5em 1em;
@@ -22,3 +27,9 @@ button{
     font-weight: 600;
 
 }
+.codeGreenText{ color : $codeGreen; }
+.codePinkText{ color : $codePink; }
+.codeBlueText{ color : $codeBlue; }
+.codeYellowText{ color : $codeYellow; }
+.codeRedText{ color : $codeRed; }
+.codeLightGreenText{ color : $codeLightGreen; }
