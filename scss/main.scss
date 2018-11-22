@@ -141,42 +141,92 @@ body{
     }
     #designContent{
         order: 2;
+        perspective: 1000px;
+        pointer-events: none;
+        #motionTitle{
+            position: absolute;
+            width: 300px;
+            max-width: 300px;
+            top: 50%;
+            left: 65%;
+            @include transform( translate(-50%, 5px));
+        }
+        #graphicsTitle{
+            position: absolute;
+            width: 300px;
+            max-width: 300px;
+            top: 50%;
+            left: 65%;
+            @include transform( translate(-50%, calc(-100% - 5px)));
+        }
+        #nameInDesign{
+            position: absolute;
+            width: 400px;
+            top: calc(50% - 50px);
+            left: 65%;
+            @include transform( translate(-50%, -50%));
+        }
+        #dStroke1{
+            position: absolute;
+            width: 120vw;
+            top: 45%;
+            left: 60%;
+            @include transform( translate(-60%, -60%) rotateX(0deg) rotateY(0deg));
+            transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
+            backface-visibility: hidden;
+        }
+        .andText{
+            color: $black;
+            font-size: 20px;
+            position: absolute;
+            top: 50%;
+            left: 65%;
+            @include transform( translate(-50%, -50%));
+            &::before{
+                content: '';
+                position: absolute;
+                width: 80px;
+                height: 2px;
+                top:50%;
+                left: -20px;
+                background-color: $black;
+                @include transform( translate(-100%, 0%) );
+            }
+            &::after{
+                content: '';
+                position: absolute;
+                width: 80px;
+                height: 2px;
+                top:50%;
+                left: calc(100% + 20px);
+                background-color: $black;
+                @include transform( translate(0%, 0%) );
+            }
+        }
     }
     #designContentSkillsAndWork{
         order: 1;
     }
 }
-@media screen and (max-width: 768px){
-    #homeContent{
-        #centerContent{
-            #codeBtn{
-                position: absolute;
-                top:50%;
-                left: calc(50% - 15vw);
-                @include transform( translate(-100%,-50%) rotate(-90deg));
-            }
-            #designBtn{
-                position: absolute;
-                top:50%;
-                left: calc(50% + 5vw);
-                @include transform( translate(0%,-50%) rotate(90deg));
-            }
-        }
+#lottieBackground{ z-index: -200;}
+#lottieBackgroundOverly{ z-index: -150;}
+#foreground,#lottieBackground,#lottieBackgroundOverly{
+    width: 100vw;
+    height: 56.25vw;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    @include transform( translate(-50%, -50%) );
+    opacity: 1;
+    pointer-events: none;
+    div{
+        width: 100%;
+        height: 100%;
     }
 }
 
-@media screen and (max-width: 420px){
-    #codeBtn{
-        left: calc(50% - 10vw);
-        font-size: 30px;
-    }
-    #designBtn{
-        left: calc(50% + 6vw);
-        object{
-            height: 80px;
-        }
-    }
-}
+
 @media (orientation: landscape) and 
     (max-aspect-ratio: 16/9){
     #homeContent{
@@ -190,15 +240,39 @@ body{
             }
             .headTag{
                 .openTag{
-                    top: calc(50% - 260px);
+                    top: calc(50% - 220px);
                 }
                 .closeTag{
-                    top: calc(50% + 240px);
+                    top: calc(50% + 200px);
                 }
             }
         }
+        #designContent{
+            #motionTitle{
+                left: calc(50% + 100px);
+                @include transform( translate(0%, 5px));
+            }
+            #graphicsTitle{
+                left: calc(50% + 100px);
+                @include transform( translate(0%, calc(-100% - 5px)));
+            }
+            #nameInDesign{
+                left: calc(50% + 50px);
+                @include transform( translate(0%, -50%));
+            }
+            .andText{
+                left: calc(50% + 225px);
+                @include transform( translate(0%, -50%));
+            }
+        }
+    }
+    #foreground,#lottieBackground,#lottieBackgroundOverly{
+        width: 177.77vh;
+        height: 100vh;
     }
 }
+
+
 @media (orientation: landscape) and 
     (max-aspect-ratio: 10/1) and 
     (min-aspect-ratio: 16/9){
@@ -213,10 +287,10 @@ body{
             }
             .headTag{
                 .openTag{
-                    top: calc(50% - 260px);
+                    top: calc(50% - 25vh);
                 }
                 .closeTag{
-                    top: calc(50% + 240px);
+                    top: calc(50% + 24vh);
                 }
             }
         }
@@ -242,8 +316,101 @@ body{
                     top: calc(50% - 25vh);
                 }
                 .closeTag{
-                    top: calc(50% + 24vh);
+                    top: calc(50% + 20vh);
                 }
+            }
+        }
+        #designContent{
+            #motionTitle{
+                width: 80vw;
+                top: 80%;
+                left: 50%;
+                @include transform( translate(-50%, 5px));
+            }
+            #graphicsTitle{
+                width: 80vw;
+                top: 80%;
+                left: 50%;
+                @include transform( translate(-50%, calc(-100% - 5px)));
+            }
+            #nameInDesign{
+                width: 80vw;
+                max-width: 400px;
+                top: 15%;
+                left: 50%;
+                @include transform( translate(-50%, 0%));
+            }
+            .andText{
+                top: 80%;
+                left: 50%;
+            }
+        }
+    }
+    #foreground,#lottieBackground,#lottieBackgroundOverly{
+        width: 177.77vh;
+        height: 100vh;
+    }
+}
+
+
+@media screen and (max-width: 768px){
+    #homeContent{
+        #centerContent{
+            #codeBtn{
+                position: absolute;
+                top:50%;
+                left: calc(50% - 15vw);
+                @include transform( translate(-100%,-50%) rotate(-90deg));
+            }
+            #designBtn{
+                position: absolute;
+                top:50%;
+                left: calc(50% + 5vw);
+                @include transform( translate(0%,-50%) rotate(90deg));
+            }
+        }
+    }
+    #designContent{
+        #motionTitle{
+            max-width: 300px !important;
+        }
+        #graphicsTitle{
+            max-width: 300px !important;
+        }
+    }
+}
+
+@media screen and (max-width: 420px){
+    #homeContent{
+        #centerContent{
+            #codeBtn{
+                left: calc(50% - 10vw);
+                font-size: 30px;
+            }
+            #designBtn{
+                left: calc(50% + 6vw);
+                object{
+                    height: 80px;
+                }
+            }
+        }
+        #codeContent{
+            .introduction{
+                font-size: 20px;
+            }
+            .iM{
+                font-size: 38px;
+            }
+        }
+        #designContent{
+            #motionTitle{
+                max-width: 200px !important;
+            }
+            #graphicsTitle{
+                max-width: 200px !important;
+            }
+            #dStroke1{
+                opacity: 0;
             }
         }
     }

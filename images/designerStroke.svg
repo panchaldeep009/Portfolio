@@ -30,7 +30,7 @@
 			c2,2,0,4,0,4s1-5-3-6s-9,7-7,14s10,7,11-5c0,0-1,30-9,24s15-17,17-24s2-6,2-6l2,15c0,0,0-18,4-17s1,17,8,18s7-16,7-16s-2,6,1,10
 			s5-14,1-13s-3,23,6,19s8-18,8-18s3,12,2,15c0,0,2-21,5-19s0,7,8,8">
 				<animate attributeType="XML" attributeName="stroke-dashoffset"
-					begin="none" id="designDrawing" dur="2s" fill="freeze" repeatCount="1"
+					begin="0.2" id="designDrawing" dur="2s" fill="freeze" repeatCount="1"
 					to="0"/>
 			</path>
 		

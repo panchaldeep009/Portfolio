@@ -5,20 +5,70 @@
     // CSS Variables
     var cssVar = window.getComputedStyle(document.body);
     const codeSectionColor = cssVar.getPropertyValue('--codeBackground').trim(),
-        designSectionColor = cssVar.getPropertyValue('--designBackground').trim();
+        designSectionColor = cssVar.getPropertyValue('--designBackground').trim(),
+        centerSectionColor = cssVar.getPropertyValue('--yellowColor').trim();
 
     //  Variable for current section Status.
     var currentSection = 'initial';
 
-    // Section open Button
-    let codeSectionButton = document.querySelector("#codeBtn"),
-        designSectionButton = document.querySelector("#designBtn");
-
     // Sections
-    let homeContent = document.querySelector('#homeContent');
-    // Change Background Colors to match theme
-    
-    document.querySelector('#backgroundSVG')
+    let homeContent = document.querySelector('#homeContent'),
+        backgroundSVG = document.querySelector('#backgroundSVG'),
+        lottieBackground = document.querySelector('#lottieBackground'),
+        lottieBackgroundOverly = document.querySelector('#lottieBackgroundOverly'),
+        foreground = document.querySelector('#foreground'),
+        nameDesign = document.querySelector('#nameInDesign'),
+        motionTitle = document.querySelector('#motionTitle'),
+        graphicsTitle = document.querySelector('#graphicsTitle');
+
+    // Foreground Lottie Animations
+    let animCodeSparks = {
+        wrapper: lottieBackgroundOverly,
+        autoplay: true,
+        animType: 'svg',
+        prerender: true,
+        path: './data/codeOpenSparks.json'
+    }, animCodeTransition = {
+        wrapper: foreground,
+        animType: 'svg',
+        prerender: true,
+        path: './data/codeTransition.json'
+    }, animDesignTransition = {
+        wrapper: foreground,
+        animType: 'svg',
+        prerender: true,
+        path: './data/designTransition.json'
+    }, animDesignSpark = {
+        wrapper: lottieBackgroundOverly,
+        animType: 'svg',
+        prerender: true,
+        path: './data/designSpark.json'
+    };
+
+    let animMotionTitle = bodymovin.loadAnimation({
+        wrapper: motionTitle,
+        animType: 'svg',
+        prerender: true,
+        autoplay: false,
+        loop: true,
+        path: './data/motionTitle.json'
+    }), animGraphicsTitle = bodymovin.loadAnimation({
+        wrapper: graphicsTitle,
+        animType: 'svg',
+        prerender: true,
+        autoplay: false,
+        loop: true,
+        path: './data/graphicTitle.json'
+    }), animNameTag = bodymovin.loadAnimation({
+        wrapper: nameDesign,
+        animType: 'svg',
+        prerender: true,
+        autoplay: false,
+        path: './data/name.json'
+    });
+    animGraphicsTitle.setSpeed(.8);
+
+    backgroundSVG
         .addEventListener('load', function(){
 
             // functions for Stages
@@ -31,7 +81,6 @@
 
             // define current content
             let content = this.contentDocument;
-            
             // Change color of dual tone filter in svg
             var remapColor = function(filter,color, index) {
                 let colR = filter.querySelector('feFuncR'),
@@ -62,52 +111,97 @@
                 content.querySelector('#myAvatar').setAttribute('filter', 'url(#duoToneFilter)');
                 content.querySelector('#codeCenter').beginElement();
                 content.querySelector('#designCenter').beginElement();
+
+                content.querySelector('#codeSectionBGColor').style.opacity = 1;
+                content.querySelector('#designSectionBGColor').style.opacity = 1;
+                document.body.style.backgroundColor = centerSectionColor;
+
                 currentSection = 'initial';
                 TweenMax.to(homeContent, .25, {opacity : 1, right : "-200%"});
-                TweenMax.to(content.querySelector('#myAvatarShape'), .25, {x : 0, y : 0});
-                TweenMax.to(content.querySelector('#myAvatar'), .25, {x : 0});
+                TweenMax.to(content.querySelector('#myAvatarShape'), .25, {x : 0, y : 0, scale: 1});
+                TweenMax.to(content.querySelector('#myAvatar'), .25, {x : 0, y : 0, scale: 1});
                 homeContent.style.pointerEvents = 'auto';
             };
             codeSectionOpen = function(){
                 content.querySelector('#codeOpenHalf').beginElement();
                 content.querySelector('#designCloseHalf').beginElement();
+
+                content.querySelector('#codeSectionBGColor').style.opacity = 0;
+                document.body.style.backgroundColor = codeSectionColor;
+
                 content.querySelector('#myAvatarShape').setAttribute('filter', '');
                 currentSection = 'code';
                 TweenMax.to(homeContent, .25, {opacity : 1, right : "-300%"});
-                TweenMax.to(content.querySelector('#myAvatarShape'), .25, {x : 0, y : 30});
+                TweenMax.to(content.querySelector('#myAvatarShape'), .25, {x : 10, y : 55, scale: .8});
                 let codeTitle = document.querySelector('#codeTitle');
                 TweenMax.fromTo(codeTitle, 
                     codeTitle.innerHTML.length*0.08, {width : 0}, {
-                    width : codeTitle.offsetWidth, 
+                    width : codeTitle.offsetWidth-12, 
                     ease:SteppedEase.config(codeTitle.innerHTML.length-1)
                 }).delay(.5);
                 TweenMax.fromTo(codeTitle, .5, 
                     {borderRight: '12px solid white'}, 
                     {borderRight: '12px solid transparent'}).repeat(-1);
+
+                lottieBackgroundOverly.innerHTML = "";
+                bodymovin.loadAnimation(animCodeSparks)
+                    .setSpeed(1);
             };
             codeWorkOpen = function(){
                 content.querySelector('#designEnd').beginElement();
                 content.querySelector('#codeWide').beginElement();
+
+                content.querySelector('#codeSectionBGColor').style.opacity = 0;
+                document.body.style.backgroundColor = codeSectionColor;
+                
                 currentSection = 'codeSkills';
                 TweenMax.to(homeContent, .25, {opacity : 1, right : "-400%"});
                 TweenMax.to(content.querySelector('#myAvatarShape'), .4, {x : "1200"});
+                
+                foreground.innerHTML = "";
+                bodymovin.loadAnimation(animCodeTransition)
+                    .setSpeed(3);
             };
             designSectionOpen = function(){
                 content.querySelector('#codeCloseHalf').beginElement();
                 content.querySelector('#designOpenHalf').beginElement();
+
+                content.querySelector('#designSectionBGColor').style.opacity = 0;
+                document.body.style.backgroundColor = designSectionColor;
+
                 content.querySelector('#myAvatar').setAttribute('filter', '');
                 currentSection = 'design';
                 TweenMax.to(homeContent, .25, {opacity : 1, right : "-100%"});
-                TweenMax.to(content.querySelector('#myAvatar'), .25, {x : 0});
+                TweenMax.to(content.querySelector('#myAvatar'), .25, {x : 45, y : 55, scale: .8});
+
+                lottieBackgroundOverly.innerHTML = "";
+                bodymovin.loadAnimation(animDesignSpark)
+                    .setSpeed(1);
+                animGraphicsTitle.goToAndPlay(1,true);
+                animMotionTitle.goToAndPlay(1,true);
+                animNameTag.goToAndPlay(1,true);
             };
             designWorkOpen = function(){
                 content.querySelector('#codeEnd').beginElement();
                 content.querySelector('#designWide').beginElement();
+
+                content.querySelector('#designSectionBGColor').style.opacity = 0;
+                document.body.style.backgroundColor = designSectionColor;
+
                 currentSection = 'designSkills';
                 TweenMax.to(homeContent, .25, {opacity : 1, right : "0%"});
                 TweenMax.to(content.querySelector('#myAvatar'), .25, {x : -1200});
+                
+                foreground.innerHTML = "";
+                bodymovin.loadAnimation(animDesignTransition)
+                    .setSpeed(2);
             };
             centerSectionOpen = function(){
+
+                content.querySelector('#codeSectionBGColor').style.opacity = 1;
+                content.querySelector('#designSectionBGColor').style.opacity = 1;
+                document.body.style.backgroundColor = centerSectionColor;
+
                 content.querySelector('#myAvatarShape').setAttribute('filter', 'url(#duoToneFilter)');
                 content.querySelector('#myAvatar').setAttribute('filter', 'url(#duoToneFilter)');
                 content.querySelector('#codeCloseHalf').beginElement();
@@ -136,10 +230,7 @@
                     initialSectionOpen();
                 }
             }
-
-            // switching section event
-            //codeSectionButton.addEventListener('click', codeSectionOpen, false);
-            //designSectionButton.addEventListener('click', designSectionOpen, false);
+            
             // Open from center on scroll Down 
             window
                 .addEventListener('scroll', function(e){
@@ -245,18 +336,13 @@
         }
     }
     
-    // Design button animation
-    document.querySelector('#designBtnSVG')
-        .addEventListener('load', function(){
-            let content = this.contentDocument;
-            content.querySelector('#designDrawing').beginElement();
-        });
     document.querySelectorAll('[data-link]').forEach(element => {
             element.style.cursor = "pointer";
             element.addEventListener('click', function() {
                 window.location.href = this.dataset.link;
             }, true);
         });
+
     // Logo animation
     
     // [    // Code Section
