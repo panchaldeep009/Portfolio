@@ -1,17 +1,35 @@
 // Variables for Colors
 
-$primaryColor: #83aad6;
-$secondaryColor: #a1c3e5;
-$complementaryColor: #a4a5a5;
+:root{
+    --codeBackground : #292d3e;
+    --codeGreen : #00c617;
+    --codePink: #d200ff;
+    --codeBlue: #00b7ff;
+    --codeYellow: #fcff01;
+    --codeRed: #ff0143;
+    --codeLightGreen: #01ff9c;
+
+    --designBackground : #ffffff;
+    --yellowColor : #EFCE4A;
+}
+
+$codeBackground: var(--codeBackground);
+$codeGreen: var(--codeGreen);
+$codePink: var(--codePink);
+$codeBlue: var(--codeBlue);
+$codeYellow: var(--codeYellow);
+$codeRed: var(--codeRed);
+$codeLightGreen: var(--codeLightGreen);
+
+$designBackground: var(--designBackground);
+$yellowColor: var(--yellowColor);
 
 $black: #272727;
 $dark: #3b3b3b;
 $white: #ebebeb;
 
-// // Variables for Fonts
-
-$font: Raleway, Arial, Helvetica, sans-serif;
-
+$designFont: Raleway, Arial, Helvetica, sans-serif;
+$codeFont: 'Courier New', Courier, monospace, sans-serif;
 //  Variables for Width
 
 $max-width : 1200px;

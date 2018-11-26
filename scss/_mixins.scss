@@ -42,6 +42,14 @@
     -o-animation: $value;
     animation: $value;
 }
+@mixin mask($property...) {
+    -webkit-mask: $property;
+    mask:         $property;
+}
+@mixin mask-size($property...) {
+    -webkit-mask-size: $property;
+    mask-size:         $property;
+}
 @mixin keyframes($name) {
     @-webkit-keyframes #{$name} {
       @content

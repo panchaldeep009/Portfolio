@@ -4,6 +4,7 @@
 
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <link rel="manifest" href="manifest.webmanifest"> -->
 
     <title>Deep Panchal : Interactive Media Designer</title>
 
@@ -12,9 +13,118 @@
     <link rel="shortcut icon" href="images/favicon.png" type="image/png" />
 
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
-    <script src="js/main.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.4.1/lottie.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
+
 </head>
 <body>
-    
+    <section id="preLoader">
+        <div id="preLoaderAnimation" class="fill1080p"></div>
+        <div id="preLoaderPercentage">0%</div>
+    </section>
+    <section id="background">
+        <svg width="0" height="0"> 
+            <defs>
+                <filter id="duoToneFilter">
+                    <feColorMatrix type="matrix" result="gray" values="1 0 0 0 0
+                                1 0 0 0 0
+                                1 0 0 0 0
+                                0 0 0 1 0">
+                    </feColorMatrix>
+                    <feComponentTransfer color-interpolation-filters="sRGB"> 
+                        <feFuncR type="table" tableValues="0.12941176470588237 0.9333333333333333"></feFuncR>
+                        <feFuncG type="table" tableValues="0.08627450980392157 0.9333333333333333"></feFuncG>
+                        <feFuncB type="table" tableValues="0.25098039215686274 0.9333333333333333"></feFuncB>
+                        <feFuncA type="table" tableValues="0 1"></feFuncA>
+                    </feComponentTransfer>        
+                </filter>
+            </defs>
+        </svg>
+    </section>
+    <section id="lottieBackground" class="fill1080p"></section>
+    <section id="lottieBackgroundOverly" class="fill1080p"></section> 
+    <main id="homeContent">
+        <section id="centerContent">
+            <div id="codeBanner">
+                <div id="codeSparks" class="fill1080p"></div>
+                <img src="images/logoWhite.svg" class="headerLogo" alt="headerLogoWhite">
+                <img src="images/myAvatarShape.svg" id="myAvatarShape" alt="myAvatarShape">
+                <div id="codeBackground" class="fill1080p"></div>
+            </div>
+            <div id="designBanner">
+                <div id="designSparks" class="fill1080p"></div>
+                <img src="images/logoDark.svg" class="headerLogo" alt="headerLogoWhite">
+                <img src="images/myAvatar.svg" id="myAvatar" alt="myAvatar">
+                <div id="designBackground" class="fill1080p"></div>
+            </div>
+            <button class="noButtonStyle" id="codeBtn" data-link="#/code">&#60;!-- Coder</button>
+            <button class="noButtonStyle" id="designBtn" data-link="#/design">
+                <object id="designBtnSVG" type="image/svg+xml"
+                    data="images/designerStroke.svg">
+                </object>
+            </button>
+        </section>   
+        <section id="codeContent">
+            <div class="introduction">
+                <p class="introText"> 
+                    <div class="iM">
+                        I<span class="codePinkText">'</span>m <br/>
+                    </div>
+                    <div class="name">
+                        <span class="codeBlueText">{</span> 
+                            DEEP PANCHAL
+                        <span class="codeBlueText">}</span>
+                        <span class="codeYellowText">;</span>
+                    </div>
+                    <div class="title">
+                        <span class="codeRedText">&lt;?</span>
+                        <span id="codeTitle" class="codeLightGreenText"> A_WEB_DEVELOPER</span>
+                        <span class="codeRedText">/&gt;</span>
+                    </div>
+                </p>
+            </div>
+            <div class="greeting codeGreenText">// Hello World</div>
+            <div class="headTag">
+                <p class="openTag">
+                    <span class="codeRedText">&lt;</span>
+                    <span class="codeLightGreenText">head</span>
+                    <span class="codeRedText">&gt;</span>
+                </p>
+                <p class="closeTag">
+                    <span class="codeRedText">&lt;/</span>
+                    <span class="codeLightGreenText">head</span>
+                    <span class="codeRedText">&gt;</span>
+                </p>
+            </div>
+        </section>
+        <section id="codeContentSkillsAndWork">
+
+        </section>
+        <section id="designContent">
+            <div id="dStroke1">
+                <object id="dStroke1SVG" type="image/svg+xml"
+                    data="images/dStroke.svg">
+                </object>
+            </div>
+            <div id="nameInDesign"></div>
+            <div id="graphicsTitle"></div>
+            <div class="andText">and</div>
+            <div id="motionTitle"></div>
+            <div class="designerText">designer</div>
+        </section>
+        <section id="designContentSkillsAndWork">
+
+        </section>
+    </main>
+    <main id="aboutContent">
+        <section id="about">
+            Hello, I am a interactive media developer, who design and develope engaging artworks and interactive web application since 2011.
+        </section>
+    </main>
+
+    <section id="foreground" class="fill1080p"></section>
+    <script src="js/main.js"></script>
 </body>
 </html>

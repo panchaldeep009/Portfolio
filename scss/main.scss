@@ -4,7 +4,523 @@
 
 @import '_variables';
 
+@import '_default';
 body{
-    overflow-x: hidden;
-    font-family: $font;
+    height: 250vh;
+}
+#preLoader{
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    pointer-events: none;
+    z-index: 500;
+    #preLoaderPercentage{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        color: $codeBackground;
+        font-family: $designFont;
+        font-size: 20px;
+        @include transform( translate(-20%, -100%) );
+    }
+}
+#background{
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    #svgMask{
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        z-index: -100;
+        pointer-events: none;
+        opacity: 0;
+        @include transform( translate(-50%, -50%) );
+    }
+}
+.autoHeight{
+    width: 100%;
+    height: auto;
+}
+.autoWidth{
+    width: auto;
+    height: 100vh;
+}
+.noButtonStyle{
+    padding: 0;
+    border-radius: 0;
+    background-color: transparent;
+    color: $black;
+}
+#homeContent{
+    display: flex;
+    max-height: 100vh;
+    overflow: hidden;
+    width: 500%;
+    flex-direction: row-reverse;
+    position: fixed;
+    right: -200%;
+    opacity: 0;
+    section{
+        width: 100%;
+        height: 100vh;
+        position: relative;
+    }
+    .headerLogo{
+        position: fixed;
+        width: 150px;
+        top: 10px;
+        left: 50%;
+        @include transform( translate(-50%, 0%) );
+    }
+    #centerContent{
+        cursor: grab;
+        cursor: -moz-grab;
+        cursor: -webkit-grab;
+        position: relative;
+        order: 3;
+        #codeBanner{
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            top: 50%;
+            left: 50%;
+            @include transform( translate(-50%, -50%) );
+            clip-path: polygon(0 0, 40% 0, 60% 100%, 0% 100%, 0 0);
+            shape-inside: polygon(0 0, 40% 0, 60% 100%, 0% 100%, 0 0);
+            -webkit-clip-path: polygon(0 0, 40% 0, 60% 100%, 0% 100%, 0 0);
+            @include transition(clip-path 0.2s, -webkit-clip-path 0.2s, shape-inside 0.2s);
+            #codeBackground{
+                position: fixed;
+                z-index: -150;
+                background-color: $codeBackground;
+            }
+            #myAvatarShape{
+                position: fixed;
+                width: 70vw;
+                max-width: 400px;
+                top: 50%;
+                left: 50%;
+                @include transform( translate(-50%, -50%) );
+            }
+        }
+        #designBanner{
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            top: 50%;
+            left: 50%;
+            @include transform( translate(-50%, -50%) );
+            clip-path: polygon(100% 0, 40% 0, 60% 100%, 100% 100%, 100% 0);
+            shape-inside: polygon(100% 0, 40% 0, 60% 100%, 100% 100%, 100% 0);
+            -webkit-clip-path: polygon(100% 0, 40% 0, 60% 100%, 100% 100%, 100% 0);
+            @include transition(clip-path 0.2s, -webkit-clip-path 0.2s, shape-inside 0.2s);
+            #designBackground{
+                position: fixed;
+                z-index: -150;
+                background-color: $designBackground;
+            }
+            #myAvatar{
+                position: fixed;
+                width: 70vw;
+                max-width: 400px;
+                top: 50%;
+                left: 50%;
+                @include transform( translate(-50%, -50%) );
+            }
+        }
+        #codeBtn{
+            position: absolute;
+            top:50%;
+            left: calc(50% - 16vw);
+        
+            @include transform( translate(-100%,-50%) );
+            font-family: $codeFont;
+            font-weight: 800;
+            font-size: 35px;
+            color: $codeGreen;
+        
+            white-space: nowrap;
+            overflow-x: hidden;
+        }
+        #designBtn{
+            position: absolute;
+            top:50%;
+            left: calc(50% + 14vw);
+            cursor: pointer;
+            @include transform( translate(0%,-50%) );
+            object{
+                pointer-events: none;
+                height: 120px;
+            }
+        }
+    }
+    #codeContent{
+        font-family: $codeFont;
+        color: white;
+        font-weight: 600;
+        order: 4;
+        .introduction{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            font-size: 26px;
+            @include transform( translate(-50%, -50%) );
+            white-space: nowrap;
+            letter-spacing: 2px;
+            .iM{ 
+                font-size: 42px;
+            }
+            .name{
+                line-height: 1.6;
+            }
+            .title{
+                #codeTitle{
+                    overflow: hidden;
+                    display: inline-block;
+                    border-right: 12px solid transparent;
+                    @include transform( translateY(4.5px) );
+                }
+            }
+        }
+        .headTag{
+            opacity: .5;
+            .openTag{
+                position: absolute;
+                top: calc(50% - 25vh);
+                left: calc(50% - 60px);
+                @include transform( translate(-50%, -50%) );
+            }
+            .closeTag{
+                position: absolute;
+                top: calc(50% + 23vh);
+                left: 50%;
+                @include transform( translate(-50%, -50%) );
+            }
+        }
+        .greeting{
+            position: absolute;
+            top: 50%;
+            left: calc(50% - 125px);
+            @include transform( translate(-50%, -50%) rotate(-90deg));
+            font-size: 26px;
+            white-space: nowrap;
+        }
+    }
+    #codeContentSkillsAndWork{
+        font-family: $codeFont;
+        color: white;
+        font-weight: 500;
+        order: 5;
+    }
+    #designContent{
+        order: 2;
+        perspective: 1000px;
+        pointer-events: none;
+        #motionTitle{
+            position: absolute;
+            width: 300px;
+            max-width: 300px;
+            top: 50%;
+            left: 65%;
+            @include transform( translate(-50%, 5px));
+            z-index: 250;
+        }
+        #graphicsTitle{
+            position: absolute;
+            width: 300px;
+            max-width: 300px;
+            top: 50%;
+            left: 65%;
+            z-index: 250;
+            @include transform( translate(-50%, calc(-100% - 5px)));
+        }
+        #nameInDesign{
+            position: absolute;
+            width: 400px;
+            top: calc(50% - 50px);
+            left: 65%;
+            z-index: 250;
+            @include transform( translate(-50%, -50%));
+        }
+        #dStroke1{
+            position: absolute;
+            width: 120vw;
+            top: 45%;
+            left: 60%;
+            z-index: 250;
+            @include transform( translate(-60%, -60%) rotateX(0deg) rotateY(0deg));
+            transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
+            backface-visibility: hidden;
+        }
+        .andText{
+            color: $black;
+            font-size: 20px;
+            position: absolute;
+            top: 50%;
+            left: 65%;
+            z-index: 250;
+            @include transform( translate(-50%, -50%));
+            &::before{
+                content: '';
+                position: absolute;
+                width: 80px;
+                height: 2px;
+                top:50%;
+                left: -20px;
+                background-color: $black;
+                @include transform( translate(-100%, 0%) );
+            }
+            &::after{
+                content: '';
+                position: absolute;
+                width: 80px;
+                height: 2px;
+                top:50%;
+                left: calc(100% + 20px);
+                background-color: $black;
+                @include transform( translate(0%, 0%) );
+            }
+        }
+        .designerText{
+            color: $codeBlue;
+            font-size: 20px;
+            position: absolute;
+            top: 50%;
+            left: 65%;
+            z-index: 250;
+            @include transform( translate(-50%, 100px));
+        }
+    }
+    #designContentSkillsAndWork{
+        order: 1;
+    }
+}
+#aboutContent{
+    #about{
+        font-family: $designFont;
+        line-height: 26pt;
+        font-size: 20px;
+        position: fixed;
+        width: calc(80vw - 30px);
+        max-width: 450px;
+        top: 50%;
+        left: 50%;
+        @include transform( translate(-50%, -50%) );
+        padding: 30px;
+        background-color: #ffffff;
+        color: #333;
+        border-radius: 12px;
+        box-shadow: 5px 10px 50px #b9b9b9;
+    }
+}
+.fill1080p{
+    width: 100vw;
+    height: 56.25vw;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    @include transform( translate(-50%, -50%) );
+    opacity: 1;
+    pointer-events: none;
+    div{
+        width: 100%;
+        height: 100%;
+    }
+}
+#lottieBackground{ z-index: -200;}
+#lottieBackgroundOverly{ z-index: -150;}
+
+
+@media (orientation: landscape) and 
+    (max-aspect-ratio: 16/9){
+    #homeContent{
+        #codeContent{
+            .introduction{
+                @include transform( translate(0, -50%) );
+                left: calc(50% + 125px);
+            }
+            .greeting{
+                left: calc(50% - 165px);
+            }
+            .headTag{
+                .openTag{
+                    top: calc(50% - 220px);
+                }
+                .closeTag{
+                    top: calc(50% + 200px);
+                }
+            }
+        }
+        #designContent{
+            #motionTitle{
+                left: calc(50% + 100px);
+                @include transform( translate(0%, 5px));
+            }
+            #graphicsTitle{
+                left: calc(50% + 100px);
+                @include transform( translate(0%, calc(-100% - 5px)));
+            }
+            #nameInDesign{
+                left: calc(50% + 50px);
+                @include transform( translate(0%, -50%));
+            }
+            .andText, .designerText{
+                left: calc(50% + 225px);
+                @include transform( translate(0%, -50%));
+            }
+        }
+    }
+    .fill1080p{
+        width: 177.77vh;
+        height: 100vh;
+    }
+}
+
+
+@media (orientation: landscape) and 
+    (max-aspect-ratio: 10/1) and 
+    (min-aspect-ratio: 16/9){
+    #homeContent{
+        #codeContent{
+            .introduction{
+                @include transform( translate(0, -50%) );
+                left: 56.5%;
+            }
+            .greeting{
+                left: 38%;
+            }
+            .headTag{
+                .openTag{
+                    top: calc(50% - 25vh);
+                }
+                .closeTag{
+                    top: calc(50% + 24vh);
+                }
+            }
+        }
+    }
+}
+
+@media (orientation: portrait) and 
+    (max-aspect-ratio: 1/1) {
+    #homeContent{
+        #codeContent{
+            .introduction{
+                left: 50%;
+                @include transform( translate(-50%, 0) );
+                top: calc(50% + 22vh);
+            }
+            .greeting{
+                @include transform( translate(-50%, -50%) rotate(0deg));
+                left: calc(50% - 20px);
+                top: calc(50% - 30vh);
+            }
+            .headTag{
+                .openTag{
+                    top: calc(50% - 25vh);
+                }
+                .closeTag{
+                    top: calc(50% + 20vh);
+                }
+            }
+        }
+        #designContent{
+            #motionTitle{
+                width: 80vw;
+                top: 80%;
+                left: 50%;
+                @include transform( translate(-50%, 5px));
+            }
+            #graphicsTitle{
+                width: 80vw;
+                top: 80%;
+                left: 50%;
+                @include transform( translate(-50%, calc(-100% - 5px)));
+            }
+            #nameInDesign{
+                width: 80vw;
+                max-width: 400px;
+                top: 15%;
+                left: 50%;
+                @include transform( translate(-50%, 0%));
+            }
+            .andText, .designerText{
+                top: 80%;
+                left: 50%;
+            }
+            .designerText{
+                @include transform( translate(-50%, 75px));
+            }
+        }
+    }
+    .fill1080p{
+        width: 177.77vh;
+        height: 100vh;
+    }
+}
+
+
+@media screen and (max-width: 768px){
+    #homeContent{
+        #centerContent{
+            #codeBtn{
+                position: absolute;
+                top:50%;
+                left: calc(50% - 15vw);
+                @include transform( translate(-100%,-50%) rotate(-90deg));
+            }
+            #designBtn{
+                position: absolute;
+                top:50%;
+                left: calc(50% + 5vw);
+                @include transform( translate(0%,-50%) rotate(90deg));
+            }
+        }
+    }
+    #designContent{
+        #motionTitle{
+            max-width: 300px !important;
+        }
+        #graphicsTitle{
+            max-width: 300px !important;
+        }
+    }
+}
+
+@media screen and (max-width: 420px){
+    #homeContent{
+        #centerContent{
+            #codeBtn{
+                left: calc(50% - 10vw);
+                font-size: 30px;
+            }
+            #designBtn{
+                left: calc(50% + 6vw);
+                object{
+                    height: 80px;
+                }
+            }
+        }
+        #codeContent{
+            .introduction{
+                font-size: 20px;
+            }
+            .iM{
+                font-size: 38px;
+            }
+        }
+        #designContent{
+            #motionTitle{
+                max-width: 200px !important;
+            }
+            #graphicsTitle{
+                max-width: 200px !important;
+            }
+            #dStroke1{
+                opacity: 0;
+            }
+        }
+    }
 }
