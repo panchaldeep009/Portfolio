@@ -6,16 +6,29 @@
 
 @import '_default';
 body{
-    height: 200vh;
+    height: 250vh;
+}
+#preLoader{
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    pointer-events: none;
+    z-index: 500;
+    #preLoaderPercentage{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        color: $codeBackground;
+        font-family: $designFont;
+        font-size: 20px;
+        @include transform( translate(-20%, -100%) );
+    }
 }
 #background{
     position: absolute;
     height: 100vh;
     width: 100%;
-    cursor: -webkit-grab;
-    cursor: -moz-grab;
-    cursor: grab;
-    #backgroundSVG{
+    #svgMask{
         position: fixed;
         top: 50%;
         left: 50%;
@@ -47,14 +60,75 @@ body{
     flex-direction: row-reverse;
     position: fixed;
     right: -200%;
-
+    opacity: 0;
     section{
         width: 100%;
         height: 100vh;
         position: relative;
     }
+    .headerLogo{
+        position: fixed;
+        width: 150px;
+        top: 10px;
+        left: 50%;
+        @include transform( translate(-50%, 0%) );
+    }
     #centerContent{
+        cursor: grab;
+        cursor: -moz-grab;
+        cursor: -webkit-grab;
+        position: relative;
         order: 3;
+        #codeBanner{
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            top: 50%;
+            left: 50%;
+            @include transform( translate(-50%, -50%) );
+            clip-path: polygon(0 0, 40% 0, 60% 100%, 0% 100%, 0 0);
+            shape-inside: polygon(0 0, 40% 0, 60% 100%, 0% 100%, 0 0);
+            -webkit-clip-path: polygon(0 0, 40% 0, 60% 100%, 0% 100%, 0 0);
+            @include transition(clip-path 0.2s, -webkit-clip-path 0.2s, shape-inside 0.2s);
+            #codeBackground{
+                position: fixed;
+                z-index: -150;
+                background-color: $codeBackground;
+            }
+            #myAvatarShape{
+                position: fixed;
+                width: 70vw;
+                max-width: 400px;
+                top: 50%;
+                left: 50%;
+                @include transform( translate(-50%, -50%) );
+            }
+        }
+        #designBanner{
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            top: 50%;
+            left: 50%;
+            @include transform( translate(-50%, -50%) );
+            clip-path: polygon(100% 0, 40% 0, 60% 100%, 100% 100%, 100% 0);
+            shape-inside: polygon(100% 0, 40% 0, 60% 100%, 100% 100%, 100% 0);
+            -webkit-clip-path: polygon(100% 0, 40% 0, 60% 100%, 100% 100%, 100% 0);
+            @include transition(clip-path 0.2s, -webkit-clip-path 0.2s, shape-inside 0.2s);
+            #designBackground{
+                position: fixed;
+                z-index: -150;
+                background-color: $designBackground;
+            }
+            #myAvatar{
+                position: fixed;
+                width: 70vw;
+                max-width: 400px;
+                top: 50%;
+                left: 50%;
+                @include transform( translate(-50%, -50%) );
+            }
+        }
         #codeBtn{
             position: absolute;
             top:50%;
@@ -150,6 +224,7 @@ body{
             top: 50%;
             left: 65%;
             @include transform( translate(-50%, 5px));
+            z-index: 250;
         }
         #graphicsTitle{
             position: absolute;
@@ -157,6 +232,7 @@ body{
             max-width: 300px;
             top: 50%;
             left: 65%;
+            z-index: 250;
             @include transform( translate(-50%, calc(-100% - 5px)));
         }
         #nameInDesign{
@@ -164,6 +240,7 @@ body{
             width: 400px;
             top: calc(50% - 50px);
             left: 65%;
+            z-index: 250;
             @include transform( translate(-50%, -50%));
         }
         #dStroke1{
@@ -171,6 +248,7 @@ body{
             width: 120vw;
             top: 45%;
             left: 60%;
+            z-index: 250;
             @include transform( translate(-60%, -60%) rotateX(0deg) rotateY(0deg));
             transform-style: preserve-3d;
             -webkit-transform-style: preserve-3d;
@@ -182,6 +260,7 @@ body{
             position: absolute;
             top: 50%;
             left: 65%;
+            z-index: 250;
             @include transform( translate(-50%, -50%));
             &::before{
                 content: '';
@@ -204,14 +283,39 @@ body{
                 @include transform( translate(0%, 0%) );
             }
         }
+        .designerText{
+            color: $codeBlue;
+            font-size: 20px;
+            position: absolute;
+            top: 50%;
+            left: 65%;
+            z-index: 250;
+            @include transform( translate(-50%, 100px));
+        }
     }
     #designContentSkillsAndWork{
         order: 1;
     }
 }
-#lottieBackground{ z-index: -200;}
-#lottieBackgroundOverly{ z-index: -150;}
-#foreground,#lottieBackground,#lottieBackgroundOverly{
+#aboutContent{
+    #about{
+        font-family: $designFont;
+        line-height: 26pt;
+        font-size: 20px;
+        position: fixed;
+        width: calc(80vw - 30px);
+        max-width: 450px;
+        top: 50%;
+        left: 50%;
+        @include transform( translate(-50%, -50%) );
+        padding: 30px;
+        background-color: #ffffff;
+        color: #333;
+        border-radius: 12px;
+        box-shadow: 5px 10px 50px #b9b9b9;
+    }
+}
+.fill1080p{
     width: 100vw;
     height: 56.25vw;
     position: fixed;
@@ -225,6 +329,8 @@ body{
         height: 100%;
     }
 }
+#lottieBackground{ z-index: -200;}
+#lottieBackgroundOverly{ z-index: -150;}
 
 
 @media (orientation: landscape) and 
@@ -260,13 +366,13 @@ body{
                 left: calc(50% + 50px);
                 @include transform( translate(0%, -50%));
             }
-            .andText{
+            .andText, .designerText{
                 left: calc(50% + 225px);
                 @include transform( translate(0%, -50%));
             }
         }
     }
-    #foreground,#lottieBackground,#lottieBackgroundOverly{
+    .fill1080p{
         width: 177.77vh;
         height: 100vh;
     }
@@ -340,13 +446,16 @@ body{
                 left: 50%;
                 @include transform( translate(-50%, 0%));
             }
-            .andText{
+            .andText, .designerText{
                 top: 80%;
                 left: 50%;
             }
+            .designerText{
+                @include transform( translate(-50%, 75px));
+            }
         }
     }
-    #foreground,#lottieBackground,#lottieBackgroundOverly{
+    .fill1080p{
         width: 177.77vh;
         height: 100vh;
     }

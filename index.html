@@ -20,24 +20,52 @@
 
 </head>
 <body>
-    
-    <section id="background">
-        <object id="backgroundSVG" class="autoHeight" type="image/svg+xml"
-            data="images/background.svg">
-        </object>
+    <section id="preLoader">
+        <div id="preLoaderAnimation" class="fill1080p"></div>
+        <div id="preLoaderPercentage">0%</div>
     </section>
-    <section id="lottieBackground"></section>
-    <section id="lottieBackgroundOverly"></section>
-    
+    <section id="background">
+        <svg width="0" height="0"> 
+            <defs>
+                <filter id="duoToneFilter">
+                    <feColorMatrix type="matrix" result="gray" values="1 0 0 0 0
+                                1 0 0 0 0
+                                1 0 0 0 0
+                                0 0 0 1 0">
+                    </feColorMatrix>
+                    <feComponentTransfer color-interpolation-filters="sRGB"> 
+                        <feFuncR type="table" tableValues="0.12941176470588237 0.9333333333333333"></feFuncR>
+                        <feFuncG type="table" tableValues="0.08627450980392157 0.9333333333333333"></feFuncG>
+                        <feFuncB type="table" tableValues="0.25098039215686274 0.9333333333333333"></feFuncB>
+                        <feFuncA type="table" tableValues="0 1"></feFuncA>
+                    </feComponentTransfer>        
+                </filter>
+            </defs>
+        </svg>
+    </section>
+    <section id="lottieBackground" class="fill1080p"></section>
+    <section id="lottieBackgroundOverly" class="fill1080p"></section> 
     <main id="homeContent">
         <section id="centerContent">
-            <button class="noButtonStyle" id="codeBtn" data-link="/#/code">&#60;!-- Coder</button>
-            <button class="noButtonStyle" id="designBtn" data-link="/#/design">
+            <div id="codeBanner">
+                <div id="codeSparks" class="fill1080p"></div>
+                <img src="images/logoWhite.svg" class="headerLogo" alt="headerLogoWhite">
+                <img src="images/myAvatarShape.svg" id="myAvatarShape" alt="myAvatarShape">
+                <div id="codeBackground" class="fill1080p"></div>
+            </div>
+            <div id="designBanner">
+                <div id="designSparks" class="fill1080p"></div>
+                <img src="images/logoDark.svg" class="headerLogo" alt="headerLogoWhite">
+                <img src="images/myAvatar.svg" id="myAvatar" alt="myAvatar">
+                <div id="designBackground" class="fill1080p"></div>
+            </div>
+            <button class="noButtonStyle" id="codeBtn" data-link="#/code">&#60;!-- Coder</button>
+            <button class="noButtonStyle" id="designBtn" data-link="#/design">
                 <object id="designBtnSVG" type="image/svg+xml"
                     data="images/designerStroke.svg">
                 </object>
             </button>
-        </section>
+        </section>   
         <section id="codeContent">
             <div class="introduction">
                 <p class="introText"> 
@@ -84,14 +112,19 @@
             <div id="graphicsTitle"></div>
             <div class="andText">and</div>
             <div id="motionTitle"></div>
+            <div class="designerText">designer</div>
         </section>
         <section id="designContentSkillsAndWork">
 
         </section>
     </main>
+    <main id="aboutContent">
+        <section id="about">
+            Hello, I am a interactive media developer, who design and develope engaging artworks and interactive web application since 2011.
+        </section>
+    </main>
 
-    <section id="foreground"></section>
-
+    <section id="foreground" class="fill1080p"></section>
     <script src="js/main.js"></script>
 </body>
 </html>

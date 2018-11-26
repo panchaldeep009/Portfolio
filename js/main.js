@@ -13,22 +13,66 @@
 
     // Sections
     let homeContent = document.querySelector('#homeContent'),
-        backgroundSVG = document.querySelector('#backgroundSVG'),
         lottieBackground = document.querySelector('#lottieBackground'),
         lottieBackgroundOverly = document.querySelector('#lottieBackgroundOverly'),
         foreground = document.querySelector('#foreground'),
         nameDesign = document.querySelector('#nameInDesign'),
         motionTitle = document.querySelector('#motionTitle'),
-        graphicsTitle = document.querySelector('#graphicsTitle');
+        graphicsTitle = document.querySelector('#graphicsTitle'),
+        codeBackground = document.querySelector('#codeBackground'),
+        designBackground = document.querySelector('#designBackground'),
+        codeBanner = document.querySelector('#codeBanner'),
+        designBanner = document.querySelector('#designBanner'),
+        about = document.querySelector('#about'),
+        codeSpark = document.querySelector('#codeSparks'),
+        designSpark = document.querySelector('#designSparks'),
+        avatarShape = document.querySelector('#myAvatarShape'),
+        avatar = document.querySelector('#myAvatar'),
+        codeBtn = document.querySelector('#codeBtn'),
+        designBtn = document.querySelector('#designBtn'),
+        preLoaderPercentage = document.querySelector('#preLoaderPercentage'),
+        preLoaderAnimation = document.querySelector('#preLoaderAnimation');
 
-    // Foreground Lottie Animations
-    let animCodeSparks = {
-        wrapper: lottieBackgroundOverly,
-        autoplay: true,
+    let changeMask = function(x1,x2){
+        codeBanner.style['clip-path'] = 
+        codeBanner.style['shape-inside'] = 
+        codeBanner.style['-webkit-clip-path'] = 
+            `polygon(0 0, ${x1}% 0, ${x2}% 100%, 0% 100%, 0 0)`;
+        designBanner.style['clip-path'] = 
+        designBanner.style['shape-inside'] = 
+        designBanner.style['-webkit-clip-path'] = 
+            `polygon(100% 0, ${x1}% 0, ${x2}% 100%, 100% 100%, 100% 0)`;
+
+    }
+    /// Mask Interactive
+    //TODO : Moblie Gyro
+    document.addEventListener('mousemove', function(e){
+        if(currentSection == 'initial'){
+            let w = window.innerWidth,
+                h = window.innerHeight,
+                x = e.clientX,
+                y = e.clientY;
+            if(x < w/2){
+                changeMask((70-((y*20)/h)),(50+((y*20)/h)));
+            }
+            if(x > w/2){
+                changeMask((30+((y*20)/h)),(50-((y*20)/h)));
+            }
+        }
+    });
+
+    // Lottie Animations
+    let animPreLoader = bodymovin.loadAnimation({
+        wrapper: preLoaderAnimation,
+        animType: 'svg',
+        prerender: true,
+        path: './data/loadingScreen.json'
+    }), animCodeSparks = bodymovin.loadAnimation({
+        wrapper: codeSpark,
         animType: 'svg',
         prerender: true,
         path: './data/codeOpenSparks.json'
-    }, animCodeTransition = {
+    }), animCodeTransition = {
         wrapper: foreground,
         animType: 'svg',
         prerender: true,
@@ -38,14 +82,34 @@
         animType: 'svg',
         prerender: true,
         path: './data/designTransition.json'
-    }, animDesignSpark = {
-        wrapper: lottieBackgroundOverly,
+    }, animDesignSpark = bodymovin.loadAnimation({
+        wrapper: designSpark,
         animType: 'svg',
         prerender: true,
         path: './data/designSpark.json'
-    };
-
-    let animMotionTitle = bodymovin.loadAnimation({
+    }), animCenterBackground = bodymovin.loadAnimation({
+        wrapper: lottieBackground,
+        animType: 'canvas',
+        prerender: true,
+        loop: true,
+        autoplay: true,
+        renderer: 'canvas',
+        path: './data/centerBackground.json'
+    }), animDesignBackground = {
+        wrapper: designBackground,
+        animType: 'canvas',
+        prerender: true,
+        loop: true,
+        autoplay: true,
+        path: './data/designBackground.json'
+    }, animCodeBackground = {
+        wrapper: codeBackground,
+        animType: 'canvas',
+        prerender: true,
+        loop: true,
+        autoplay: true,
+        path: './data/codeBackground.json'
+    }, animMotionTitle = bodymovin.loadAnimation({
         wrapper: motionTitle,
         animType: 'svg',
         prerender: true,
@@ -67,20 +131,51 @@
         path: './data/name.json'
     });
     animGraphicsTitle.setSpeed(.8);
+    animCenterBackground.setSpeed(.06);
 
-    backgroundSVG
-        .addEventListener('load', function(){
+    /*********** Pre-Loading *********** */
+    let
+        perfData = window.performance.timing, // The PerformanceTiming interface represents timing-related performance information for the given page.
+        EstimatedTime = -(perfData.loadEventEnd - perfData.navigationStart),
+        time = parseInt((EstimatedTime/1000)%60)*100;
+        // Percentage Increment Animation
+    let start = 0,
+        end = 100,
+        duration = time;
+        countProgress(preLoaderPercentage, start, end, duration);
+            
+    function countProgress(id, start, end, duration) {
+        var range = end - start,
+        current = start,
+        increment = end > start? 1 : -1,
+        stepTime = Math.abs(Math.floor(duration / range));
+        var timer = setInterval(function() {
+            current += increment;
+            id.innerHTML = current+"%";
+            animPreLoader.goToAndStop(Math.round(current*1.5));
+            if (current == end) {
+                clearInterval(timer);
+                TweenMax.to(id, .2, {opacity : 0});
+                animPreLoader.setSpeed(.5);
+                animPreLoader.play();
+            }
+        }, stepTime);
+    }
 
-            // functions for Stages
-            var codeSectionOpen,
-                codeWorkOpen, 
-                designSectionOpen,
-                designWorkOpen,
-                initialSectionOpen, 
-                centerSectionOpen;
+    /*********************************** */
+    // functions for Stages
+    var codeSectionOpen,
+        codeWorkOpen, 
+        designSectionOpen,
+        designWorkOpen,
+        initialSectionOpen, 
+        centerSectionOpen;
 
-            // define current content
-            let content = this.contentDocument;
+        bodymovin.loadAnimation(animCodeBackground)
+            .setSpeed(0.15);
+        bodymovin.loadAnimation(animDesignBackground)
+            .setSpeed(0.1);
+
             // Change color of dual tone filter in svg
             var remapColor = function(filter,color, index) {
                 let colR = filter.querySelector('feFuncR'),
@@ -98,117 +193,102 @@
                 colBVal[index] = (parseInt(color.substr(5, 2), 16)) / 255;
                 colB.setAttribute('tableValues', colBVal.join(' '));
             };
-            remapColor(content.querySelector('#duoToneFilter'),codeSectionColor, 0);
-            remapColor(content.querySelector('#duoToneFilter'),designSectionColor, 1);
-
-            // Change background color to theme color
-            content.querySelector('#codeSectionBGColor').setAttribute('fill', codeSectionColor);
-            content.querySelector('#designSectionBGColor').setAttribute('fill', designSectionColor);
+            remapColor(document.querySelector('#duoToneFilter'),codeSectionColor, 0);
+            remapColor(document.querySelector('#duoToneFilter'),designSectionColor, 1);
 
             // Functions for switching Stages
-            initialSectionOpen = function(){
-                content.querySelector('#myAvatarShape').setAttribute('filter', 'url(#duoToneFilter)');
-                content.querySelector('#myAvatar').setAttribute('filter', 'url(#duoToneFilter)');
-                content.querySelector('#codeCenter').beginElement();
-                content.querySelector('#designCenter').beginElement();
 
-                content.querySelector('#codeSectionBGColor').style.opacity = 1;
-                content.querySelector('#designSectionBGColor').style.opacity = 1;
-                document.body.style.backgroundColor = centerSectionColor;
+            initialSectionOpen = function(){
+
+                avatarShape.style.filter = 'url(#duoToneFilter)';
+                avatar.style.filter = 'url(#duoToneFilter)';
 
                 currentSection = 'initial';
-                TweenMax.to(homeContent, .25, {opacity : 1, right : "-200%"});
-                TweenMax.to(content.querySelector('#myAvatarShape'), .25, {x : 0, y : 0, scale: 1});
-                TweenMax.to(content.querySelector('#myAvatar'), .25, {x : 0, y : 0, scale: 1});
                 homeContent.style.pointerEvents = 'auto';
+
+                TweenMax.to(homeContent, .25, {opacity : 1, right : "-200%"});
+                TweenMax.to(about, .25, {opacity : 0, y : "1000"});
+                TweenMax.to(designBanner, .5, {left: '50%'});
+                TweenMax.to(codeBanner, .5, {left: '50%'});
+                TweenMax.to(avatarShape, .25, {left: '50%'});
+                TweenMax.to(avatar, .25, {left: '50%'});
+                TweenMax.to(codeBtn, 1, {x: `-100%`});
+                TweenMax.to(designBtn, 1, {x: 0});
             };
             codeSectionOpen = function(){
-                content.querySelector('#codeOpenHalf').beginElement();
-                content.querySelector('#designCloseHalf').beginElement();
-
-                content.querySelector('#codeSectionBGColor').style.opacity = 0;
+                avatarShape.style.filter = '';
                 document.body.style.backgroundColor = codeSectionColor;
-
-                content.querySelector('#myAvatarShape').setAttribute('filter', '');
+                
                 currentSection = 'code';
+                homeContent.style.pointerEvents = 'auto';
+
                 TweenMax.to(homeContent, .25, {opacity : 1, right : "-300%"});
-                TweenMax.to(content.querySelector('#myAvatarShape'), .25, {x : 10, y : 55, scale: .8});
+
                 let codeTitle = document.querySelector('#codeTitle');
                 TweenMax.fromTo(codeTitle, 
                     codeTitle.innerHTML.length*0.08, {width : 0}, {
                     width : codeTitle.offsetWidth-12, 
                     ease:SteppedEase.config(codeTitle.innerHTML.length-1)
                 }).delay(.5);
+                
                 TweenMax.fromTo(codeTitle, .5, 
                     {borderRight: '12px solid white'}, 
                     {borderRight: '12px solid transparent'}).repeat(-1);
+                TweenMax.to(avatarShape, .25, {left: '50%'});
 
                 lottieBackgroundOverly.innerHTML = "";
-                bodymovin.loadAnimation(animCodeSparks)
-                    .setSpeed(1);
+                animCodeSparks.goToAndPlay(1,true);
+                changeMask(100,100);
             };
             codeWorkOpen = function(){
-                content.querySelector('#designEnd').beginElement();
-                content.querySelector('#codeWide').beginElement();
 
-                content.querySelector('#codeSectionBGColor').style.opacity = 0;
+                avatarShape.style.filter = '';
                 document.body.style.backgroundColor = codeSectionColor;
-                
                 currentSection = 'codeSkills';
                 TweenMax.to(homeContent, .25, {opacity : 1, right : "-400%"});
-                TweenMax.to(content.querySelector('#myAvatarShape'), .4, {x : "1200"});
+                TweenMax.to(avatarShape, .25, {left: '120%'});
                 
                 foreground.innerHTML = "";
                 bodymovin.loadAnimation(animCodeTransition)
                     .setSpeed(3);
+                changeMask(100,100);
             };
             designSectionOpen = function(){
-                content.querySelector('#codeCloseHalf').beginElement();
-                content.querySelector('#designOpenHalf').beginElement();
-
-                content.querySelector('#designSectionBGColor').style.opacity = 0;
+                avatar.style.filter = '';
                 document.body.style.backgroundColor = designSectionColor;
-
-                content.querySelector('#myAvatar').setAttribute('filter', '');
                 currentSection = 'design';
                 TweenMax.to(homeContent, .25, {opacity : 1, right : "-100%"});
-                TweenMax.to(content.querySelector('#myAvatar'), .25, {x : 45, y : 55, scale: .8});
-
-                lottieBackgroundOverly.innerHTML = "";
-                bodymovin.loadAnimation(animDesignSpark)
-                    .setSpeed(1);
+                TweenMax.to(avatar, .25, {left: '50%'});
                 animGraphicsTitle.goToAndPlay(1,true);
+                animDesignSpark.goToAndPlay(1,true);
                 animMotionTitle.goToAndPlay(1,true);
                 animNameTag.goToAndPlay(1,true);
+                changeMask(0,0);
             };
             designWorkOpen = function(){
-                content.querySelector('#codeEnd').beginElement();
-                content.querySelector('#designWide').beginElement();
+                avatar.style.filter = '';
 
-                content.querySelector('#designSectionBGColor').style.opacity = 0;
                 document.body.style.backgroundColor = designSectionColor;
 
                 currentSection = 'designSkills';
                 TweenMax.to(homeContent, .25, {opacity : 1, right : "0%"});
-                TweenMax.to(content.querySelector('#myAvatar'), .25, {x : -1200});
+                TweenMax.to(avatar, .25, {left: '-20%'});
                 
                 foreground.innerHTML = "";
                 bodymovin.loadAnimation(animDesignTransition)
                     .setSpeed(2);
+                changeMask(0,0);
             };
             centerSectionOpen = function(){
 
-                content.querySelector('#codeSectionBGColor').style.opacity = 1;
-                content.querySelector('#designSectionBGColor').style.opacity = 1;
-                document.body.style.backgroundColor = centerSectionColor;
-
-                content.querySelector('#myAvatarShape').setAttribute('filter', 'url(#duoToneFilter)');
-                content.querySelector('#myAvatar').setAttribute('filter', 'url(#duoToneFilter)');
-                content.querySelector('#codeCloseHalf').beginElement();
-                content.querySelector('#designCloseHalf').beginElement();
                 currentSection = 'center';
-                TweenMax.to(homeContent, .25, {opacity : 0});
                 homeContent.style.pointerEvents = 'none';
+
+                TweenMax.to(about, .25, {opacity : 1, y : "0"});
+                TweenMax.to(designBanner, 1, {left: '150%'});
+                TweenMax.to(codeBanner, 1, {left: '-100%'});
+                TweenMax.to(codeBtn, 1, {x: `-${window.innerWidth/2}px`});
+                TweenMax.to(designBtn, 1, {x: `${window.innerWidth/2}px`});
             };
 
             window.addEventListener("hashchange", switchSectionBasedOnUrl, false);
@@ -235,10 +315,10 @@
             window
                 .addEventListener('scroll', function(e){
                     if(window.scrollY > 200 && currentSection != 'center'){
-                        window.location.href = '/#/about';
+                        window.location.href = '#/about';
                     }
                     else if(window.scrollY < 200 && currentSection != 'initial' ){
-                        window.location.href = '/#';
+                        window.location.href = '#';
                         window.scrollTo(0,0);
                     }
                 });
@@ -291,50 +371,32 @@
             function sectionSwitch(dragStatus){
                 if(dragStatus == 'left' &&
                     currentSection == 'initial'){
-                    window.location.href = '/#/code';
+                    window.location.href = '#/code';
                 } else if(dragStatus == 'right' &&
                     currentSection == 'initial'){
-                    window.location.href = '/#/design';
+                    window.location.href = '#/design';
                 } else if(
                     (dragStatus == 'left' && currentSection == 'design') ||
                     (dragStatus == 'right' && currentSection == 'code') ){
-                    window.location.href = '/#';
+                    window.location.href = '#';
                 } else if(dragStatus == 'left' &&
                     currentSection == 'code'){
-                    window.location.href = '/#/code/work';
+                    window.location.href = '#/code/work';
                 } else if(dragStatus == 'right' &&
                     currentSection == 'design'){
-                    window.location.href = '/#/design/work';
+                    window.location.href = '#/design/work';
                 } else if(dragStatus == 'right' &&
                     currentSection == 'codeSkills'){
-                    window.location.href = '/#/code';
+                    window.location.href = '#/code';
                 } else if(dragStatus == 'left' &&
                     currentSection == 'designSkills'){
-                    window.location.href = '/#/design';
+                    window.location.href = '#/design';
                 }
             }
 
             //*********************************** */
 
-            this.style.opacity = 1;
-        });
-
-    // To Resize Background
-    window
-        .addEventListener('resize', resizeBackground,false);
-    resizeBackground();
-    function resizeBackground(){
-        let docHeight = window.innerHeight;
-        let docWidth = window.innerWidth;
-        let background = document.querySelector("#backgroundSVG");
-        if(docWidth/docHeight < 1.8){
-            background.style.width = (docHeight*1.9)+"px";
-            background.style.height = docHeight+"px";
-        } else {
-            background.style.width = docWidth+"px";
-            background.style.height = (docWidth*0.58)+"px";
-        }
-    }
+            homeContent.style.opacity = 1;
     
     document.querySelectorAll('[data-link]').forEach(element => {
             element.style.cursor = "pointer";
@@ -342,7 +404,6 @@
                 window.location.href = this.dataset.link;
             }, true);
         });
-
     // Logo animation
     
     // [    // Code Section

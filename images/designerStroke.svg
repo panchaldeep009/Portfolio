@@ -38,7 +38,7 @@
 			stroke-dasharray="20" stroke-dashoffset="20"
 			d="M179,38c0,0-3-4,0-6S185,38,179,38">
 				<animate attributeType="XML" attributeName="stroke-dashoffset"
-					begin="designDrawing.end" dur=".2s" fill="freeze" repeatCount="1"
+					begin="designDrawing.end" dur="0.2s" fill="freeze" repeatCount="1"
 					to="0"/>
 			</path>
 		

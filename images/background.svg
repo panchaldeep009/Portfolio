@@ -70,18 +70,7 @@
 						S 1300,900,1300,1000
 						L 0,1000 L 0,0 L 900,0"/>
 				<animate attributeType="XML" attributeName="d"
-					begin="codeCloseHalf.end" id="codeClose"
-					dur=".3s" fill="freeze" repeatCount="1"
-					to="
-						M 200,0 
-						C 200,0,200,0,200,200 
-						S 200,200,200,400
-						S 200,400,200,600
-						S 200,600,200,800
-						S 200,900,200,1000
-						L 0,1000 L 0,0 L 200,0"/>
-				<animate attributeType="XML" attributeName="d"
-					begin="none" id="codeEnd"
+					begin="codeCloseHalf.end" id="codeEnd"
 					dur=".3s" fill="freeze" repeatCount="1"
 					to="
 						M 0,0 
@@ -194,18 +183,7 @@
 						S 200,900,200,1000
 						L 1800,1000 L 1800,0 L 200,0"/>
 				<animate attributeType="XML" attributeName="d"
-					begin="designCloseHalf.end" id="designClose"
-					dur=".3s" fill="freeze" repeatCount="1"
-					to="
-						M 1600,0 
-						C 1600,0,1600,00,1600,20 
-						S 1600,200,1600,400
-						S 1600,400,1600,600
-						S 1600,600,1600,800
-						S 1600,900,1600,1000
-						L 1800,1000 L 1800,0 L 1600,0"/>
-				<animate attributeType="XML" attributeName="d"
-					begin="none" id="designEnd"
+					begin="designCloseHalf.end" id="designEnd"
 					dur=".3s" fill="freeze" repeatCount="1"
 					to="
 						M 1800,0 

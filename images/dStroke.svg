@@ -30,7 +30,7 @@
 					begin="1" id="designDrawing" dur="2s" fill="freeze" repeatCount="1"
 					to="0"/>
 				<animate attributeType="XML" attributeName="stroke-width"
-					dur="15s" fill="freeze" repeatCount="-1" values="8;12;8"/>
+					dur="15s" fill="freeze" repeatCount="indefinite" values="8;12;8"/>
 			</path>
 		
 		<use href="#dStrokePath" filter="url(#blur)"/>
