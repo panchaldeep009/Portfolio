@@ -307,12 +307,109 @@ body{
         max-width: 450px;
         top: 50%;
         left: 50%;
-        @include transform( translate(-50%, -50%) );
+        @include transform( matrix(1, 0, 0, 1, -255, 1000));
         padding: 30px;
         background-color: #ffffff;
         color: #333;
         border-radius: 12px;
         box-shadow: 5px 10px 50px #b9b9b9;
+    }
+}
+
+.portfolioGrid {
+    top:0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    margin: auto auto;
+    perspective: 800px;
+    overflow: hidden;
+    cursor: grab;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    .item {
+        top: 0;
+        left: 0;
+        position: absolute;
+        width: 5%;
+        padding-bottom: 5%;
+        border: 4px solid white;
+        box-shadow: 0px 0px 50px rgba(0,0,0,.5);
+        opacity: 0.2;
+        transform-style: preserve-3d;
+        z-index: 0;
+        overflow: hidden;
+        transform: translate3d(0,0,0) rotateY(-180deg);
+        transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        img{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            top: 0;
+            left: 0;
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+        }
+    }
+    .activeThumb{
+        padding-bottom: 20%;
+        width: 20%;
+        opacity: 1;
+        transform: translate3d(0,0,0) rotateY(0deg);
+        z-index: 5;
+    }
+    .aT0{
+        left: 45% !important;
+        right: 0 !important; 
+        top: 55% !important;
+        transform: translate3d(0%,-100%,0) rotateY(0deg) !important;
+    }
+    .aT1{
+        left: 55% !important;
+        right: 0 !important; 
+        top: 45% !important;
+        transform: translate3d(-100%,0,0) rotateY(0deg) !important;
+    }
+    .aT2{
+        left: 40% !important;
+        right: 0 !important; 
+        top: 40% !important;
+        padding-bottom: 15% !important;
+        width: 15% !important;
+        transform: translate3d(-100%,-100%,0) rotateY(0deg) !important;
+    }
+    .aT3{
+        left: 60% !important;
+        right: 0 !important; 
+        top: 60% !important;
+        padding-bottom: 15% !important;
+        width: 15% !important;
+        transform: translate3d(0,0,0) rotateY(0deg) !important;
+    }
+    .activeThumb[data-item-size='small']{
+        padding-bottom: 10% !important;
+        width: 10% !important;
+    }
+    .activeThumb[data-item-size='port']{
+        padding-bottom: 30% !important;
+        width: 20% !important;
+    }
+    .activeThumb[data-item-size='land']{
+        padding-bottom: 16% !important;
+        width: 30% !important;
+    }
+    .activeThumb[data-item-size='large']{
+        padding-bottom: 30% !important;
+        width: 30% !important;
     }
 }
 .fill1080p{
@@ -461,8 +558,37 @@ body{
     }
 }
 
+@media all and (max-width: 1200px){
+    .portfolioGrid {
+        .item {
+            width: 10%;
+            padding-bottom: 10%;
+        }
+        .activeThumb{
+            padding-bottom: 35% !important;
+            width: 35% !important;
+        }
+        .activeThumb[data-item-size='small']{
+            padding-bottom: 25% !important;
+            width: 25% !important;
+        }
+        .activeThumb[data-item-size='port']{
+            padding-bottom: 50% !important;
+            width: 35% !important;
+        }
+        .activeThumb[data-item-size='land']{
+            padding-bottom: 20% !important;
+            width: 40% !important;
+        }
+        .activeThumb[data-item-size='large']{
+            padding-bottom: 40% !important;
+            width: 40% !important;
+        }
+        
+    }
+}
 
-@media screen and (max-width: 768px){
+@media all and (max-width: 768px){
     #homeContent{
         #centerContent{
             #codeBtn{
@@ -487,9 +613,61 @@ body{
             max-width: 300px !important;
         }
     }
+    
+    .portfolioGrid {
+        .item {
+            width: 12%;
+            padding-bottom: 12%;
+        }
+        .activeThumb{
+            padding-bottom: 40% !important;
+            width: 40% !important;
+        }
+        .aT0{
+            left: 45% !important;
+            right: 0 !important; 
+            top: 45% !important;
+            transform: translate3d(0%,-100%,0) rotateY(0deg) !important;
+        }
+        .aT1{
+            left: 55% !important;
+            right: 0 !important; 
+            top: 30% !important;
+            transform: translate3d(-100%,0,0) rotateY(0deg) !important;
+        }
+        .aT2{
+            left: 45% !important;
+            right: 0 !important; 
+            top: 75% !important;
+            transform: translate3d(0%,-100%,0) rotateY(0deg) !important;
+        }
+        .aT3{
+            left: 55% !important;
+            right: 0 !important; 
+            top: 60% !important;
+            transform: translate3d(-100%,0,0) rotateY(0deg) !important;
+        }
+        .activeThumb[data-item-size='small']{
+            padding-bottom: 30% !important;
+            width: 30% !important;
+        }
+        .activeThumb[data-item-size='port']{
+            padding-bottom: 60% !important;
+            width: 40% !important;
+        }
+        .activeThumb[data-item-size='land']{
+            padding-bottom: 30% !important;
+            width: 50% !important;
+        }
+        .activeThumb[data-item-size='large']{
+            padding-bottom: 50% !important;
+            width: 50% !important;
+        }
+        
+    }
 }
 
-@media screen and (max-width: 420px){
+@media all and (max-width: 420px){
     #homeContent{
         #centerContent{
             #codeBtn{

@@ -162,6 +162,93 @@
         }, stepTime);
     }
 
+    function generateRandomNumber(min , max) {
+        return Math.random() * (max-min) + min ;
+    }
+    
+    initializeGrid(document.querySelectorAll('#codePortfolio .item'));
+    initializeGrid(document.querySelectorAll('#graphicsPortfolio .item'));
+    function nextThumbs(thumbs){
+        
+        let activeThumbI = parseInt(thumbs[0].parentElement.dataset.activeThumb),
+            newThumbI = activeThumbI,
+            tTumb = 4;
+        if(activeThumbI < thumbs.length){
+            thumbs[0].parentElement.querySelectorAll('.activeThumb').forEach(actT => {
+                actT.style.top = generateRandomNumber(2 , 90)+"%";
+                actT.style.left = generateRandomNumber(2 , 90)+"%";
+                actT.style.transform = `translate3d(0,0,0) rotateY(180deg) rotate(${generateRandomNumber(-30 , 30)}deg)`;
+                actT.className = 'item';
+            });
+        }
+        for(var i = 0; i <= (tTumb-1); i++){
+            if((activeThumbI+i) < thumbs.length){
+                thumbs[activeThumbI+i].classList.add('activeThumb');
+                thumbs[activeThumbI+i].classList.add('aT'+i);
+                newThumbI++;
+            }
+        }
+        thumbs[0].parentElement.dataset.activeThumb = newThumbI;
+    }
+    function preThumbs(thumbs){
+        let activeThumbI = parseInt(thumbs[0].parentElement.dataset.activeThumb),
+            newThumbI = activeThumbI,
+            tTumb = 4;
+            
+        if(activeThumbI-((tTumb*2)-1) >= 0){
+            thumbs[0].parentElement.querySelectorAll('.activeThumb').forEach(actT => {
+                actT.style.top = generateRandomNumber(2 , 90)+"%";
+                actT.style.left = generateRandomNumber(2 , 90)+"%";
+                actT.style.transform = `translate3d(0,0,0) rotateY(-180deg) rotate(${generateRandomNumber(-30 , 30)}deg)`;
+                actT.className = 'item';
+            });
+        }
+        for(var i = 0; i <= (tTumb-1); i++){
+            if(activeThumbI-((tTumb*2)-i) >= 0){
+                thumbs[activeThumbI-((tTumb*2)-i)].classList.add('activeThumb');
+                thumbs[activeThumbI-((tTumb*2)-i)].classList.add('aT'+i);
+                newThumbI--;
+            }
+        }
+        thumbs[0].parentElement.dataset.activeThumb = newThumbI;
+    }
+    function initializeGrid(thumbs){
+        let parentE = thumbs[0].parentElement;
+        parentE.dataset.activeThumb = 0;
+        parentE.dataset.xState = 0;
+        parentE.dataset.yState = 0;
+        thumbs.forEach(item => {
+            item.style.top = generateRandomNumber(2 , 90)+"%"; 
+            item.style.left = generateRandomNumber(2 , 90)+"%";
+            item.style.transform = `translate3d(0,0,0) rotateY(-180deg) rotate(${generateRandomNumber(-30 , 30)}deg)`;
+        });
+        nextThumbs(thumbs);
+        parentE.addEventListener('mousedown', function(e){
+            parentE.dataset.xState = e.clientX;
+            parentE.dataset.yState = e.clientY;
+        });
+        parentE.addEventListener('mousemove', function(e){
+            if(parentE.dataset.yState != 0){
+                if(Math.abs(parentE.dataset.xState - e.clientX) < 60){
+                    if((parentE.dataset.yState - e.clientY) > 50){
+                        nextThumbs(thumbs);
+                        parentE.dataset.xState = e.clientX;
+                        parentE.dataset.yState = e.clientY;
+                    } else if((parentE.dataset.yState - e.clientY) < -50){
+                        preThumbs(thumbs);
+                        parentE.dataset.xState = e.clientX;
+                        parentE.dataset.yState = e.clientY;
+                    }
+                }
+            }
+        });
+        parentE.addEventListener('mouseup', function(e){
+            if(parentE.dataset.yState != 0){
+                parentE.dataset.xState = 0;
+                parentE.dataset.yState = 0;
+            }
+        });
+    }
     /*********************************** */
     // functions for Stages
     var codeSectionOpen,
@@ -202,6 +289,7 @@
 
                 avatarShape.style.filter = 'url(#duoToneFilter)';
                 avatar.style.filter = 'url(#duoToneFilter)';
+                document.body.style['overflow'] = 'auto';
 
                 currentSection = 'initial';
                 homeContent.style.pointerEvents = 'auto';
@@ -218,6 +306,7 @@
             codeSectionOpen = function(){
                 avatarShape.style.filter = '';
                 document.body.style.backgroundColor = codeSectionColor;
+                document.body.style['overflow'] = 'hidden';
                 
                 currentSection = 'code';
                 homeContent.style.pointerEvents = 'auto';
@@ -244,6 +333,8 @@
 
                 avatarShape.style.filter = '';
                 document.body.style.backgroundColor = codeSectionColor;
+                document.body.style['overflow'] = 'hidden';
+
                 currentSection = 'codeSkills';
                 TweenMax.to(homeContent, .25, {opacity : 1, right : "-400%"});
                 TweenMax.to(avatarShape, .25, {left: '120%'});
@@ -256,6 +347,8 @@
             designSectionOpen = function(){
                 avatar.style.filter = '';
                 document.body.style.backgroundColor = designSectionColor;
+                document.body.style['overflow'] = 'hidden';
+
                 currentSection = 'design';
                 TweenMax.to(homeContent, .25, {opacity : 1, right : "-100%"});
                 TweenMax.to(avatar, .25, {left: '50%'});
@@ -269,6 +362,7 @@
                 avatar.style.filter = '';
 
                 document.body.style.backgroundColor = designSectionColor;
+                document.body.style['overflow'] = 'hidden';
 
                 currentSection = 'designSkills';
                 TweenMax.to(homeContent, .25, {opacity : 1, right : "0%"});
