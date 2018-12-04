@@ -242,7 +242,32 @@
                 }
             }
         });
-        parentE.addEventListener('mouseup', function(e){
+        parentE.addEventListener('mouseup', function(){
+            if(parentE.dataset.yState != 0){
+                parentE.dataset.xState = 0;
+                parentE.dataset.yState = 0;
+            }
+        });
+        parentE.addEventListener('touchstart', function(e){
+            parentE.dataset.xState = e.touches[0].clientX;
+            parentE.dataset.yState = e.touches[0].clientY;
+        });
+        parentE.addEventListener('touchmove', function(e){
+            if(parentE.dataset.yState != 0){
+                if(Math.abs(parentE.dataset.xState - e.touches[0].clientX) < 60){
+                    if((parentE.dataset.yState - e.touches[0].clientY) > 50){
+                        nextThumbs(thumbs);
+                        parentE.dataset.xState = e.touches[0].clientX;
+                        parentE.dataset.yState = e.touches[0].clientY;
+                    } else if((parentE.dataset.yState - e.touches[0].clientY) < -50){
+                        preThumbs(thumbs);
+                        parentE.dataset.xState = e.touches[0].clientX;
+                        parentE.dataset.yState = e.touches[0].clientY;
+                    }
+                }
+            }
+        });
+        parentE.addEventListener('touchend', function(){
             if(parentE.dataset.yState != 0){
                 parentE.dataset.xState = 0;
                 parentE.dataset.yState = 0;
