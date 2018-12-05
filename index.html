@@ -17,6 +17,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.4.1/lottie.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
 </head>
 <body>
@@ -451,8 +453,50 @@
             Hello, I am a interactive media developer, who design and develope engaging artworks and interactive web application since 2011.
         </section>
     </main>
+    <section class="lightBox hideBox" id="designLightBox">
+        <div class="media">            
+            <img src="images/portfolio_images/default.jpg" alt="default">
+            <button><i class="fa fa-chavron"></i></button>
+        </div>
+        <div class="info">
+            <h3>Title</h3>
+            <span>
+                Sub catagory | catagory<br/><br/>
+                Date
+            </span>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur illo rem pariatur natus nulla minima numquam culpa, harum aliquid ullam minus quisquam consequatur soluta dolorem incidunt aliquam, eos, nisi fugiat.</p>
+            <label>Technology Used</label>
+            <ul>
+                <li>t</li>
+            </ul>
+        </div>
+        <button class="closeBtn"><i class="fa fa-times"></i></button>
+    </section>
+    <section class="lightBox hideBox" id="codeLightBox">
+        <div class="media">            
+            <iframe src="https://www.youtube.com/embed/WYWVTubLGx4" 
+                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="info">
+            <h3>Title</h3>
+            <span>
+                Sub catagory | catagory<br/><br/>
+                Date
+            </span>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur illo rem pariatur natus nulla minima numquam culpa, harum aliquid ullam minus quisquam consequatur soluta dolorem incidunt aliquam, eos, nisi fugiat.</p>
+            <label>Technology Used</label>
+            <ul>
+                <li>t</li>
+            </ul>
+        </div>
+        <button class="closeBtn"><i class="fa fa-times"></i></button>
+    </section>
 
     <section id="foreground" class="fill1080p"></section>
+    <script src="js/defines.js"></script>
+    <script src="js/general_function.js"></script>
+    <script src="js/preloader.js"></script>
+    <script src="js/gallery.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
