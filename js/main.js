@@ -231,11 +231,11 @@
             if(parentE.dataset.yState != 0){
                 if(Math.abs(parentE.dataset.xState - e.clientX) < 60){
                     if((parentE.dataset.yState - e.clientY) > 50){
-                        nextThumbs(thumbs);
+                        preThumbs(thumbs);
                         parentE.dataset.xState = e.clientX;
                         parentE.dataset.yState = e.clientY;
                     } else if((parentE.dataset.yState - e.clientY) < -50){
-                        preThumbs(thumbs);
+                        nextThumbs(thumbs);
                         parentE.dataset.xState = e.clientX;
                         parentE.dataset.yState = e.clientY;
                     }

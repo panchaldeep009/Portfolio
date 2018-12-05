@@ -315,7 +315,89 @@ body{
         box-shadow: 5px 10px 50px #b9b9b9;
     }
 }
-
+.hideBox{
+    pointer-events: none;
+    opacity: 0;
+    @include transform( translate(-50%, -50%) scale(0.3));
+}
+.lightBox{
+    position: fixed;
+    display: flex;
+    width: max-content;
+    max-width: calc(100% - 60px);
+    height: max-content;
+    max-height: calc(100vh - 60px);
+    top: 50%;
+    left: 50%;
+    @include transform( translate(-50%, -50%) scale(1) );
+    @include transition( all .5s cubic-bezier(0.68, -0.55, 0.265, 1.55) );
+    background-color: rgba(255,255,255,.95);
+    z-index: 160;
+    box-shadow: 20px 20px 40px rgba(0,0,0,.15);
+    .media{
+        width: max-content;
+        position: relative;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: left top;
+        }
+    }
+    .info{
+        width: 30%;
+        padding: 60px 30px;
+        *{
+            padding: 15px 0px;
+        }
+        h3{
+            font-size: 30px;
+        }
+        label{
+            font-size: 22px;
+            padding: 30px 0px !important;
+        }
+        span{
+            font-size: 20px;
+        }
+        ul > li{
+            font-size: 16px;
+            padding: 5px 30px;
+        }
+    }
+    .closeBtn{
+        position: fixed;
+        top: 5px;
+        right: 5px;
+        background-color: transparent;
+        opacity: .8;
+        i{
+            color: $black;
+            font-size: 30px;
+            text-shadow: 8px 8px 20px rgba($black, 0.5);
+        }
+    }
+}
+#designLightBox{
+    .media{
+        order: 2;
+    }
+    .info{
+        order: 1;
+    }
+}
+#codeLightBox{
+    background-color: rgba(#292d3e,.95);
+    *{
+        color: $white;
+    }
+    .media{
+        order: 1;
+    }
+    .info{
+        order: 2;
+    }
+}
 .portfolioGrid {
     top:0;
     left: 0;
@@ -555,6 +637,26 @@ body{
     .fill1080p{
         width: 177.77vh;
         height: 100vh;
+    }
+    
+    .lightBox{
+        flex-direction: column;
+        overflow-x: hidden;
+        overflow-y: auto;
+        .media{
+            width: 100%;
+        }
+        .info{
+            width: calc(100% - 40px);
+        }
+    }
+    #designLightBox{
+        .media{
+            order: 1;
+        }
+        .info{
+            order: 2;
+        }
     }
 }
 

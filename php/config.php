@@ -8,6 +8,7 @@
             `item_id` INT(255) NOT NULL AUTO_INCREMENT , 
             `item_name` VARCHAR(255) NOT NULL ,
             `item_about` VARCHAR(255) NOT NULL ,
+            `item_date` VARCHAR(255) NOT NULL ,
             `item_resource` VARCHAR(255) NOT NULL ,
             `item_main_category` VARCHAR(255) NOT NULL ,
             PRIMARY KEY (`id`)) CHARACTER SET utf8 COLLATE utf8_general_ci");
@@ -15,7 +16,8 @@
         $pdo->query("CREATE TABLE IF NOT EXISTS `tbl_media` ( 
             `media_id` INT(255) NOT NULL AUTO_INCREMENT , 
             `media_src` VARCHAR(100) NOT NULL , 
-            `media_type` VARCHAR(12) NOT NULL , 
+            `media_type` VARCHAR(12) NOT NULL ,
+            `media_size` VARCHAR(12) NOT NULL , 
             `media_caption` VARCHAR(255) NOT NULL , 
             PRIMARY KEY (`id`)) CHARACTER SET utf8 COLLATE utf8_general_ci");
 
