@@ -106,7 +106,9 @@
                 <div class="portfolioSection">
                     <div class="portfolioGrid" id="codePortfolio">
                         <div class="item" v-for="item in galleryData" @click="goto(item.item_id,item.item_name)" v-bind:data-item-size="item.media[0].media_size">
-                            <img :src="item.media[0].media_src" />
+                            <img  v-if="item.media[0].media_type == 'image'" :src="item.media[0].media_src"/>
+                            <iframe v-if="item.media[0].media_type == 'video'" :src="item.media[0].media_src"
+                                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
@@ -129,7 +131,9 @@
                 <div class="portfolioSection">
                     <div class="portfolioGrid" id="graphicsPortfolio">
                         <div class="item" v-for="item in galleryData" @click="goto(item.item_id,item.item_name)" v-bind:data-item-size="item.media[0].media_size">
-                            <img :src="item.media[0].media_src" />
+                            <img  v-if="item.media[0].media_type == 'image'" :src="item.media[0].media_src"/>
+                            <iframe v-if="item.media[0].media_type == 'video'" :src="item.media[0].media_src"
+                                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
@@ -138,14 +142,14 @@
     </main>
     <main id="aboutContent">
         <section id="about">
-            Hello, I am a interactive media developer, who design and develope engaging artworks and interactive web application since 2011.
+            Hello, I'm Deepkumar Panchal, who design and develope engaging artworks and interactive web application since 2011.
         </section>
     </main>
     <section id="designLightBox" :class="lightBoxClass">
         <div class="media">
-            <img :src="mainData.media[0].media_src" :alt="mainData.media[0].media_caption">
-            <!-- <iframe src="https://www.youtube.com/embed/WYWVTubLGx4" 
-                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+            <img v-if="mainData.media[i].media_type == 'image'" :src="mainData.media[i].media_src">
+            <iframe v-if="mainData.media[i].media_type == 'video'" :src="mainData.media[i].media_src"
+                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <div class="info">
             <h3>{{mainData.item_name}}</h3>
@@ -163,9 +167,11 @@
     </section>
     <section id="codeLightBox" :class="lightBoxClass">
         <div class="media">
-            <img :src="mainData.media[0].media_src" :alt="mainData.media[0].media_caption">
-            <!-- <iframe src="https://www.youtube.com/embed/WYWVTubLGx4" 
-                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+            <img v-if="mainData.media[i].media_type == 'image'" :src="mainData.media[i].media_src">
+            <iframe v-if="mainData.media[i].media_type == 'video'" :src="mainData.media[i].media_src"
+                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <button v-if="preMedia" @click="i = i-1" class="prv"><i class="fa fa-chevron-left"></i></button>
+            <button v-if="nxtMedia" @click="i = i+1" class="nxt"><i class="fa fa-chevron-right"></i></button>
         </div>
         <div class="info">
             <h3>{{mainData.item_name}}</h3>
