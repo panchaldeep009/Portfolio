@@ -1,6 +1,4 @@
 "use strict";
-    initializeGrid(document.querySelectorAll('#codePortfolio .item'));
-    initializeGrid(document.querySelectorAll('#graphicsPortfolio .item'));
     function nextThumbs(thumbs){
         
         let activeThumbI = parseInt(thumbs[0].parentElement.dataset.activeThumb),
@@ -107,3 +105,101 @@
             }
         });
     }
+    
+    
+    var codePortfolio = new Vue({
+        el: '#codePortfolio',
+        data: {
+            mainData: [],
+            galleryData: [],
+        },
+        methods: {
+            goto: function(id,name){
+                window.location.href = '#/code/work/'+id+'/'+encodeURIComponent(name).split('%20').join('_');
+                document.title = name+' | Portfolio | Coder : Deep Panchal';
+                codeLightBox.open(id);
+            }
+        },
+        watch: {
+            mainData: function(){
+                this.galleryData = this.mainData.filter(d => d.item_main_category == "code");
+                this.$nextTick(() => {
+                    initializeGrid(document.querySelectorAll('#codePortfolio .item'));
+                })
+            }
+        }
+    });
+    var codeLightBox = new Vue({
+        el: '#codeLightBox',
+        data: {
+            mainData: [],
+            lightBoxClass: 'lightBox hideBox',
+        },
+        methods: {
+            open: function(id){
+                this.mainData = codePortfolio.mainData.filter(item => item.item_id == id)[0];
+                this.lightBoxClass = 'lightBox';
+            },
+            close: function(){
+                this.lightBoxClass = 'lightBox hideBox';
+                window.location.href = "#/code/work";
+            }
+        }
+    });
+    
+
+    var designPortfolio = new Vue({
+        el: '#graphicsPortfolio',
+        data: {
+            mainData: [],
+            galleryData: [],
+        },
+        methods: {
+            goto: function(id,name){
+                window.location.href = '#/design/work/'+id+'/'+encodeURIComponent(name).split('%20').join('_');
+                document.title = name+' | Portfolio | Designer : Deep Panchal';
+                designLightBox.open(id);
+            }
+        },
+        watch: {
+            mainData: function(){
+                this.galleryData = this.mainData.filter(d => d.item_main_category == "design");
+                this.$nextTick(() => {
+                    initializeGrid(document.querySelectorAll('#graphicsPortfolio .item'));
+                })
+            }
+        }
+    });
+    var designLightBox = new Vue({
+        el: '#designLightBox',
+        data: {
+            mainData: [],
+            lightBoxClass: 'lightBox hideBox',
+        },
+        methods: {
+            open: function(id){
+                this.mainData = codePortfolio.mainData.filter(item => item.item_id == id)[0];
+                this.lightBoxClass = 'lightBox';
+            },
+            close: function(){
+                this.lightBoxClass = 'lightBox hideBox';
+                window.location.href = "#/design/work";
+            }
+        }
+    });
+    fetch('php/data.php')
+    .then(res => res.json())
+    .then(function(out){
+        codePortfolio.mainData = out;
+        designPortfolio.mainData = out;
+        if(window.location.href.includes('#/code/work/')){
+            let t = window.location.href.split('/'),
+            portfolioItemId = t[t.length-2];
+            codeLightBox.open(portfolioItemId);
+        } 
+        if(window.location.href.includes('#/design/work/')){
+            let t = window.location.href.split('/'),
+            portfolioItemId = t[t.length-2];
+            designLightBox.open(portfolioItemId);
+        } 
+    });
