@@ -6,7 +6,6 @@
 
 @import '_default';
 body{
-    height: 250vh;
 }
 #preLoader{
     position: fixed;
@@ -40,6 +39,14 @@ body{
         @include transform( translate(-50%, -50%) );
     }
 }
+#foreground{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 100;
+    pointer-events: none;
+    @include transform( translate(-50%, -50%) );
+}
 .autoHeight{
     width: 100%;
     height: auto;
@@ -63,6 +70,7 @@ body{
     position: fixed;
     right: -200%;
     opacity: 0;
+    z-index: 2;
     section{
         width: 100%;
         height: 100vh;
@@ -105,6 +113,13 @@ body{
                 left: 50%;
                 @include transform( translate(-50%, -50%) );
             }
+            .aboutMsg{
+                color: $designBackground;
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                @include transform( translate(-50%, -50%) );
+            }
         }
         #designBanner{
             position: fixed;
@@ -127,6 +142,13 @@ body{
                 width: 70vw;
                 max-width: 400px;
                 top: 50%;
+                left: 50%;
+                @include transform( translate(-50%, -50%) );
+            }
+            .aboutMsg{
+                color: $codeBackground;
+                position: absolute;
+                bottom: 20px;
                 left: 50%;
                 @include transform( translate(-50%, -50%) );
             }
@@ -300,21 +322,68 @@ body{
     }
 }
 #aboutContent{
+    z-index: 1;
     #about{
         font-family: $designFont;
-        line-height: 26pt;
-        font-size: 20px;
-        position: fixed;
+        color: #333;
+        position: absolute;
         width: calc(80vw - 30px);
-        max-width: 450px;
-        top: 50%;
+        max-width: 650px;
+        top: 80%;
         left: 50%;
-        @include transform( matrix(1, 0, 0, 1, -255, 1000));
+        @include transform( translate(-50%, 0%));
         padding: 30px;
         background-color: #ffffff;
-        color: #333;
         border-radius: 12px;
         box-shadow: 5px 10px 50px #b9b9b9;
+        margin-bottom: 25%;
+        .profilePicture{
+            top: 20px;
+            left: 50%;
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            clip-path: polygon( 20% 0%, 100% 20%, 80% 100%, 0% 80%);
+            @include transform( translate(-50%, -80%));
+        }
+        h3{
+            line-height: 40pt;
+            font-size: 30px;
+            position: relative;
+            margin: 20px;
+            padding: 5px;
+            &::after{
+                content: '';
+                position: absolute;
+                background-color: rgba($black, 0.5);
+                width: 100%;
+                height: 3px;
+                left: 50%;
+                top: 100%;
+                @include transform( translate(-50%, 0%));
+            }
+        }
+        p{
+            line-height: 26pt;
+            font-size: 20px;
+        }
+        #contactForm{
+            margin: 1em 2em;
+            button[type="submit"]{
+                margin-left: 50%;
+                @include transform(translateX(-50%));
+            }
+            .error-message{
+                margin: 1.2em 1em;
+                color: #AA0000;
+                font-weight: 600;
+            }
+            .status{
+                text-align: center;
+                padding: 1.5em;
+                font-size: 20px;
+            }
+        }
     }
 }
 .hideBox{
@@ -349,6 +418,25 @@ body{
         iframe{
             width: 65vw;
             height: 36vw;
+        }
+        button{
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            box-shadow: 10px 10px 20px rgba(0,0,0,.15);
+            padding: 0;
+            @include transform(translate(0,-50%));
+            top:50%;
+            i{
+                color: $black !important;
+                font-size: 18px;
+            }
+        }
+        .prv{
+            left: 10px;
+        }
+        .nxt{
+            right: 10px;
         }
     }
     .info{
@@ -435,7 +523,7 @@ body{
         overflow: hidden;
         transform: translate3d(0,0,0) rotateY(-180deg);
         transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        img{
+        img,iframe{
             position: absolute;
             width: 100%;
             height: 100%;
@@ -447,6 +535,7 @@ body{
             -moz-user-drag: none;
             -o-user-drag: none;
             user-drag: none;
+            pointer-events: none;
         }
     }
     .activeThumb{
@@ -519,7 +608,7 @@ body{
 #lottieBackgroundOverly{ z-index: -150;}
 
 
-@media (orientation: landscape) and 
+@media all and (orientation: landscape) and 
     (max-aspect-ratio: 16/9){
     #homeContent{
         #codeContent{
@@ -565,7 +654,7 @@ body{
 }
 
 
-@media (orientation: landscape) and 
+@media all and (orientation: landscape) and 
     (max-aspect-ratio: 10/1) and 
     (min-aspect-ratio: 16/9){
     #homeContent{
@@ -589,7 +678,7 @@ body{
     }
 }
 
-@media (orientation: portrait) and 
+@media all and (orientation: portrait) and 
     (max-aspect-ratio: 1/1) {
     #homeContent{
         #codeContent{
