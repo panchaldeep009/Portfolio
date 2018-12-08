@@ -26,22 +26,17 @@
             newThumbI = activeThumbI,
             tTumb = 4;
             
-        if(activeThumbI-((tTumb*2)-1) >= 0){
+        if(activeThumbI-thumbs[0].parentElement.querySelectorAll('.activeThumb').length-tTumb >= 0){
             thumbs[0].parentElement.querySelectorAll('.activeThumb').forEach(actT => {
                 actT.style.top = generateRandomNumber(2 , 90)+"%";
                 actT.style.left = generateRandomNumber(2 , 90)+"%";
                 actT.style.transform = `translate3d(0,0,0) rotateY(-180deg) rotate(${generateRandomNumber(-30 , 30)}deg)`;
                 actT.className = 'item';
+                newThumbI--;
             });
         }
-        for(var i = 0; i <= (tTumb-1); i++){
-            if(activeThumbI-((tTumb*2)-i) >= 0){
-                thumbs[activeThumbI-((tTumb*2)-i)].classList.add('activeThumb');
-                thumbs[activeThumbI-((tTumb*2)-i)].classList.add('aT'+i);
-                newThumbI--;
-            }
-        }
-        thumbs[0].parentElement.dataset.activeThumb = newThumbI;
+        thumbs[0].parentElement.dataset.activeThumb = newThumbI-tTumb;
+        nextThumbs(thumbs);
     }
     function initializeGrid(thumbs){
         if(thumbs != undefined) {

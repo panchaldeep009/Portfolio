@@ -53,12 +53,14 @@
                 <div id="codeSparks" class="fill1080p"></div>
                 <img src="images/logoWhite.svg" class="headerLogo" alt="headerLogoWhite">
                 <img src="images/myAvatarShape.svg" id="myAvatarShape" alt="myAvatarShape">
+                <div class="aboutMsg"> <i class="fa fa-chevron-down"></i>   About me</div>
                 <div id="codeBackground" class="fill1080p"></div>
             </div>
             <div id="designBanner">
                 <div id="designSparks" class="fill1080p"></div>
                 <img src="images/logoDark.svg" class="headerLogo" alt="headerLogoWhite">
                 <img src="images/myAvatar.svg" id="myAvatar" alt="myAvatar">
+                <div class="aboutMsg"> <i class="fa fa-chevron-down"></i>   About me</div>
                 <div id="designBackground" class="fill1080p"></div>
             </div>
             <button class="noButtonStyle" id="codeBtn" data-link="#/code">&#60;!-- Coder</button>
@@ -104,7 +106,7 @@
         <section id="codeContentSkillsAndWork">
             <div class="portfolio">
                 <div class="portfolioSection">
-                    <div class="portfolioGrid" id="codePortfolio">
+                    <div class="portfolioGrid" id="codePortfolio" data-active-thumb="0">
                         <div class="item" v-for="item in galleryData" @click="goto(item.item_id,item.item_name)" v-bind:data-item-size="item.media[0].media_size">
                             <img  v-if="item.media[0].media_type == 'image'" :src="item.media[0].media_src"/>
                             <iframe v-if="item.media[0].media_type == 'video'" :src="item.media[0].media_src"
@@ -140,11 +142,30 @@
             </div>
         </section>
     </main>
-    <main id="aboutContent">
-        <section id="about">
-            Hello, I'm Deepkumar Panchal, who design and develope engaging artworks and interactive web application since 2011.
-        </section>
-    </main>
+    <section id="aboutContent">
+        <div id="about">
+            <img class="profilePicture" src="https://graph.facebook.com/v3.2/100002555012154/picture?width=300&height=300" alt="profilePicture">
+            <h3>About Me</h3>
+            <p>
+                Hello, I'm Deepkumar Panchal AKA "Deep", A Interactive Web Developer and Digital Media Designer with over 7 years of experiences in the wide range of challenging projects. Currently shaping my skills by pushing boundaries of application Web production using tending technology, chasing ultimate creativity of 3D motion and vector graphics and experimenting with python to make AI and Cloud Computing applications.
+                <br/>My work is something I do with commitments where I puts tremendous amount of effort to make my vision reality.
+                <br/>Therefore, Always looking for work opportunity where I can polish and utilize my skills to build real-world applications.
+            </p>
+            <h3>Contact</h3>
+            <div id="contactForm">
+                <form @submit="subForm">
+                    <div class="error-message">{{error}}</div>
+                    <fieldset v-if="!formHide">
+                        <input type="text" v-model="name" placeholder="Name">
+                        <input type="email" v-model="email" placeholder="Email Address">
+                        <textarea v-model="msg" rows="4" placeholder="Message"></textarea>
+                        <button type="submit" >Send</button>
+                    </fieldset>
+                    <div v-if="formHide" class="status"> {{status}} </div>
+                </form>
+            </div>
+        </div>
+    </section>
     <section id="designLightBox" :class="lightBoxClass">
         <div class="media">
             <img v-if="mainData.media[i].media_type == 'image'" :src="mainData.media[i].media_src">
