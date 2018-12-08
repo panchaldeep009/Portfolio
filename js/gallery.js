@@ -59,12 +59,12 @@
                     if(Math.abs(parentE.dataset.xState - e.clientX) < 60){
                         if((parentE.dataset.yState - e.clientY) > 50){
                             nextThumbs(thumbs);
-                            parentE.dataset.xState = e.clientX;
-                            parentE.dataset.yState = e.clientY;
+                            parentE.dataset.xState = 0;
+                            parentE.dataset.yState = 0;
                         } else if((parentE.dataset.yState - e.clientY) < -50){
                             preThumbs(thumbs);
-                            parentE.dataset.xState = e.clientX;
-                            parentE.dataset.yState = e.clientY;
+                            parentE.dataset.xState = 0;
+                            parentE.dataset.yState = 0;
                         }
                     }
                 }
@@ -171,6 +171,7 @@
                 this.nxtMedia = (this.mainData.media[this.i+1] != undefined) ? true : null;
             },
             close: function(){
+                this.i = 0;
                 this.lightBoxClass = 'lightBox hideBox';
                 window.location.href = "#/code/work";
             }
@@ -211,16 +212,27 @@
         data: {
             mainData: fetchModel,
             i: 0,
+            preMedia: null,
+            nxtMedia: null,
             lightBoxClass: 'lightBox hideBox',
         },
         methods: {
             open: function(id){
-                this.mainData = codePortfolio.mainData.filter(item => item.item_id == id)[0];
+                this.mainData = designPortfolio.mainData.filter(item => item.item_id == id)[0];
                 this.lightBoxClass = 'lightBox';
+                this.preMedia = (this.mainData.media[this.i-1] != undefined) ? true : null;
+                this.nxtMedia = (this.mainData.media[this.i+1] != undefined) ? true : null;
             },
             close: function(){
+                this.i = 0;
                 this.lightBoxClass = 'lightBox hideBox';
                 window.location.href = "#/design/work";
+            }
+        },
+        watch: {
+            i: function(){
+                this.preMedia = (this.mainData.media[this.i-1] != undefined) ? true : null;
+                this.nxtMedia = (this.mainData.media[this.i+1] != undefined) ? true : null;
             }
         }
     });

@@ -147,9 +147,9 @@
             <img class="profilePicture" src="https://graph.facebook.com/v3.2/100002555012154/picture?width=300&height=300" alt="profilePicture">
             <h3>About Me</h3>
             <p>
-                Hello, I'm Deepkumar Panchal AKA "Deep", A Interactive Web Developer and Digital Media Designer with over 7 years of experiences in the wide range of challenging projects. Currently shaping my skills by pushing boundaries of application Web production using tending technology, chasing ultimate creativity of 3D motion and vector graphics and experimenting with python to make AI and Cloud Computing applications.
+                Hello, I'm Deepkumar Panchal AKA "Deep", A Interactive Web Developer and Digital Media Designer with over 7 years of experiences in the wide range of challenging projects. Currently shaping my skills by pushing boundaries of Web development using tending technology; chasing ultimate creativity of 3D motion and vector graphics and experimenting with python to make AI and Cloud Computing applications.
                 <br/>My work is something I do with commitments where I puts tremendous amount of effort to make my vision reality.
-                <br/>Therefore, Always looking for work opportunity where I can polish and utilize my skills to build real-world applications.
+                <br/>Therefore, I always looking for work opportunity where I can polish and utilize my skills to build real-world applications.
             </p>
             <h3>Contact</h3>
             <div id="contactForm">
@@ -171,11 +171,13 @@
             <img v-if="mainData.media[i].media_type == 'image'" :src="mainData.media[i].media_src">
             <iframe v-if="mainData.media[i].media_type == 'video'" :src="mainData.media[i].media_src"
                 frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <button v-if="preMedia" @click="i = i-1" class="prv"><i class="fa fa-chevron-left"></i></button>
+            <button v-if="nxtMedia" @click="i = i+1" class="nxt"><i class="fa fa-chevron-right"></i></button>
         </div>
         <div class="info">
             <h3>{{mainData.item_name}}</h3>
             <span>
-                {{mainData.sub_category[0].sub_category_name}} <br/><br/>
+                {{mainData.sub_category.map(d => d = d.sub_category_name).join(', ')}} <br/><br/>
                 {{mainData.item_date}}
             </span>
             <p>{{mainData.item_about}}</p>
@@ -197,7 +199,7 @@
         <div class="info">
             <h3>{{mainData.item_name}}</h3>
             <span>
-                {{mainData.sub_category[0].sub_category_name}} <br/><br/>
+                {{mainData.sub_category.map(d => d = d.sub_category_name).join(', ')}} <br/><br/>
                 {{mainData.item_date}}
             </span>
             <p>{{mainData.item_about}}</p>
@@ -212,7 +214,7 @@
     <section id="foreground" class="fill1080p"></section>
     <script src="js/defines.js"></script>
     <script src="js/general_function.js"></script>
-    <!-- <script src="js/preloader.js"></script> -->
+    <script src="js/preloader.js"></script>
     <script src="js/gallery.js"></script>
     <script src="js/main.js"></script>
 </body>
