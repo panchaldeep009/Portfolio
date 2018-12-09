@@ -13,13 +13,26 @@
 
     }
     /// Mask Interactive
-    //TODO : Moblie Gyro
+    if (window.DeviceOrientationEvent) {
+        window.addEventListener("deviceorientation", function () {
+            changeClip(event.beta, event.gamma);
+        }, true);
+    } else if (window.DeviceMotionEvent) {
+        window.addEventListener('devicemotion', function () {
+            changeClip(event.acceleration.x * 2, event.acceleration.y * 2);
+        }, true);
+    } else {
+        window.addEventListener("MozOrientation", function () {
+            changeClip(orientation.x * 50, orientation.y * 50);
+        }, true);
+    }
     document.addEventListener('mousemove', function(e){
+        changeClip(e.clientX, e.clientY);
+    });
+    function changeClip(x,y){
         if(currentSection == 'initial'){
             let w = window.innerWidth,
-                h = window.innerHeight,
-                x = e.clientX,
-                y = e.clientY;
+                h = window.innerHeight;
             if(x < w/2){
                 changeMask((70-((y*20)/h)),(50+((y*20)/h)));
             }
@@ -27,7 +40,7 @@
                 changeMask((30+((y*20)/h)),(50-((y*20)/h)));
             }
         }
-    });
+    }
     
 
     /*********************************** */

@@ -137,6 +137,7 @@
         data: {
             mainData: fetchModel,
             galleryData: [],
+            blurStatus: 'false',
         },
         methods: {
             goto: function(id,name){
@@ -157,7 +158,7 @@
     var codeLightBox = new Vue({
         el: '#codeLightBox',
         data: {
-            mainData: fetchModel,
+            mainData: '',
             i: 0,
             preMedia: null,
             nxtMedia: null,
@@ -165,6 +166,7 @@
         },
         methods: {
             open: function(id){
+                codePortfolio.blurStatus = 'true';
                 this.mainData = codePortfolio.mainData.filter(item => item.item_id == id)[0];
                 this.lightBoxClass = 'lightBox';
                 this.preMedia = (this.mainData.media[this.i-1] != undefined) ? true : null;
@@ -173,7 +175,10 @@
             close: function(){
                 this.i = 0;
                 this.lightBoxClass = 'lightBox hideBox';
+                codePortfolio.blurStatus = 'false';
                 window.location.href = "#/code/work";
+                this.mainData = '';
+                
             }
         },
         watch: {
@@ -190,6 +195,7 @@
         data: {
             mainData: fetchModel,
             galleryData: [],
+            blurStatus: 'false',
         },
         methods: {
             goto: function(id,name){
@@ -211,7 +217,7 @@
     var designLightBox = new Vue({
         el: '#designLightBox',
         data: {
-            mainData: fetchModel,
+            mainData: '',
             i: 0,
             preMedia: null,
             nxtMedia: null,
@@ -219,15 +225,19 @@
         },
         methods: {
             open: function(id){
+                
+                designPortfolio.blurStatus = 'true';
                 this.mainData = designPortfolio.mainData.filter(item => item.item_id == id)[0];
                 this.lightBoxClass = 'lightBox';
                 this.preMedia = (this.mainData.media[this.i-1] != undefined) ? true : null;
                 this.nxtMedia = (this.mainData.media[this.i+1] != undefined) ? true : null;
             },
             close: function(){
+                designPortfolio.blurStatus = 'false';
                 this.i = 0;
                 this.lightBoxClass = 'lightBox hideBox';
                 window.location.href = "#/design/work";
+                this.mainData = '';
             }
         },
         watch: {

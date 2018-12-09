@@ -63,7 +63,6 @@ let animPreLoader = bodymovin.loadAnimation({
         prerender: true,
         loop: true,
         autoplay: true,
-        renderer: 'canvas',
         path: './data/centerBackground.json'
     }), animDesignBackground = {
         wrapper: designBackground,

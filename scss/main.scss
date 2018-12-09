@@ -7,6 +7,9 @@
 @import '_default';
 body{
 }
+[data-blur='true']{
+    filter: blur(20px) !important;
+}
 #preLoader{
     position: fixed;
     height: 100vh;
@@ -239,7 +242,6 @@ body{
     }
     #designContent{
         order: 2;
-        perspective: 1000px;
         pointer-events: none;
         #motionTitle{
             position: absolute;
@@ -903,4 +905,12 @@ body{
             }
         }
     }
+}
+
+@-moz-document url-prefix() {
+
+    *{
+        perspective: 0 !important;
+    }
+
 }
