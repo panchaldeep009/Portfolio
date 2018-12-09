@@ -45,6 +45,18 @@
         }
     }
 
+    foreach($portfolioArray as $key => $portfolioItem){
+        
+        foreach($portfolioItem['media'] as $mKey => $media){
+            if($media['media_type'] == 'video'){
+                if(strpos($media['media_src'], 'youtube') !== false){
+                    $portfolioArray[$key]['media'][$mKey]['media_thumb'] = 'https://img.youtube.com/vi/'.substr(strrchr($media['media_src'], "/"), 1).'/hqdefault.jpg';
+                } else if(strpos($media['media_src'], 'vimeo') !== false){
+                    $portfolioArray[$key]['media'][$mKey]['media_thumb'] = unserialize(file_get_contents("http://vimeo.com/api/v2/video/".substr(strrchr($media['media_src'], '/'), 1).".php"))[0]['thumbnail_large'];
+                }
+            }
+        }
+    }
     header('Access-Control-Allow-Origin: *');
     header('Content-Type: application/json;charset=UTF-8');
     echo json_encode($portfolioArray, JSON_PRETTY_PRINT);

@@ -200,7 +200,8 @@
         },
         watch: {
             mainData: function(){
-                this.galleryData = this.mainData.filter(d => d.item_main_category == "design");
+                this.galleryData = this.mainData.slice(0);
+                this.galleryData = this.galleryData.filter(d => d.item_main_category == "design");
                 this.$nextTick(() => {
                     initializeGrid(document.querySelectorAll('#graphicsPortfolio .item'));
                 })
