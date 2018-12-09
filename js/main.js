@@ -52,11 +52,7 @@
         initialSectionOpen, 
         centerSectionOpen;
 
-    bodymovin.loadAnimation(animCodeBackground)
-        .setSpeed(0.15);
-    bodymovin.loadAnimation(animDesignBackground)
-        .setSpeed(0.1);
-
+    
         // Change color of dual tone filter in svg
         var remapColor = function(filter,color, index) {
                 let colR = filter.querySelector('feFuncR'),
@@ -99,6 +95,16 @@
         TweenMax.to(designBtn, 1, {x: 0});
 
         document.title = 'Deep Panchal : Interactive Media Designer';
+        codeBackground.innerHTML = '';
+        designBackground.innerHTML = '';
+        bodymovin.loadAnimation(animCodeBackground)
+            .setSpeed(0.15);
+        bodymovin.loadAnimation(animDesignBackground)
+            .setSpeed(0.1);
+            animCenterBackground.pause();
+        animNameTag.pause();
+        animGraphicsTitle.pause();
+        animMotionTitle.pause();
     };
     codeSectionOpen = function(){
         avatarShape.style.filter = '';
@@ -128,6 +134,14 @@
         document.title = 'Coder : Deep Panchal';
         TweenMax.to(codeBanner.querySelector('.aboutMsg'), .5, {opacity: '0'});
         TweenMax.to(designBanner.querySelector('.aboutMsg'), .5, {opacity: '0'});
+
+        designBackground.innerHTML = '';
+        bodymovin.loadAnimation(animCodeBackground)
+            .setSpeed(0.15);
+        animCenterBackground.pause();
+        animNameTag.pause();
+        animGraphicsTitle.pause();
+        animMotionTitle.pause();
     };
     codeWorkOpen = function(){
 
@@ -146,6 +160,13 @@
         document.title = 'Portfolio | Coder : Deep Panchal';
         TweenMax.to(codeBanner.querySelector('.aboutMsg'), .5, {opacity: '0'});
         TweenMax.to(designBanner.querySelector('.aboutMsg'), .5, {opacity: '0'});
+        designBackground.innerHTML = '';
+        bodymovin.loadAnimation(animCodeBackground)
+            .setSpeed(0.15);        
+        animCenterBackground.pause();
+        animNameTag.pause();
+        animGraphicsTitle.pause();
+        animMotionTitle.pause();
     };
     designSectionOpen = function(){
         avatar.style.filter = '';
@@ -163,6 +184,13 @@
         document.title = 'Designer : Deep Panchal';
         TweenMax.to(codeBanner.querySelector('.aboutMsg'), .5, {opacity: '0'});
         TweenMax.to(designBanner.querySelector('.aboutMsg'), .5, {opacity: '0'});
+        codeBackground.innerHTML = '';
+        bodymovin.loadAnimation(animDesignBackground)
+            .setSpeed(0.1);
+        animCenterBackground.pause();
+        animNameTag.play();
+        animGraphicsTitle.play();
+        animMotionTitle.play();
     };
     designWorkOpen = function(){
         avatar.style.filter = '';
@@ -181,6 +209,13 @@
         document.title = 'Portfolio | Designer : Deep Panchal';
         TweenMax.to(codeBanner.querySelector('.aboutMsg'), .5, {opacity: '0'});
         TweenMax.to(designBanner.querySelector('.aboutMsg'), .5, {opacity: '0'});
+        codeBackground.innerHTML = '';
+        bodymovin.loadAnimation(animDesignBackground)
+            .setSpeed(0.1);
+        animCenterBackground.pause();
+        animNameTag.pause();
+        animGraphicsTitle.pause();
+        animMotionTitle.pause();
     };
     centerSectionOpen = function(){
         currentSection = 'center';
@@ -190,6 +225,10 @@
         TweenMax.to(codeBtn, 1, {x: `-${window.innerWidth/2}px`});
         TweenMax.to(designBtn, 1, {x: `${window.innerWidth/2}px`});
         document.title = 'About : Deep Panchal';
+        animCenterBackground.play();
+        animNameTag.pause();
+        animGraphicsTitle.pause();
+        animMotionTitle.pause();
     };
 
     window.addEventListener("hashchange", switchSectionBasedOnUrl, false);
