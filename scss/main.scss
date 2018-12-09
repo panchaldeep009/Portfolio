@@ -7,6 +7,9 @@
 @import '_default';
 body{
 }
+[data-blur='true']{
+    filter: blur(20px) !important;
+}
 #preLoader{
     position: fixed;
     height: 100vh;

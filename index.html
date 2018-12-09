@@ -107,7 +107,7 @@
             <div class="portfolio">
                 <div class="portfolioSection">
                     <div class="portfolioGrid" id="codePortfolio" data-active-thumb="0">
-                        <div class="item" v-for="item in galleryData" @click="goto(item.item_id,item.item_name)" v-bind:data-item-size="item.media[0].media_size">
+                        <div class="item" v-for="item in galleryData" @click="goto(item.item_id,item.item_name)" v-bind:data-item-size="item.media[0].media_size" :data-blur='blurStatus'>
                             <img  v-if="item.media[0].media_type == 'image'" :src="item.media[0].media_src"/>
                             <img  v-if="item.media[0].media_type == 'video'" :src="item.media[0].media_thumb"/>
                         </div>
@@ -131,7 +131,7 @@
             <div class="portfolio">
                 <div class="portfolioSection">
                     <div class="portfolioGrid" id="graphicsPortfolio">
-                        <div class="item" v-for="item in galleryData" @click="goto(item.item_id,item.item_name)" v-bind:data-item-size="item.media[0].media_size">
+                        <div class="item" v-for="item in galleryData" @click="goto(item.item_id,item.item_name)" v-bind:data-item-size="item.media[0].media_size" :data-blur="blurStatus">
                             <img  v-if="item.media[0].media_type == 'image'" :src="item.media[0].media_src"/>
                             <img  v-if="item.media[0].media_type == 'video'" :src="item.media[0].media_thumb"/>
                         </div>
@@ -164,7 +164,7 @@
             </div>
         </div>
     </section>
-    <section id="designLightBox" :class="lightBoxClass">
+    <section id="designLightBox" :class="lightBoxClass"  v-if="mainData != ''">
         <div class="media">
             <img v-if="mainData.media[i].media_type == 'image'" :src="mainData.media[i].media_src">
             <iframe v-if="mainData.media[i].media_type == 'video'" :src="mainData.media[i].media_src"
@@ -186,7 +186,7 @@
         </div>
         <button @click="close" class="closeBtn"><i class="fa fa-times"></i></button>
     </section>
-    <section id="codeLightBox" :class="lightBoxClass">
+    <section id="codeLightBox" :class="lightBoxClass" v-if="mainData != ''">
         <div class="media">
             <img v-if="mainData.media[i].media_type == 'image'" :src="mainData.media[i].media_src">
             <iframe v-if="mainData.media[i].media_type == 'video'" :src="mainData.media[i].media_src"
