@@ -95,16 +95,11 @@
         TweenMax.to(designBtn, 1, {x: 0});
 
         document.title = 'Deep Panchal : Interactive Media Designer';
-        codeBackground.innerHTML = '';
-        designBackground.innerHTML = '';
+        removeAllLottieAnimation();
         bodymovin.loadAnimation(animCodeBackground)
             .setSpeed(0.15);
         bodymovin.loadAnimation(animDesignBackground)
             .setSpeed(0.1);
-            animCenterBackground.pause();
-        animNameTag.pause();
-        animGraphicsTitle.pause();
-        animMotionTitle.pause();
     };
     codeSectionOpen = function(){
         avatarShape.style.filter = '';
@@ -135,13 +130,9 @@
         TweenMax.to(codeBanner.querySelector('.aboutMsg'), .5, {opacity: '0'});
         TweenMax.to(designBanner.querySelector('.aboutMsg'), .5, {opacity: '0'});
 
-        designBackground.innerHTML = '';
+        removeAllLottieAnimation();
         bodymovin.loadAnimation(animCodeBackground)
             .setSpeed(0.15);
-        animCenterBackground.pause();
-        animNameTag.pause();
-        animGraphicsTitle.pause();
-        animMotionTitle.pause();
     };
     codeWorkOpen = function(){
 
@@ -160,14 +151,10 @@
         document.title = 'Portfolio | Coder : Deep Panchal';
         TweenMax.to(codeBanner.querySelector('.aboutMsg'), .5, {opacity: '0'});
         TweenMax.to(designBanner.querySelector('.aboutMsg'), .5, {opacity: '0'});
-        designBackground.innerHTML = '';
+        removeAllLottieAnimation();
         bodymovin.loadAnimation(animCodeBackground)
-            .setSpeed(0.15);        
-        animCenterBackground.pause();
-        animNameTag.pause();
-        animGraphicsTitle.pause();
-        animMotionTitle.pause();
-    };
+            .setSpeed(0.15);    
+    };  
     designSectionOpen = function(){
         avatar.style.filter = '';
         document.body.style.backgroundColor = designSectionColor;
@@ -176,21 +163,17 @@
         currentSection = 'design';
         TweenMax.to(homeContent, .25, {opacity : 1, right : "-100%"});
         TweenMax.to(avatar, .25, {left: '50%'});
-        animGraphicsTitle.goToAndPlay(1,true);
-        animDesignSpark.goToAndPlay(1,true);
-        animMotionTitle.goToAndPlay(1,true);
-        animNameTag.goToAndPlay(1,true);
         changeMask(0,0);
         document.title = 'Designer : Deep Panchal';
         TweenMax.to(codeBanner.querySelector('.aboutMsg'), .5, {opacity: '0'});
         TweenMax.to(designBanner.querySelector('.aboutMsg'), .5, {opacity: '0'});
         codeBackground.innerHTML = '';
+        removeAllLottieAnimation();
         bodymovin.loadAnimation(animDesignBackground)
             .setSpeed(0.1);
-        animCenterBackground.pause();
-        animNameTag.play();
-        animGraphicsTitle.play();
-        animMotionTitle.play();
+        bodymovin.loadAnimation(animNameTag);
+        bodymovin.loadAnimation(animGraphicsTitle).setSpeed(.8);
+        bodymovin.loadAnimation(animMotionTitle);
     };
     designWorkOpen = function(){
         avatar.style.filter = '';
@@ -209,13 +192,9 @@
         document.title = 'Portfolio | Designer : Deep Panchal';
         TweenMax.to(codeBanner.querySelector('.aboutMsg'), .5, {opacity: '0'});
         TweenMax.to(designBanner.querySelector('.aboutMsg'), .5, {opacity: '0'});
-        codeBackground.innerHTML = '';
+        removeAllLottieAnimation();
         bodymovin.loadAnimation(animDesignBackground)
             .setSpeed(0.1);
-        animCenterBackground.pause();
-        animNameTag.pause();
-        animGraphicsTitle.pause();
-        animMotionTitle.pause();
     };
     centerSectionOpen = function(){
         currentSection = 'center';
@@ -225,10 +204,9 @@
         TweenMax.to(codeBtn, 1, {x: `-${window.innerWidth/2}px`});
         TweenMax.to(designBtn, 1, {x: `${window.innerWidth/2}px`});
         document.title = 'About : Deep Panchal';
-        animCenterBackground.play();
-        animNameTag.pause();
-        animGraphicsTitle.pause();
-        animMotionTitle.pause();
+        removeAllLottieAnimation();
+        bodymovin.loadAnimation(animCenterBackground)
+            .setSpeed(0.06);
     };
 
     window.addEventListener("hashchange", switchSectionBasedOnUrl, false);
