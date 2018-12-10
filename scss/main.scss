@@ -471,16 +471,24 @@ body{
         i{
             color: $black;
             font-size: 30px;
-            text-shadow: 8px 8px 20px rgba($black, 0.5);
+            text-shadow: 2px 2px 20px rgba($black, 0.5);
         }
     }
 }
 #designLightBox{
+    *, a{
+        color: $codeBackground;
+    }
     .media{
         order: 2;
     }
     .info{
         order: 1;
+    }
+    .closeBtn{
+        i{
+            color: $designBackground;
+        }
     }
 }
 #codeLightBox{

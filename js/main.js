@@ -157,6 +157,7 @@
     };  
     designSectionOpen = function(){
         avatar.style.filter = '';
+        animDesignSpark.goToAndPlay(1,true);
         document.body.style.backgroundColor = designSectionColor;
         document.body.style['overflow'] = 'hidden';
 
