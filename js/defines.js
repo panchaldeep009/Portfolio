@@ -57,14 +57,14 @@ let animPreLoader = bodymovin.loadAnimation({
         animType: 'svg',
         prerender: true,
         path: './data/designSpark.json'
-    }), animCenterBackground = bodymovin.loadAnimation({
+    }), animCenterBackground = {
         wrapper: lottieBackground,
         animType: 'canvas',
         prerender: true,
         loop: true,
         autoplay: true,
         path: './data/centerBackground.json'
-    }), animDesignBackground = {
+    }, animDesignBackground = {
         wrapper: designBackground,
         animType: 'canvas',
         prerender: true,
@@ -78,26 +78,31 @@ let animPreLoader = bodymovin.loadAnimation({
         loop: true,
         autoplay: true,
         path: './data/codeBackground.json'
-    }, animMotionTitle = bodymovin.loadAnimation({
+    }, animMotionTitle = {
         wrapper: motionTitle,
         animType: 'svg',
         prerender: true,
-        autoplay: false,
+        autoplay: true,
         loop: true,
         path: './data/motionTitle.json'
-    }), animGraphicsTitle = bodymovin.loadAnimation({
+    }, animGraphicsTitle = {
         wrapper: graphicsTitle,
         animType: 'svg',
         prerender: true,
-        autoplay: false,
+        autoplay: true,
         loop: true,
         path: './data/graphicTitle.json'
-    }), animNameTag = bodymovin.loadAnimation({
+    }, animNameTag = {
         wrapper: nameDesign,
         animType: 'svg',
         prerender: true,
-        autoplay: false,
+        autoplay: true,
         path: './data/name.json'
-    });
-    animGraphicsTitle.setSpeed(.8);
-    animCenterBackground.setSpeed(.06);
+    };
+    function removeAllLottieAnimation(){
+        codeBackground.innerHTML = '';
+        designBackground.innerHTML = '';
+        nameDesign.innerHTML = '';
+        graphicsTitle.innerHTML = '';
+        motionTitle.innerHTML = '';
+    }

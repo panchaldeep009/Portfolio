@@ -23,10 +23,12 @@
 </head>
 <body>
     <section id="preLoader">
+        <h3 class="hidden">Pre loader</h3>
         <div id="preLoaderAnimation" class="fill1080p"></div>
         <div id="preLoaderPercentage">0%</div>
     </section>
     <section id="background">
+        <h3 class="hidden">SVG Filters</h3>        
         <svg width="0" height="0"> 
             <defs>
                 <filter id="duoToneFilter">
@@ -45,10 +47,11 @@
             </defs>
         </svg>
     </section>
-    <section id="lottieBackground" class="fill1080p"></section>
-    <section id="lottieBackgroundOverly" class="fill1080p"></section> 
+    <div id="lottieBackground" class="fill1080p"></div>
+    <div id="lottieBackgroundOverly" class="fill1080p"></div> 
     <main id="homeContent">
         <section id="centerContent">
+        <h3 class="hidden">Home Banner</h3>            
             <div id="codeBanner">
                 <div id="codeSparks" class="fill1080p"></div>
                 <img src="images/logoWhite.svg" class="headerLogo" alt="headerLogoWhite">
@@ -71,6 +74,7 @@
             </button>
         </section>   
         <section id="codeContent">
+            <h3 class="hidden">Code Banner</h3>            
             <div class="introduction">
                 <p class="introText"> 
                     <div class="iM">
@@ -104,18 +108,20 @@
             </div>
         </section>
         <section id="codeContentSkillsAndWork">
+            <h3 class="hidden">Coding Portfolio</h3>            
             <div class="portfolio">
                 <div class="portfolioSection">
                     <div class="portfolioGrid" id="codePortfolio" data-active-thumb="0">
                         <div class="item" v-for="item in galleryData" @click="goto(item.item_id,item.item_name)" v-bind:data-item-size="item.media[0].media_size" :data-blur='blurStatus'>
-                            <img  v-if="item.media[0].media_type == 'image'" :src="item.media[0].media_src"/>
-                            <img  v-if="item.media[0].media_type == 'video'" :src="item.media[0].media_thumb"/>
+                            <img  v-if="item.media[0].media_type == 'image'" :src="'php/image_optimize.php?img=../'+item.media[0].media_src+'&size=500'"/>
+                            <img  v-if="item.media[0].media_type == 'video'" :src="'php/image_optimize.php?img='+item.media[0].media_thumb+'&size=500'"/>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         <section id="designContent">
+            <h3 class="hidden">Design Banner</h3>            
             <div id="dStroke1">
                 <object id="dStroke1SVG" type="image/svg+xml"
                     data="images/dStroke.svg">
@@ -128,12 +134,13 @@
             <div class="designerText">designer</div>
         </section>
         <section id="designContentSkillsAndWork">
+            <h3 class="hidden">Design Portfolio</h3>            
             <div class="portfolio">
                 <div class="portfolioSection">
                     <div class="portfolioGrid" id="graphicsPortfolio">
                         <div class="item" v-for="item in galleryData" @click="goto(item.item_id,item.item_name)" v-bind:data-item-size="item.media[0].media_size" :data-blur="blurStatus">
-                            <img  v-if="item.media[0].media_type == 'image'" :src="item.media[0].media_src"/>
-                            <img  v-if="item.media[0].media_type == 'video'" :src="item.media[0].media_thumb"/>
+                            <img  v-if="item.media[0].media_type == 'image'" :src="'php/image_optimize.php?img=../'+item.media[0].media_src+'&size=500'"/>
+                            <img  v-if="item.media[0].media_type == 'video'" :src="'php/image_optimize.php?img='+item.media[0].media_thumb+'&size=500'"/>
                         </div>
                     </div>
                 </div>
@@ -151,7 +158,7 @@
             </p>
             <h3>Contact</h3>
             <div id="contactForm">
-                <form @submit="subForm">
+                <form @submit="subForm" onsubmit="event.preventDefault();">
                     <div class="error-message">{{error}}</div>
                     <fieldset v-if="!formHide">
                         <input type="text" v-model="name" placeholder="Name">
@@ -165,6 +172,7 @@
         </div>
     </section>
     <section id="designLightBox" :class="lightBoxClass"  v-if="mainData != ''">
+        <h3 class="hidden">Design LightBox</h3>            
         <div class="media">
             <img v-if="mainData.media[i].media_type == 'image'" :src="mainData.media[i].media_src">
             <iframe v-if="mainData.media[i].media_type == 'video'" :src="mainData.media[i].media_src"
@@ -183,10 +191,12 @@
             <ul>
                 <li v-for="t in mainData.technology" >{{t.technology_name}}</li>
             </ul>
+            <a :href="mainData.item_resource">Resource</a>
         </div>
         <button @click="close" class="closeBtn"><i class="fa fa-times"></i></button>
     </section>
     <section id="codeLightBox" :class="lightBoxClass" v-if="mainData != ''">
+        <h3 class="hidden">Code LightBox</h3>            
         <div class="media">
             <img v-if="mainData.media[i].media_type == 'image'" :src="mainData.media[i].media_src">
             <iframe v-if="mainData.media[i].media_type == 'video'" :src="mainData.media[i].media_src"
@@ -205,11 +215,12 @@
             <ul>
                 <li v-for="t in mainData.technology" >{{t.technology_name}}</li>
             </ul>
+            <a :href="mainData.item_resource">Resources</a>
         </div>
         <button @click="close" class="closeBtn"><i class="fa fa-times"></i></button>
     </section>
 
-    <section id="foreground" class="fill1080p"></section>
+    <div id="foreground" class="fill1080p"></div>
     <script src="js/defines.js"></script>
     <script src="js/general_function.js"></script>
     <!-- <script src="js/preloader.js"></script> -->
