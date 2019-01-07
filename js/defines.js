@@ -37,72 +37,89 @@ let animPreLoader = bodymovin.loadAnimation({
         animType: 'svg',
         prerender: true,
         path: './data/loadingScreen.json'
-    }), animCodeSparks = bodymovin.loadAnimation({
+    }), animDataCodeSparks = {
         wrapper: codeSpark,
         animType: 'svg',
         prerender: true,
         path: './data/codeOpenSparks.json'
-    }), animCodeTransition = {
+    }, animDataCodeTransition = {
         wrapper: foreground,
         animType: 'svg',
         prerender: true,
         path: './data/codeTransition.json'
-    }, animDesignTransition = {
+    }, animDataDesignTransition = {
         wrapper: foreground,
         animType: 'svg',
         prerender: true,
         path: './data/designTransition.json'
-    }, animDesignSpark = bodymovin.loadAnimation({
+    }, animDataDesignSpark = {
         wrapper: designSpark,
         animType: 'svg',
         prerender: true,
         path: './data/designSpark.json'
-    }), animCenterBackground = {
+    }, animDataCenterBackground = {
         wrapper: lottieBackground,
         animType: 'canvas',
         prerender: true,
         loop: true,
         autoplay: true,
         path: './data/centerBackground.json'
-    }, animDesignBackground = {
+    }, animDataDesignBackground = {
         wrapper: designBackground,
         animType: 'canvas',
         prerender: true,
         loop: true,
         autoplay: true,
         path: './data/designBackground.json'
-    }, animCodeBackground = {
+    }, animDataCodeBackground = {
         wrapper: codeBackground,
         animType: 'canvas',
         prerender: true,
         loop: true,
         autoplay: true,
         path: './data/codeBackground.json'
-    }, animMotionTitle = {
+    }, animDataMotionTitle = {
         wrapper: motionTitle,
         animType: 'svg',
         prerender: true,
         autoplay: true,
         loop: true,
         path: './data/motionTitle.json'
-    }, animGraphicsTitle = {
+    }, animDataGraphicsTitle = {
         wrapper: graphicsTitle,
         animType: 'svg',
         prerender: true,
         autoplay: true,
         loop: true,
         path: './data/graphicTitle.json'
-    }, animNameTag = {
+    }, animDataNameTag = {
         wrapper: nameDesign,
         animType: 'svg',
         prerender: true,
         autoplay: true,
         path: './data/name.json'
     };
+    
+    let animCodeSparks = bodymovin.loadAnimation(animDataCodeSparks),
+    animCodeTransition = bodymovin.loadAnimation(animDataCodeTransition),
+    animDesignTransition = bodymovin.loadAnimation(animDataDesignTransition),
+    animDesignSpark = bodymovin.loadAnimation(animDataDesignSpark),
+    animCenterBackground = bodymovin.loadAnimation(animDataCenterBackground),
+    animDesignBackground = bodymovin.loadAnimation(animDataDesignBackground),
+    animCodeBackground = bodymovin.loadAnimation(animDataCodeBackground),
+    animMotionTitle = bodymovin.loadAnimation(animDataMotionTitle),
+    animGraphicsTitle = bodymovin.loadAnimation(animDataGraphicsTitle),
+    animNameTag = bodymovin.loadAnimation(animDataNameTag);
+    
     function removeAllLottieAnimation(){
-        codeBackground.innerHTML = '';
-        designBackground.innerHTML = '';
-        nameDesign.innerHTML = '';
-        graphicsTitle.innerHTML = '';
-        motionTitle.innerHTML = '';
+        animCodeSparks.destroy();
+        animCodeTransition.destroy();
+        animDesignTransition.destroy();
+        animDesignSpark.destroy();
+        animCenterBackground.destroy();
+        animDesignBackground.destroy();
+        animCodeBackground.destroy();
+        animMotionTitle.destroy();
+        animGraphicsTitle.destroy();
+        animNameTag.destroy();
     }

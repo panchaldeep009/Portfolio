@@ -15,7 +15,7 @@
     /// Mask Interactive
     if (window.DeviceOrientationEvent) {
         window.addEventListener("deviceorientation", function () {
-            changeClip(event.beta, event.gamma);
+            changeClip(event.gamma*10, event.beta*10);
         }, true);
     } else if (window.DeviceMotionEvent) {
         window.addEventListener('devicemotion', function () {
@@ -29,6 +29,7 @@
     document.addEventListener('mousemove', function(e){
         changeClip(e.clientX, e.clientY);
     });
+    
     function changeClip(x,y){
         if(currentSection == 'initial'){
             let w = window.innerWidth,
@@ -76,7 +77,6 @@
         // Functions for switching Stages
 
     initialSectionOpen = function(){
-
         avatarShape.style.filter = 'url(#duoToneFilter)';
         avatar.style.filter = 'url(#duoToneFilter)';
         document.body.style['overflow'] = 'auto';
@@ -96,10 +96,14 @@
 
         document.title = 'Deep Panchal : Interactive Media Designer';
         removeAllLottieAnimation();
-        bodymovin.loadAnimation(animCodeBackground)
-            .setSpeed(0.15);
-        bodymovin.loadAnimation(animDesignBackground)
-            .setSpeed(0.1);
+        
+        animCodeBackground = bodymovin.loadAnimation(animDataCodeBackground);
+        animCodeBackground.setSpeed(0.15);
+        animDesignBackground = bodymovin.loadAnimation(animDataDesignBackground);
+        animDesignBackground.setSpeed(0.1);
+
+        designPortfolio.show = false;
+        codePortfolio.show = false;
     };
     codeSectionOpen = function(){
         avatarShape.style.filter = '';
@@ -124,15 +128,17 @@
         TweenMax.to(avatarShape, .25, {left: '50%'});
 
         lottieBackgroundOverly.innerHTML = "";
-        animCodeSparks.goToAndPlay(1,true);
         changeMask(100,100);
         document.title = 'Coder : Deep Panchal';
         TweenMax.to(codeBanner.querySelector('.aboutMsg'), .5, {opacity: '0'});
         TweenMax.to(designBanner.querySelector('.aboutMsg'), .5, {opacity: '0'});
 
         removeAllLottieAnimation();
-        bodymovin.loadAnimation(animCodeBackground)
-            .setSpeed(0.15);
+        
+        animCodeBackground = bodymovin.loadAnimation(animDataCodeBackground);
+        animCodeBackground.setSpeed(0.15);
+        animCodeSparks = bodymovin.loadAnimation(animDataCodeSparks);
+
     };
     codeWorkOpen = function(){
 
@@ -145,19 +151,22 @@
         TweenMax.to(avatarShape, .25, {left: '120%'});
         
         foreground.innerHTML = "";
-        bodymovin.loadAnimation(animCodeTransition)
-            .setSpeed(3);
         changeMask(100,100);
         document.title = 'Portfolio | Coder : Deep Panchal';
         TweenMax.to(codeBanner.querySelector('.aboutMsg'), .5, {opacity: '0'});
         TweenMax.to(designBanner.querySelector('.aboutMsg'), .5, {opacity: '0'});
         removeAllLottieAnimation();
-        bodymovin.loadAnimation(animCodeBackground)
-            .setSpeed(0.15);    
+        
+        animCodeBackground = bodymovin.loadAnimation(animDataCodeBackground);
+        animCodeBackground.setSpeed(0.15);
+        animCodeTransition = bodymovin.loadAnimation(animDataCodeTransition),
+        animCodeTransition.setSpeed(3);
+
+        codePortfolio.show = true;
+        designPortfolio.show = false;
     };  
     designSectionOpen = function(){
         avatar.style.filter = '';
-        animDesignSpark.goToAndPlay(1,true);
         document.body.style.backgroundColor = designSectionColor;
         document.body.style['overflow'] = 'hidden';
 
@@ -170,11 +179,17 @@
         TweenMax.to(designBanner.querySelector('.aboutMsg'), .5, {opacity: '0'});
         codeBackground.innerHTML = '';
         removeAllLottieAnimation();
-        bodymovin.loadAnimation(animDesignBackground)
-            .setSpeed(0.1);
-        bodymovin.loadAnimation(animNameTag);
-        bodymovin.loadAnimation(animGraphicsTitle).setSpeed(.8);
-        bodymovin.loadAnimation(animMotionTitle);
+        
+        animDesignBackground = bodymovin.loadAnimation(animDataDesignBackground);
+        animDesignBackground.setSpeed(0.1);
+        animDesignSpark = bodymovin.loadAnimation(animDataDesignSpark);
+        animNameTag = bodymovin.loadAnimation(animDataNameTag);
+        animGraphicsTitle = bodymovin.loadAnimation(animDataGraphicsTitle);
+        animGraphicsTitle.setSpeed(0.8);
+        animMotionTitle = bodymovin.loadAnimation(animDataMotionTitle);
+        
+        designPortfolio.show = false;
+        codePortfolio.show = false;
     };
     designWorkOpen = function(){
         avatar.style.filter = '';
@@ -187,15 +202,19 @@
         TweenMax.to(avatar, .25, {left: '-20%'});
         
         foreground.innerHTML = "";
-        bodymovin.loadAnimation(animDesignTransition)
-            .setSpeed(2);
         changeMask(0,0);
         document.title = 'Portfolio | Designer : Deep Panchal';
         TweenMax.to(codeBanner.querySelector('.aboutMsg'), .5, {opacity: '0'});
         TweenMax.to(designBanner.querySelector('.aboutMsg'), .5, {opacity: '0'});
         removeAllLottieAnimation();
-        bodymovin.loadAnimation(animDesignBackground)
-            .setSpeed(0.1);
+
+        animDesignBackground = bodymovin.loadAnimation(animDataDesignBackground);
+        animDesignBackground.setSpeed(0.1);
+        animDesignTransition = bodymovin.loadAnimation(animDataDesignTransition);        
+        animDesignTransition.setSpeed(2);
+        
+        designPortfolio.show = true;
+        codePortfolio.show = false;
     };
     centerSectionOpen = function(){
         currentSection = 'center';
@@ -206,8 +225,11 @@
         TweenMax.to(designBtn, 1, {x: `${window.innerWidth/2}px`});
         document.title = 'About : Deep Panchal';
         removeAllLottieAnimation();
-        bodymovin.loadAnimation(animCenterBackground)
-            .setSpeed(0.06);
+        animCenterBackground = bodymovin.loadAnimation(animDataCenterBackground);
+        animCenterBackground.setSpeed(0.06);
+            
+        designPortfolio.show = false;
+        codePortfolio.show = false;
     };
 
     window.addEventListener("hashchange", switchSectionBasedOnUrl, false);

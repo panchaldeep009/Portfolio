@@ -39,7 +39,7 @@
         nextThumbs(thumbs);
     }
     function initializeGrid(thumbs){
-        if(thumbs != undefined) {
+        if(thumbs.length != 0) {
             let parentE = thumbs[0].parentElement;
             parentE.dataset.activeThumb = 0;
             parentE.dataset.xState = 0;
@@ -138,6 +138,7 @@
             mainData: fetchModel,
             galleryData: [],
             blurStatus: 'false',
+            show: false,
         },
         methods: {
             goto: function(id,name){
@@ -149,9 +150,18 @@
         watch: {
             mainData: function(){
                 this.galleryData = this.mainData.filter(d => d.item_main_category == "code");
-                this.$nextTick(() => {
-                    initializeGrid(document.querySelectorAll('#codePortfolio .item'));
-                })
+                if(this.show){
+                    this.$nextTick(() => {
+                        initializeGrid(document.querySelectorAll('#codePortfolio .item'));
+                    })
+                }
+            },
+            show: function(){
+                if(this.show && this.mainData != ''){
+                    this.$nextTick(() => {
+                        initializeGrid(document.querySelectorAll('#codePortfolio .item'));
+                    })
+                }
             }
         }
     });
@@ -193,9 +203,10 @@
     var designPortfolio = new Vue({
         el: '#graphicsPortfolio',
         data: {
-            mainData: fetchModel,
+            mainData: '',
             galleryData: [],
             blurStatus: 'false',
+            show: false,
         },
         methods: {
             goto: function(id,name){
@@ -206,11 +217,19 @@
         },
         watch: {
             mainData: function(){
-                this.galleryData = this.mainData.slice(0);
-                this.galleryData = this.galleryData.filter(d => d.item_main_category == "design");
-                this.$nextTick(() => {
-                    initializeGrid(document.querySelectorAll('#graphicsPortfolio .item'));
-                })
+                this.galleryData = this.mainData.filter(d => d.item_main_category == "design");
+                if(this.show){
+                    this.$nextTick(() => {
+                        initializeGrid(document.querySelectorAll('#graphicsPortfolio .item'));
+                    })
+                }
+            },
+            show: function(){
+                if(this.show && this.mainData != ''){
+                    this.$nextTick(() => {
+                        initializeGrid(document.querySelectorAll('#graphicsPortfolio .item'));
+                    })
+                }
             }
         }
     });

@@ -51,7 +51,7 @@
     <div id="lottieBackgroundOverly" class="fill1080p"></div> 
     <main id="homeContent">
         <section id="centerContent">
-        <h3 class="hidden">Home Banner</h3>            
+        <h3 class="hidden">Home Banner</h3>        
             <div id="codeBanner">
                 <div id="codeSparks" class="fill1080p"></div>
                 <img src="images/logoWhite.svg" class="headerLogo" alt="headerLogoWhite">
@@ -111,7 +111,7 @@
             <h3 class="hidden">Coding Portfolio</h3>            
             <div class="portfolio">
                 <div class="portfolioSection">
-                    <div class="portfolioGrid" id="codePortfolio" data-active-thumb="0">
+                    <div class="portfolioGrid" id="codePortfolio" v-if="show">
                         <div class="item" v-for="item in galleryData" @click="goto(item.item_id,item.item_name)" v-bind:data-item-size="item.media[0].media_size" :data-blur='blurStatus'>
                             <img  v-if="item.media[0].media_type == 'image'" :src="'php/image_optimize.php?img=../'+item.media[0].media_src+'&size=500'"/>
                             <img  v-if="item.media[0].media_type == 'video'" :src="'php/image_optimize.php?img='+item.media[0].media_thumb+'&size=500'"/>
@@ -137,7 +137,7 @@
             <h3 class="hidden">Design Portfolio</h3>            
             <div class="portfolio">
                 <div class="portfolioSection">
-                    <div class="portfolioGrid" id="graphicsPortfolio">
+                    <div class="portfolioGrid" id="graphicsPortfolio" v-if="show">
                         <div class="item" v-for="item in galleryData" @click="goto(item.item_id,item.item_name)" v-bind:data-item-size="item.media[0].media_size" :data-blur="blurStatus">
                             <img  v-if="item.media[0].media_type == 'image'" :src="'php/image_optimize.php?img=../'+item.media[0].media_src+'&size=500'"/>
                             <img  v-if="item.media[0].media_type == 'video'" :src="'php/image_optimize.php?img='+item.media[0].media_thumb+'&size=500'"/>
@@ -152,7 +152,7 @@
             <img class="profilePicture" src="https://graph.facebook.com/v3.2/100002555012154/picture?width=300&height=300" alt="profilePicture">
             <h3>About Me</h3>
             <p>
-                Hello, I'm Deepkumar Panchal AKA "Deep", A Interactive Web Developer and Digital Media Designer with over 7 years of experiences in the wide range of challenging projects. Currently shaping my skills by pushing boundaries of Web development using tending technology; chasing ultimate creativity of 3D motion and vector graphics and experimenting with python to make AI and Cloud Computing applications.
+                Hello, I'm Deepkumar Panchal AKA "Deep", An Interactive Web Developer and Digital Media Designer with over 7 years of experiences in the wide range of challenging projects. Currently shaping my skills by pushing boundaries of Web development; chasing ultimate creativity in 3D motion and vector graphics and experimenting with python to make AI and Cloud Computing applications.
                 <br/>My work is something I do with commitments where I puts tremendous amount of effort to make my vision reality.
                 <br/>Therefore, I always looking for work opportunity where I can polish and utilize my skills to build real-world applications.
             </p>
