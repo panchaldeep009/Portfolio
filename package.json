@@ -56,10 +56,12 @@
   },
   "dependencies": {
     "lodash": "4.17.11",
-    "prop-types": "15.6.2",
+    "prop-types": "^15.6.2",
     "react": "16.7.0",
     "react-dom": "16.7.0",
-    "react-hot-loader": "4.6.3"
+    "react-hot-loader": "4.6.3",
+    "react-lottie": "^1.2.3",
+    "react-router-dom": "^4.3.1"
   },
   "resolutions": {
     "babel-core": "7.0.0-bridge.0"

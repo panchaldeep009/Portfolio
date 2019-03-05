@@ -13,7 +13,9 @@
   },
   "root": true,
   "rules": {
-    "indent": ["error", 2],
+    "linebreak-style": 0,
+    "indent": ["error", 4],
+    "arrow-body-style": ["error", "always"],
     "react/prefer-stateless-function": "warn",
     "react/self-closing-comp": [
       "warn",
@@ -56,7 +58,7 @@
         "eventHandlerPropPrefix": "on"
       }
     ],
-    "react/jsx-indent": ["warn", 2],
+    "react/jsx-indent": ["error", 4],
     "react/jsx-key": "error",
     "react/jsx-wrap-multilines": ["warn"],
     "react/jsx-indent-props": 0,

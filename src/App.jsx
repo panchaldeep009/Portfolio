@@ -1,15 +1,14 @@
-import React, { Component } from 'react';
-import { hot } from 'react-hot-loader';
+import React from 'react';
+import CodeSection from './container/codeSection';
+import DesignSection from './container/designSection';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+const App = () => {
+    return (
+        <React.Fragment>
+            <CodeSection />
+            <DesignSection />
+        </React.Fragment>
+    );
+};
 
-  render() {
-    return <div> Hello world </div>;
-  }
-}
-
-export default hot(module)(App);
+export default App;
