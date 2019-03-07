@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Layer = ({ children, zIndex }) => {
+const Layer = ({ children, options }) => {
     const Style = {
+        position: 'absolute',
+        top: 0,
+        left: 0,
         width: '100%',
         height: '100vh',
         display: 'flex',
-        zIndex: zIndex != null ? zIndex : 0,
+        ...options,
     };
     return <section style={Style}>{children}</section>;
 };
@@ -16,7 +19,7 @@ Layer.propTypes = {
         PropTypes.arrayOf(PropTypes.node),
         PropTypes.node,
     ]),
-    zIndex: PropTypes.string,
+    options: PropTypes.objectOf(PropTypes.any),
 };
 
 export default Layer;
