@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Layer = ({ children, options }) => {
+const Layer = ({ children, options, className }) => {
     const Style = {
         position: 'absolute',
         top: 0,
@@ -11,7 +11,11 @@ const Layer = ({ children, options }) => {
         display: 'flex',
         ...options,
     };
-    return <section style={Style}>{children}</section>;
+    return (
+        <section className={className} style={Style}>
+            {children}
+        </section>
+    );
 };
 
 Layer.propTypes = {
@@ -20,6 +24,7 @@ Layer.propTypes = {
         PropTypes.node,
     ]),
     options: PropTypes.objectOf(PropTypes.any),
+    className: PropTypes.string,
 };
 
 export default Layer;

@@ -1,13 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { HashRouter as Router, Route } from 'react-router-dom';
+
 import App from './App.jsx';
-import { GlobalProvider } from './global/globalState';
+import ThemeProvider from './styles/Theme';
 
 import 'reset-css';
 
 ReactDOM.render(
-    <GlobalProvider>
-        <App />
-    </GlobalProvider>,
+    <ThemeProvider>
+        <Router>
+            <Route
+                render={router => {
+                    return <App router={router} />;
+                }}
+            />
+        </Router>
+    </ThemeProvider>,
     document.getElementById('app'),
 );

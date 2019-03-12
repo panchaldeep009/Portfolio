@@ -7,7 +7,7 @@ export default ({ mobile }) => {
         dark: '#000000',
     };
     return {
-        ...colors,
+        colors,
         coderColors: {
             codeBackground: colors.primary,
             codeGreen: '#00c617',

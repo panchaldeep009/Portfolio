@@ -1,9 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const GlobalContext = React.createContext();
-
-const GlobalProvider = ({ children }) => {
+const ThemeDynamics = () => {
     const [view, setView] = React.useState({
         width: window.innerWidth,
         height: window.innerHeight,
@@ -82,18 +79,6 @@ const GlobalProvider = ({ children }) => {
         };
     }, []);
 
-    return (
-        <GlobalContext.Provider value={{ view, device, cursor, location }}>
-            {children}
-        </GlobalContext.Provider>
-    );
+    return { view, device, cursor, location };
 };
-
-GlobalProvider.propTypes = {
-    children: PropTypes.PropTypes.oneOfType([
-        PropTypes.arrayOf(PropTypes.node),
-        PropTypes.node,
-    ]),
-};
-export { GlobalProvider };
-export default GlobalContext;
+export default ThemeDynamics;

@@ -24,7 +24,7 @@ const Animation = class extends React.Component {
     }
 
     render() {
-        return <div ref={this.Holder} />;
+        return <div style={{ width: '100%' }} ref={this.Holder} />;
     }
 };
 

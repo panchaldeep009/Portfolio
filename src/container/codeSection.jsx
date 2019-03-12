@@ -1,30 +1,43 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Prism from 'prismjs';
+import { Transition } from 'react-spring/renderprops';
+import withStyles from 'react-jss';
 
-import '../styles/vscodeTheme.scss';
 import Layer from '../ui/Layer';
 import Animation from '../ui/Animation';
+import AppBar from '../ui/AppBar';
 
-import Global from '../global/globalState';
-import Style from '../styles/HomeSection';
+import Styles from '../styles/container/HomeSection';
+
 import Background from '../assets/animation_data/codeBackground.json';
 import myAvatar from '../assets/svg/myAvatarShape.svg';
+import codeIcon from '../assets/svg/codeIcon.svg';
+import galleryIcon from '../assets/svg/galleryIcon.svg';
 
-const Coder = ({ options }) => {
+const Coder = ({ options, classes, router }) => {
     const BackgroundAnimation = React.useRef();
-    const styleProp = React.useContext(Global);
 
-    React.useEffect(() => {
-        BackgroundAnimation.current.Animation.setSpeed(0.3);
-        Prism.highlightAll();
-    }, []);
+    React.useEffect(
+        () => {
+            if (BackgroundAnimation.current !== undefined) {
+                BackgroundAnimation.current.Animation.setSpeed(0.3);
+            }
+        },
+        [BackgroundAnimation.current],
+    );
 
     return (
-        <Layer options={{ ...options, ...Style(styleProp).codeSection }}>
-            <Layer options={{ zIndex: 0 }}>
+        <Layer
+            className={classes.codeSection}
+            options={{
+                ...options,
+            }}
+        >
+            <Layer options={{ pointerEvents: 'none' }}>
                 <Animation
-                    options={{ animationData: Background }}
+                    options={{
+                        animationData: Background,
+                    }}
                     ref={BackgroundAnimation}
                 />
             </Layer>
@@ -32,29 +45,80 @@ const Coder = ({ options }) => {
                 options={{
                     justifyContent: 'center',
                     alignItems: 'center',
+                    pointerEvents: 'none',
                 }}
             >
                 <img
-                    style={{ ...Style(styleProp).avatarImg }}
+                    className={classes.avatarImg}
                     src={myAvatar}
                     alt="my_avatar"
                 />
             </Layer>
-            <Layer
-                options={{
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    width: '50%',
-                }}
-            >
-                <h2 style={{ ...Style(styleProp).coderButton }}>-- Coder</h2>
+            <Layer>{/* Windows */}</Layer>
+            <Layer className={classes.coderButton}>
+                <div
+                    onClick={() => {
+                        router.history.push('/code');
+                    }}
+                    onKeyPress={() => {
+                        router.history.push('/code');
+                    }}
+                    role="button"
+                    tabIndex={0}
+                >
+                    <h2>&lt;!-- Coder</h2>
+                </div>
             </Layer>
+            <Transition
+                items={router.location.pathname.includes('/code')}
+                from={{ bottom: '-100%' }}
+                enter={{ bottom: '0%' }}
+                leave={{ bottom: '-100%' }}
+            >
+                {show => {
+                    return (
+                        show &&
+                        (style => {
+                            return (
+                                <AppBar
+                                    options={style}
+                                    items={[
+                                        {
+                                            id: 'code_app_1',
+                                            name: 'Resume',
+                                            icon: codeIcon,
+                                            onclick: () => {
+                                                router.history.push(
+                                                    '/code/about',
+                                                );
+                                            },
+                                            keyPress: '82',
+                                        },
+                                        {
+                                            id: 'code_app_2',
+                                            name: 'My Work',
+                                            icon: galleryIcon,
+                                            onclick: () => {
+                                                router.history.push(
+                                                    '/code/work',
+                                                );
+                                            },
+                                        },
+                                    ]}
+                                />
+                            );
+                        })
+                    );
+                }}
+            </Transition>
         </Layer>
     );
 };
 
 Coder.propTypes = {
     options: PropTypes.objectOf(PropTypes.any),
+    classes: PropTypes.objectOf(PropTypes.any),
+    router: PropTypes.objectOf(PropTypes.any),
 };
 
-export default Coder;
+export default withStyles(Styles)(Coder);
