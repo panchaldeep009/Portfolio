@@ -1,4 +1,4 @@
-export default ({ device, colors, coderFonts }) => {
+export default ({ device, colors, coderFonts, designerFonts, location }) => {
     return {
         Bar: {
             position: 'fixed',
@@ -25,7 +25,8 @@ export default ({ device, colors, coderFonts }) => {
             padding: '10px',
             color: colors.bright,
             cursor: 'pointer',
-            ...coderFonts,
+            ...(location.includes('code') && coderFonts),
+            ...(location.includes('design') && designerFonts),
             '&:hover': {
                 '& $AppName': { opacity: 1 },
                 '& $AppIcon': {

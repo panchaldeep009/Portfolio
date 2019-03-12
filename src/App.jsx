@@ -11,10 +11,12 @@ import Styles from './styles/App';
 const App = ({ classes, router }) => {
     const swipeURL = ['/code', '/', '/design'];
     const onSwipe = num => {
-        const newURL =
-            swipeURL[swipeURL.indexOf(router.location.pathname) + num];
-        if (newURL !== undefined) {
-            router.history.push(newURL);
+        if (swipeURL.includes(router.location.pathname)) {
+            const newURL =
+                swipeURL[swipeURL.indexOf(router.location.pathname) + num];
+            if (newURL !== undefined) {
+                router.history.push(newURL);
+            }
         }
     };
     React.useEffect(() => {
