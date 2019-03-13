@@ -16,10 +16,11 @@ const Window = ({
     const thisWindow = React.useRef();
     const [state, setState] = React.useState({
         width: '1024px',
-        height: 'calc(100vh - 350px)',
+        height: '90vh',
         x: -5,
         y: 0,
     });
+    const [fullScreen, setFullScreen] = React.useState(false);
     const [drag, setDrag] = React.useState({
         element: thisWindow,
         dragAble: false,
@@ -65,8 +66,19 @@ const Window = ({
                     top: drag.dragPos.top,
                     left: drag.dragPos.left,
                 }),
+                ...(fullScreen && {
+                    top: 0,
+                    left: 5,
+                }),
             }}
-            size={{ width: state.width, height: state.height }}
+            size={{
+                width: state.width,
+                height: state.height,
+                ...(fullScreen && {
+                    width: '100%',
+                    height: '100vh',
+                }),
+            }}
             onResize={(e, direction, ref, d) => {
                 setState({
                     ...state,
@@ -87,7 +99,13 @@ const Window = ({
                 <img style={{ width: 30 }} alt="app_icon" src={icon} />
                 <span>{title}</span>
                 <div className={classes.buttons}>
-                    <button type="button" className={classes.expandButton} />
+                    <button
+                        onClick={() => {
+                            setFullScreen(!fullScreen);
+                        }}
+                        type="button"
+                        className={classes.expandButton}
+                    />
                     <button
                         onClick={handleActions.close}
                         type="button"

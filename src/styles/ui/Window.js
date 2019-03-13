@@ -13,7 +13,6 @@ export default ({
             top: 25,
             width: 1024,
             left: view.width > 1024 ? (view.width - 1024) / 2 : 5,
-            maxHeight: 'calc(100vh - 100px)',
             transformOrigin: '50% 50%',
 
             borderRadius: 5,

@@ -8,7 +8,7 @@ const AppBar = ({ items, options, classes }) => {
     return (
         <div style={options} className={classes.Bar}>
             {items.map(app => {
-                const handleOpenApp = app.onclick;
+                const handleOpenApp = app.open;
                 return (
                     <div
                         onClick={handleOpenApp}

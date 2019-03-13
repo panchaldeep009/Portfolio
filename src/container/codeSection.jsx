@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Transition, config } from 'react-spring/renderprops';
 import withStyles from 'react-jss';
+
+import Apps from '../component/apps';
 
 import Layer from '../ui/Layer';
 import Animation from '../ui/Animation';
-import AppBar from '../ui/AppBar';
-import Window from '../ui/Window';
 
 import Styles from '../styles/container/HomeSection';
 
@@ -17,6 +16,38 @@ import galleryIcon from '../assets/svg/galleryIcon.svg';
 
 const Coder = ({ options, classes, router }) => {
     const BackgroundAnimation = React.useRef();
+
+    const AllApps = {
+        appBar: router.location.pathname.includes('/code'),
+        apps: [
+            {
+                id: 'code_app_1',
+                name: 'Resume',
+                icon: codeIcon,
+                open: () => {
+                    router.history.push('/code/about');
+                },
+                openState: router.location.pathname.includes('/code/about'),
+                close: () => {
+                    router.history.push('/code');
+                },
+                content: <div>Resume App</div>,
+            },
+            {
+                id: 'code_app_2',
+                name: 'My Work',
+                icon: galleryIcon,
+                open: () => {
+                    router.history.push('/code/work');
+                },
+                openState: router.location.pathname.includes('/code/work'),
+                close: () => {
+                    router.history.push('/code');
+                },
+                content: <div>Gallery App</div>,
+            },
+        ],
+    };
 
     React.useEffect(
         () => {
@@ -70,77 +101,7 @@ const Coder = ({ options, classes, router }) => {
                     <h2>&lt;!-- Coder</h2>
                 </div>
             </Layer>
-            <Transition
-                items={router.location.pathname.includes('/code')}
-                from={{ bottom: '-100%' }}
-                enter={{ bottom: '0%' }}
-                leave={{ bottom: '-100%' }}
-            >
-                {show => {
-                    return (
-                        show &&
-                        (style => {
-                            return (
-                                <AppBar
-                                    options={style}
-                                    items={[
-                                        {
-                                            id: 'code_app_1',
-                                            name: 'Resume',
-                                            icon: codeIcon,
-                                            onclick: () => {
-                                                router.history.push(
-                                                    '/code/about',
-                                                );
-                                            },
-                                            keyPress: '82',
-                                        },
-                                        {
-                                            id: 'code_app_2',
-                                            name: 'My Work',
-                                            icon: galleryIcon,
-                                            onclick: () => {
-                                                router.history.push(
-                                                    '/code/work',
-                                                );
-                                            },
-                                        },
-                                    ]}
-                                />
-                            );
-                        })
-                    );
-                }}
-            </Transition>
-            <Transition
-                items={router.location.pathname.includes('/code/about')}
-                config={config.wobbly}
-                from={{ top: 110, scale: 0 }}
-                enter={{ top: 0, scale: 1 }}
-                leave={{ top: 110, scale: 0 }}
-            >
-                {show => {
-                    return (
-                        show &&
-                        (style => {
-                            return (
-                                <Window
-                                    title="My Resume"
-                                    icon={codeIcon}
-                                    animation={style}
-                                    handleActions={{
-                                        close: () => {
-                                            router.history.push('/code');
-                                        },
-                                    }}
-                                >
-                                    Hello World
-                                </Window>
-                            );
-                        })
-                    );
-                }}
-            </Transition>
+            <Apps allApps={AllApps} />
         </Layer>
     );
 };

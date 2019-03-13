@@ -6,6 +6,7 @@ export default ({
     coderFonts,
     secondHading,
     coderColors,
+    noSelect,
 }) => {
     const clipX =
         cursor.x < view.width / 2
@@ -39,6 +40,7 @@ export default ({
                 '& h2': {
                     ...coderFonts,
                     ...secondHading,
+                    ...noSelect,
                     color: coderColors.codeGreen,
                     transform: `rotate(${device.tabletDown ? -90 : 0}deg)`,
                 },
