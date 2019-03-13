@@ -1,21 +1,12 @@
 export default ({
     device,
     view,
-    cursor,
     location,
     coderFonts,
     secondHading,
     coderColors,
     noSelect,
 }) => {
-    const clipX =
-        cursor.x < view.width / 2
-            ? 70 - (cursor.y * 20) / view.height
-            : 30 + (cursor.y * 20) / view.height;
-    const clipY =
-        cursor.x < view.width / 2
-            ? 50 + (cursor.y * 20) / view.height
-            : 50 - (cursor.y * 20) / view.height;
     return {
         coderButton: {
             '& div': {
@@ -46,32 +37,53 @@ export default ({
                 },
             },
         },
-        designerImgSection: {
-            justifyContent: 'center',
-            alignItems: 'center',
-            left: '50%',
-            width: '50%',
-            transition: 'all 0.5s',
-            ...(location.includes('design') && { left: '100%' }),
-        },
         designerImg: {
-            width: device.mobile ? 150 : Math.min(250, view.width / 3),
-            transform: `rotate(${device.tabletDown ? 90 : 0}deg)`,
+            '& div': {
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                position: 'absolute',
+                left: '50%',
+                width: '50%',
+                height: '100vh',
+                transition: 'all 0.5s',
+                outline: 0,
+                ...(location.includes('design') && { left: '100%' }),
+                '& img': {
+                    width: device.mobile ? 150 : Math.min(250, view.width / 3),
+                    transform: `rotate(${device.tabletDown ? 90 : 0}deg)`,
+                },
+            },
         },
         avatarImg: {
             width: device.mobile ? 200 : Math.min(400, view.width / 2.5),
         },
+    };
+};
+
+const sectionStyle = cursor => {
+    const clipX = Math.round(
+        cursor.x < window.innerWidth / 2
+            ? 70 - (cursor.y * 20) / window.innerHeight
+            : 30 + (cursor.y * 20) / window.innerHeight,
+    );
+    const clipY = Math.round(
+        cursor.x < window.innerWidth / 2
+            ? 50 + (cursor.y * 20) / window.innerHeight
+            : 50 - (cursor.y * 20) / window.innerHeight,
+    );
+    return {
         codeSection: {
             clipPath: `polygon(0 0, ${clipX}% 0, ${clipY}% 100%, 0% 100%, 0 0)`,
             shapeInside: `polygon(0 0, ${clipX}% 0, ${clipY}% 100%, 0% 100%, 0 0)`,
             WebkitClipPath: `polygon(0 0, ${clipX}% 0, ${clipY}% 100%, 0% 100%, 0 0)`,
             transition: 'all 0.2s',
-            ...(location.includes('code') && {
+            ...(window.location.hash.includes('code') && {
                 clipPath: `polygon(0 0, 100% 0, 100% 100%, 0% 100%, 0 0)`,
                 shapeInside: `polygon(0 0, 100% 0, 100% 100%, 0% 100%, 0 0)`,
                 WebkitClipPath: `polygon(0 0, 100% 0, 100% 100%, 0% 100%, 0 0)`,
             }),
-            ...(location.includes('design') && {
+            ...(window.location.hash.includes('design') && {
                 clipPath: `polygon(0 0, 0% 0, 0% 100%, 0% 100%, 0 0)`,
                 shapeInside: `polygon(0 0, 0% 0, 0% 100%, 0% 100%, 0 0)`,
                 WebkitClipPath: `polygon(0 0, 0% 0, 0% 100%, 0% 100%, 0 0)`,
@@ -82,12 +94,12 @@ export default ({
             shapeInside: `polygon(100% 0, ${clipX}% 0, ${clipY}% 100%, 100% 100%, 100% 0)`,
             WebkitClipPath: `polygon(100% 0, ${clipX}% 0, ${clipY}% 100%, 100% 100%, 100% 0)`,
             transition: 'all 0.2s',
-            ...(location.includes('design') && {
+            ...(window.location.hash.includes('design') && {
                 clipPath: `polygon(100% 0, 0% 0, 0% 100%, 100% 100%, 100% 0)`,
                 shapeInside: `polygon(100% 0, 0% 0, 0% 100%, 100% 100%, 100% 0)`,
                 WebkitClipPath: `polygon(100% 0, 0% 0, 0% 100%, 100% 100%, 100% 0)`,
             }),
-            ...(location.includes('code') && {
+            ...(window.location.hash.includes('code') && {
                 clipPath: `polygon(0 0, 0% 0, 0% 100%, 0% 100%, 0 0)`,
                 shapeInside: `polygon(0 0, 0% 0, 0% 100%, 0% 100%, 0 0)`,
                 WebkitClipPath: `polygon(0 0, 0% 0, 0% 100%, 0% 100%, 0 0)`,
@@ -95,3 +107,5 @@ export default ({
         },
     };
 };
+
+export { sectionStyle };

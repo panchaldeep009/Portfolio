@@ -5,7 +5,8 @@ import withStyles from 'react-jss';
 import { Transition } from 'react-spring/renderprops';
 
 import CodeSection from './container/codeSection';
-// import DesignSection from './container/designSection';
+import DesignSection from './container/designSection';
+
 import Styles from './styles/App';
 
 const App = ({ classes, router }) => {
@@ -19,10 +20,21 @@ const App = ({ classes, router }) => {
             }
         }
     };
+
+    const [cursor, setCursor] = React.useState({
+        x: window.innerWidth / 2,
+        y: window.innerHeight / 2,
+    });
+
     React.useEffect(() => {
-        if (window.location.hash === '') {
-            window.location.hash = '#/';
-        }
+        window.addEventListener('mousemove', e => {
+            setCursor({ x: e.clientX, y: e.clientY });
+        });
+        return () => {
+            window.removeEventListener('mousemove', e => {
+                setCursor({ x: e.clientX, y: e.clientY });
+            });
+        };
     }, []);
 
     return (
@@ -47,7 +59,11 @@ const App = ({ classes, router }) => {
                         show &&
                         (style => {
                             return (
-                                <CodeSection router={router} options={style} />
+                                <CodeSection
+                                    cursor={cursor}
+                                    router={router}
+                                    options={style}
+                                />
                             );
                         })
                     );
@@ -63,7 +79,13 @@ const App = ({ classes, router }) => {
                     return (
                         show &&
                         (style => {
-                            return <div style={style}>design</div>;
+                            return (
+                                <DesignSection
+                                    cursor={cursor}
+                                    router={router}
+                                    options={style}
+                                />
+                            );
                         })
                     );
                 }}

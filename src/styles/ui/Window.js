@@ -5,6 +5,7 @@ export default ({
     location,
     colors,
     coderColors,
+    designerColors,
     noSelect,
 }) => {
     return {
@@ -22,7 +23,11 @@ export default ({
                 border: '2px solid ' + coderColors.codeDark,
                 backgroundColor: coderColors.codeLightTrans(0.9),
             }),
-            ...(location.includes('design') && { ...designerFonts }),
+            ...(location.includes('design') && {
+                ...designerFonts,
+                border: '2px solid ' + designerColors.designerDark,
+                backgroundColor: designerColors.designLightTrans(0.9),
+            }),
         },
         titleBar: {
             display: 'flex',
@@ -35,6 +40,10 @@ export default ({
                 ...coderFonts,
                 color: colors.bright,
                 backgroundColor: coderColors.codeLight,
+            }),
+            ...(location.includes('design') && {
+                ...designerFonts,
+                backgroundColor: designerColors.designerDark,
             }),
             '& span': {
                 padding: 5,

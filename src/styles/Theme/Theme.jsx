@@ -28,6 +28,10 @@ export default ({ mobile }) => {
         },
         designerColors: {
             designerBackground: colors.secondary,
+            designLightTrans: (t = 1) => {
+                return `rgba(250,250,250, ${t})`;
+            },
+            designerDark: 'rgb(220,220,210)',
         },
         coderFonts: { fontFamily: "'Roboto Mono', monospace" },
         designerFonts: { fontFamily: "'Raleway', sans-serif" },

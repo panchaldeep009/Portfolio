@@ -14,10 +14,6 @@ const ThemeDynamics = () => {
         tabletUp: window.innerWidth > 768,
         laptop: window.innerWidth >= 1024,
     });
-    const [cursor, setCursor] = React.useState({
-        x: window.innerWidth / 2,
-        y: window.innerHeight / 2,
-    });
     const [location, setLocation] = React.useState(window.location.hash);
 
     React.useEffect(() => {
@@ -41,9 +37,6 @@ const ThemeDynamics = () => {
             if (device !== newDevice) {
                 setDevice(newDevice);
             }
-        });
-        window.addEventListener('mousemove', e => {
-            setCursor({ x: e.clientX, y: e.clientY });
         });
         window.addEventListener('hashchange', e => {
             setLocation(e.newURL);
@@ -70,15 +63,12 @@ const ThemeDynamics = () => {
                     setDevice(newDevice);
                 }
             });
-            window.removeEventListener('mousemove', e => {
-                setCursor({ x: e.clientX, y: e.clientY });
-            });
             window.removeEventListener('hashchange', e => {
                 setLocation(e.newURL);
             });
         };
     }, []);
 
-    return { view, device, cursor, location };
+    return { view, device, location };
 };
 export default ThemeDynamics;

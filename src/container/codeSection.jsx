@@ -7,14 +7,14 @@ import Apps from '../component/apps';
 import Layer from '../ui/Layer';
 import Animation from '../ui/Animation';
 
-import Styles from '../styles/container/HomeSection';
+import Styles, { sectionStyle } from '../styles/container/HomeSection';
 
 import Background from '../assets/animation_data/codeBackground.json';
 import myAvatar from '../assets/svg/myAvatarShape.svg';
 import codeIcon from '../assets/svg/codeIcon.svg';
 import galleryIcon from '../assets/svg/galleryIcon.svg';
 
-const Coder = ({ options, classes, router }) => {
+const Coder = ({ options, classes, router, cursor }) => {
     const BackgroundAnimation = React.useRef();
 
     const AllApps = {
@@ -57,14 +57,8 @@ const Coder = ({ options, classes, router }) => {
         },
         [BackgroundAnimation.current],
     );
-
     return (
-        <Layer
-            className={classes.codeSection}
-            options={{
-                ...options,
-            }}
-        >
+        <Layer options={{ ...options, ...sectionStyle(cursor).codeSection }}>
             <Layer options={{ pointerEvents: 'none' }}>
                 <Animation
                     options={{
@@ -86,7 +80,6 @@ const Coder = ({ options, classes, router }) => {
                     alt="my_avatar"
                 />
             </Layer>
-            <Layer>{/* Windows */}</Layer>
             <Layer className={classes.coderButton}>
                 <div
                     onClick={() => {
@@ -110,6 +103,7 @@ Coder.propTypes = {
     options: PropTypes.objectOf(PropTypes.any),
     classes: PropTypes.objectOf(PropTypes.any),
     router: PropTypes.objectOf(PropTypes.any),
+    cursor: PropTypes.objectOf(PropTypes.any),
 };
 
 export default withStyles(Styles)(Coder);

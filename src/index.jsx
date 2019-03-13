@@ -6,6 +6,7 @@ import App from './App.jsx';
 import ThemeProvider from './styles/Theme';
 
 import 'reset-css';
+import './styles/scss/App.scss';
 
 ReactDOM.render(
     <ThemeProvider>

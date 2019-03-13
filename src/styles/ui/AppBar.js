@@ -8,11 +8,14 @@ export default ({ device, colors, coderFonts, designerFonts, location }) => {
             left: '50%',
             display: 'flex',
             transform: 'translateX(-50%)',
-            backgroundColor: 'rgba(255,255,255,0.3)',
+            backgroundColor: 'rgba(235,235,235,0.3)',
             borderRadius: '20px',
             transition: 'all 0.5s',
+            WebkitBoxShadow: `9px 14px 134px -23px rgba(97,97,97,1)`,
+            MozBoxShadow: `9px 14px 134px -23px rgba(97,97,97,1)`,
+            boxShadow: `9px 14px 134px -23px rgba(97,97,97,1)`,
             '&:hover': {
-                backgroundColor: 'rgba(255,255,255,0.5)',
+                backgroundColor: 'rgba(235,235,235,0.5)',
             },
         },
         Apps: {
