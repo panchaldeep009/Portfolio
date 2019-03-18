@@ -36,6 +36,7 @@ export default ({
             width: '100%',
             overflow: 'hidden',
             cursor: 'move',
+            height: 35,
             ...(location.includes('code') && {
                 ...coderFonts,
                 color: colors.bright,

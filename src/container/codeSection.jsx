@@ -10,12 +10,16 @@ import Animation from '../ui/Animation';
 import Styles, { sectionStyle } from '../styles/container/HomeSection';
 
 import Background from '../assets/animation_data/codeBackground.json';
+import Spark from '../assets/animation_data/codeOpenSparks.json';
 import myAvatar from '../assets/svg/myAvatarShape.svg';
 import codeIcon from '../assets/svg/codeIcon.svg';
 import galleryIcon from '../assets/svg/galleryIcon.svg';
 
+import ResumeContent from '../component/resume';
+
 const Coder = ({ options, classes, router, cursor }) => {
     const BackgroundAnimation = React.useRef();
+    const SparkAnimation = React.useRef();
 
     const AllApps = {
         appBar: router.location.pathname.includes('/code'),
@@ -31,7 +35,7 @@ const Coder = ({ options, classes, router, cursor }) => {
                 close: () => {
                     router.history.push('/code');
                 },
-                content: <div>Resume App</div>,
+                content: ResumeContent,
             },
             {
                 id: 'code_app_2',
@@ -57,6 +61,17 @@ const Coder = ({ options, classes, router, cursor }) => {
         },
         [BackgroundAnimation.current],
     );
+    React.useEffect(
+        () => {
+            if (
+                SparkAnimation.current !== undefined &&
+                router.location.pathname.includes('code')
+            ) {
+                SparkAnimation.current.Animation.goToAndPlay(0);
+            }
+        },
+        [SparkAnimation.current, router.location.pathname],
+    );
     return (
         <Layer options={{ ...options, ...sectionStyle(cursor).codeSection }}>
             <Layer options={{ pointerEvents: 'none' }}>
@@ -78,6 +93,16 @@ const Coder = ({ options, classes, router, cursor }) => {
                     className={classes.avatarImg}
                     src={myAvatar}
                     alt="my_avatar"
+                />
+            </Layer>
+            <Layer options={{ pointerEvents: 'none' }}>
+                <Animation
+                    options={{
+                        animationData: Spark,
+                        autoplay: false,
+                        loop: false,
+                    }}
+                    ref={SparkAnimation}
                 />
             </Layer>
             <Layer className={classes.coderButton}>

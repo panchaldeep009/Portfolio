@@ -50,7 +50,7 @@ const Apps = ({ allApps }) => {
                                                 close: app.close,
                                             }}
                                         >
-                                            {app.content}
+                                            <app.content />
                                         </Window>
                                     );
                                 })

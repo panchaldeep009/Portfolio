@@ -13,3 +13,17 @@ img {
     -o-user-drag: none;
     user-drag: none;
 }
+::-webkit-scrollbar {
+    width: 5px !important;
+    height: 8px !important;
+}
+::-webkit-scrollbar-track {
+    background: rgba(#ffffff, 0.1) !important;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(#ffffff, 0.15) !important;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(#ffffff, 0.25) !important;
+    cursor: move !important;
+}

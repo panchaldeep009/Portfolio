@@ -12,7 +12,6 @@ const Animation = class extends React.Component {
 
     componentDidMount() {
         this.Animation = Lottie.loadAnimation({
-            ...this.options,
             container: this.Holder.current,
             renderer: 'svg',
             loop: true,
@@ -20,6 +19,7 @@ const Animation = class extends React.Component {
             rendererSettings: {
                 preserveAspectRatio: 'xMidYMid slice',
             },
+            ...this.options,
         });
     }
 
@@ -29,6 +29,6 @@ const Animation = class extends React.Component {
 };
 
 Animation.propTypes = {
-    options: PropTypes.objectOf(PropTypes.object),
+    options: PropTypes.objectOf(PropTypes.any),
 };
 export default Animation;
