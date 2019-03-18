@@ -15,7 +15,7 @@ import myAvatar from '../assets/svg/myAvatarShape.svg';
 import codeIcon from '../assets/svg/codeIcon.svg';
 import galleryIcon from '../assets/svg/galleryIcon.svg';
 
-import ResumeContent from '../component/resume';
+import ResumeContent from '../component/ResumeContent';
 
 const Coder = ({ options, classes, router, cursor }) => {
     const BackgroundAnimation = React.useRef();
@@ -119,7 +119,7 @@ const Coder = ({ options, classes, router, cursor }) => {
                     <h2>&lt;!-- Coder</h2>
                 </div>
             </Layer>
-            <Apps allApps={AllApps} />
+            <Apps allApps={AllApps} router={router} />
         </Layer>
     );
 };

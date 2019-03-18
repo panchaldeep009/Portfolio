@@ -8,10 +8,9 @@ import { DiCode, DiGit, DiGitBranch } from 'react-icons/di';
 import { MdClose, MdExpandMore, MdChevronRight } from 'react-icons/md';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
-import allFiles from './data/resumeFiles.jsx';
-import Styles from '../styles/component/resume';
+import Styles from '../styles/ui/codeEditor';
 
-const Resume = ({ classes }) => {
+const Resume = ({ classes, allFiles, changeTitle, thisApp }) => {
     const [sidebarStatus, openSideBar] = React.useState(false);
     const mainSection = React.useRef();
     const [folders, setFolder] = React.useState(allFiles({ classes }));
@@ -99,6 +98,19 @@ const Resume = ({ classes }) => {
                 left: file.offsetLeft - 50,
                 behavior: 'smooth',
             });
+        }
+        if (openFiles.length) {
+            if (openFiles[currentFileIndex] !== undefined) {
+                changeTitle(
+                    openFiles[currentFileIndex].name +
+                        ' -> /' +
+                        openFiles[currentFileIndex].dir +
+                        ' | ' +
+                        thisApp.name,
+                );
+            }
+        } else {
+            changeTitle(thisApp.name);
         }
     };
     React.useEffect(handleTabScroll, [currentFileIndex, openFiles]);
@@ -333,6 +345,9 @@ const Resume = ({ classes }) => {
 
 Resume.propTypes = {
     classes: PropTypes.objectOf(PropTypes.any),
+    allFiles: PropTypes.func,
+    changeTitle: PropTypes.func,
+    thisApp: PropTypes.objectOf(PropTypes.any),
 };
 
 export default withStyles(Styles)(Resume);

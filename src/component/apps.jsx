@@ -8,8 +8,34 @@ import Window from '../ui/Window';
 
 import Styles from '../styles/container/HomeSection';
 
-const Apps = ({ allApps }) => {
-    const { apps, appBar } = allApps;
+const Apps = ({ allApps, router }) => {
+    const { appBar } = allApps;
+    const [apps, setApps] = React.useState(
+        allApps.apps
+            .map(app => {
+                return { ...app, title: app.name };
+            })
+            .slice(0),
+    );
+    const changeTitle = (appId, title) => {
+        setApps(
+            apps.map(app => {
+                return { ...app, title: app.id === appId ? title : app.title };
+            }),
+        );
+    };
+    React.useEffect(
+        () => {
+            setApps(
+                allApps.apps
+                    .map(app => {
+                        return { ...app, title: app.name };
+                    })
+                    .slice(0),
+            );
+        },
+        [router],
+    );
     return (
         <React.Fragment>
             <Transition
@@ -43,14 +69,20 @@ const Apps = ({ allApps }) => {
                                 (style => {
                                     return (
                                         <Window
-                                            title={app.name}
+                                            title={app.title}
                                             icon={app.icon}
                                             animation={style}
                                             handleActions={{
                                                 close: app.close,
                                             }}
                                         >
-                                            <app.content />
+                                            <app.content
+                                                changeTitle={title => {
+                                                    changeTitle(app.id, title);
+                                                }}
+                                                thisApp={app}
+                                                changeApps={setApps}
+                                            />
                                         </Window>
                                     );
                                 })
@@ -65,6 +97,7 @@ const Apps = ({ allApps }) => {
 
 Apps.propTypes = {
     allApps: PropTypes.objectOf(PropTypes.any),
+    router: PropTypes.objectOf(PropTypes.any),
 };
 
 export default withStyles(Styles)(Apps);
