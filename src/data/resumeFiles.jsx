@@ -58,7 +58,7 @@ export default Files;
 const fetchGit = callBack => {
     fetch('https://api.github.com/users/panchaldeep009/repos')
         .then(data => {
-            data.json();
+            return data.json();
         })
         .then(data => {
             const repos = [];
@@ -82,7 +82,7 @@ const fetchGitFiles = (url, parentDirName, callBack) => {
     const defaultLoading = <div>Loading..</div>;
     fetch(url)
         .then(data => {
-            data.json();
+            return data.json();
         })
         .then(data => {
             const dirs = [];
