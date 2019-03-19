@@ -101,7 +101,7 @@ export default ({ coderFonts, coderColors }) => {
             },
         },
         sidebar: {
-            maxWidth: 250,
+            maxWidth: 320,
             height: '100%',
             overflowX: 'auto',
             overflowY: 'auto',

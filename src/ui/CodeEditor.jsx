@@ -7,16 +7,53 @@ import { FaFileCode, FaFolder, FaFolderOpen } from 'react-icons/fa';
 import { DiCode, DiGit, DiGitBranch } from 'react-icons/di';
 import { MdClose, MdExpandMore, MdChevronRight } from 'react-icons/md';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import Code from './CodeHighlighter';
 
 import Styles from '../styles/ui/codeEditor';
+import { fetchGit, fetchGitFiles } from '../data/resumeFiles';
 
 const Resume = ({ classes, allFiles, changeTitle, thisApp }) => {
     const [sidebarStatus, openSideBar] = React.useState(false);
+    const [fileSystem, setFileSystem] = React.useState('local');
     const mainSection = React.useRef();
-    const [folders, setFolder] = React.useState(allFiles({ classes }));
+    const [folders, setFolder] = React.useState(allFiles());
     const [openFiles, addFiles] = React.useState([]);
     const [currentFileIndex, openFile] = React.useState(0);
-    const handleSideBar = () => {
+    const fetchContent = currentFile => {
+        fetch(currentFile.url)
+            .then(data => {
+                return data.text();
+            })
+            .then(text => {
+                addFiles([
+                    ...openFiles,
+                    {
+                        ...currentFile,
+                        content: (
+                            <Code
+                                code={text}
+                                lang={currentFile.name.substring(
+                                    currentFile.name.indexOf('.') + 1,
+                                )}
+                            />
+                        ),
+                    },
+                ]);
+            });
+    };
+    const handleSideBar = system => {
+        if (system !== fileSystem) {
+            setFileSystem(system);
+            if (system === 'local') {
+                setFolder(allFiles());
+            } else {
+                setFolder([]);
+                fetchGit(repo => {
+                    setFolder(repo);
+                });
+            }
+        }
+
         if (mainSection.current !== undefined) {
             if (mainSection.current.offsetWidth < 600) {
                 openSideBar(!sidebarStatus);
@@ -33,17 +70,14 @@ const Resume = ({ classes, allFiles, changeTitle, thisApp }) => {
             return dirName === dir;
         }).files;
         if (requestFileIndex === -1) {
-            addFiles([
-                ...openFiles,
-                {
-                    dir,
-                    ...dirFiles.find(file => {
-                        return file.name === name;
-                    }),
-                },
-            ]);
+            const currentFile = dirFiles.find(file => {
+                return file.name === name;
+            });
+            currentFile.dir = dir;
+            addFiles([...openFiles, currentFile]);
             openFile(openFiles.length);
             openSideBar(false);
+            fetchContent(currentFile);
         } else {
             openFile(requestFileIndex);
             openSideBar(false);
@@ -128,31 +162,66 @@ const Resume = ({ classes, allFiles, changeTitle, thisApp }) => {
         const currentFolder = folders.find(folder => {
             return folder.dirName === name;
         });
-        setFolder(
-            [
-                ...folders.filter(folder => {
-                    return folder.dirName !== name;
+        if (currentFolder.files_url !== undefined && !currentFolder.showFiles) {
+            const callBack = newD => {
+                setFolder(
+                    [
+                        ...folders.filter(folder => {
+                            return folder.dirName !== name;
+                        }),
+                        ...newD.dirs,
+                        {
+                            ...currentFolder,
+                            showFiles: true,
+                            files: newD.files,
+                        },
+                    ].sort((a, b) => {
+                        const nameA = a.dirName.toUpperCase();
+                        const nameB = b.dirName.toUpperCase();
+                        if (nameA < nameB) {
+                            return -1;
+                        }
+                        if (nameA > nameB) {
+                            return 1;
+                        }
+                        return 0;
+                    }),
+                );
+            };
+            fetchGitFiles(
+                currentFolder.files_url,
+                currentFolder.dirName.split('/')[0],
+                callBack,
+            );
+        } else {
+            setFolder(
+                [
+                    ...folders.filter(folder => {
+                        return folder.dirName !== name;
+                    }),
+                    {
+                        ...currentFolder,
+                        showFiles: !currentFolder.showFiles,
+                    },
+                ].sort((a, b) => {
+                    const nameA = a.dirName.toUpperCase();
+                    const nameB = b.dirName.toUpperCase();
+                    if (nameA < nameB) {
+                        return -1;
+                    }
+                    if (nameA > nameB) {
+                        return 1;
+                    }
+                    return 0;
                 }),
-                {
-                    ...currentFolder,
-                    showFiles: !currentFolder.showFiles,
-                },
-            ].sort((a, b) => {
-                const nameA = a.dirName.toUpperCase();
-                const nameB = b.dirName.toUpperCase();
-                if (nameA < nameB) {
-                    return -1;
-                }
-                if (nameA > nameB) {
-                    return 1;
-                }
-                return 0;
-            }),
-        );
+            );
+        }
     };
     const dirIcon = (type, showFiles) => {
         const icons = {
-            repo: <DiGit className={classes.codeRed} />,
+            repo: (
+                <DiGit className={classes.codeRed} style={{ width: '35px' }} />
+            ),
             branch: <DiGitBranch className={classes.codeRed} />,
             dir: showFiles ? (
                 <FaFolderOpen className={classes.codeYellow} />
@@ -277,10 +346,21 @@ const Resume = ({ classes, allFiles, changeTitle, thisApp }) => {
                 <div className={classes.sidebarButtons}>
                     <button
                         type="button"
-                        onClick={handleSideBar}
-                        data-active={dockedStatus()}
+                        onClick={() => {
+                            handleSideBar('local');
+                        }}
+                        data-active={fileSystem === 'local' && dockedStatus()}
                     >
                         <FaFileCode />
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => {
+                            handleSideBar('git');
+                        }}
+                        data-active={fileSystem === 'git' && dockedStatus()}
+                    >
+                        <DiGit />
                     </button>
                 </div>
                 <div className={classes.sidebarSection}>

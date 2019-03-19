@@ -1,10 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import { DiJavascript1, DiPhp, DiNpm } from 'react-icons/di';
 
-const Files = ({ classes }) => {
-    const FilesArray = [
+import codeText from './raw/codeMain.txt';
+import codeExpAndEdu from './raw/codeExpAndEdu.txt';
+import exps from './raw/exp.txt';
+
+const Files = () => {
+    const defaultLoading = <div>Loading..</div>;
+    const LocalFiles = [
         {
             dirName: 'Resume',
             showFiles: true,
@@ -12,42 +16,21 @@ const Files = ({ classes }) => {
             files: [
                 {
                     name: 'resume.js',
-                    icon: <DiJavascript1 className={classes.codeYellow} />,
-                    content: <div>My Resume</div>,
+                    icon: <DiJavascript1 style={{ color: 'yellow' }} />,
+                    content: defaultLoading,
+                    url: codeText,
                 },
                 {
-                    name: 'eductions.php',
-                    icon: <DiPhp className={classes.codeBlue} />,
-                    content: <div>My Experience</div>,
+                    name: 'exp_and_edu.php',
+                    icon: <DiPhp style={{ color: 'skyblue' }} />,
+                    content: defaultLoading,
+                    url: codeExpAndEdu,
                 },
                 {
                     name: 'experience.json',
-                    icon: <DiNpm className={classes.codeRed} />,
-                    content: <div>Package</div>,
-                },
-            ],
-        },
-        {
-            dirName: 'Resume/git',
-            showFiles: true,
-            type: 'branch',
-            files: [
-                {
-                    name: 'eductions.php',
-                    icon: <DiPhp className={classes.codeBlue} />,
-                    content: <div>My Experience</div>,
-                },
-            ],
-        },
-        {
-            dirName: 'Resume/git/pack',
-            showFiles: true,
-            type: 'repo',
-            files: [
-                {
-                    name: 'experience.json',
-                    icon: <DiNpm className={classes.codeRed} />,
-                    content: <div>Package</div>,
+                    icon: <DiNpm style={{ color: 'red' }} />,
+                    content: defaultLoading,
+                    url: exps,
                 },
             ],
         },
@@ -62,12 +45,73 @@ const Files = ({ classes }) => {
         }
         return 0;
     });
-
-    return FilesArray;
+    return LocalFiles;
 };
 
 Files.propTypes = {
     classes: PropTypes.objectOf(PropTypes.any),
+    type: PropTypes.string,
 };
 
 export default Files;
+
+const fetchGit = callBack => {
+    fetch('https://api.github.com/users/panchaldeep009/repos')
+        .then(data => {
+            data.json();
+        })
+        .then(data => {
+            const repos = [];
+            data.forEach(repo => {
+                repos.push({
+                    dirName: repo.name,
+                    showFiles: false,
+                    type: 'repo',
+                    files: [],
+                    files_url:
+                        'https://api.github.com/repos/' +
+                        repo.full_name +
+                        '/contents',
+                });
+            });
+            callBack(repos);
+        });
+    callBack([]);
+};
+const fetchGitFiles = (url, parentDirName, callBack) => {
+    const defaultLoading = <div>Loading..</div>;
+    fetch(url)
+        .then(data => {
+            data.json();
+        })
+        .then(data => {
+            const dirs = [];
+            const files = [];
+            data.forEach(repo => {
+                if (repo.type === 'file') {
+                    files.push({
+                        name: repo.name,
+                        icon: <DiJavascript1 style={{ color: 'yellow' }} />,
+                        content: defaultLoading,
+                        url: repo.download_url,
+                    });
+                } else if (repo.type === 'dir') {
+                    dirs.push({
+                        dirName: parentDirName + '/' + repo.name,
+                        showFiles: false,
+                        type: 'dir',
+                        files: [],
+                        files_url:
+                            'https://api.github.com/repos/panchaldeep009/' +
+                            parentDirName +
+                            '/contents/' +
+                            repo.path,
+                    });
+                }
+            });
+            callBack({ files, dirs });
+        });
+    callBack({ files: [], dirs: [] });
+};
+
+export { fetchGit, fetchGitFiles };

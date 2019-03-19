@@ -1,0 +1,57 @@
+import { Deep_Panchal } from "./world_best/programmers";
+class Resume extends Deep_Panchal  {
+    constructor(Career) { super(Career);
+        this.Objective = 
+            `A highly talented, creative and ambitious individual seeking
+            a position of ${Full_Stack_Developer}. Bringing six years experience 
+            of Web and Native application development and a deep understanding of 
+            object-oriented programming languages, libraries, and frameworks.`
+    }
+    get_Experience_and_Eduction(){
+	fetch('exp_and_edu.php') 
+        .then(function(response) { return response.json(); })
+        .then(function(data) { return data; });
+    }
+    get_Skills(){
+        Full_Stack_Development = {
+            "Front-end": {
+                HTML_5,
+                CSS : [
+                    CSS_3, SASS, Material_UI, Bootstrap ],
+                JavaScript : [
+                    Ajax, JS_ES6, Object_Oriented_JS,
+                    ReactJS, VueJS, AngularJS, Babel,
+                    WebPack, NodeJS, npm,
+                    Canvas, Lottie, GreenSock ],
+                SVG, RESETful
+            },
+            "Back-end": {
+                PHP : [ PHP_5, Laravel ],
+                Database : [ MySQL ],
+            },
+            "Version_Control" : ['Git']
+        };
+        General_Programming = {
+            Android : [ Java, XML ],
+            Python : [ Tensorflow, RaspberryPi ],
+            μController_and_μProcessor_programming,
+            Photoshop_CC_Javascript,
+        }
+        Creative_Skills = {
+            Adobe : [ Photoshop, AfterEffects, Illustrator ],
+            Cinema4D, FL_Studio
+        } 
+        Soft_Skills = [
+            `Detail oriented and enthusiastic team member`,
+            `Skilled in delivering exceptional and unprecedented UX interface design`,
+            `Motivated by challenges and exceptional problem  solving skills`,
+            `Active Learner`,
+            `Coding runs in my blood and algorithm designs in dreams.`,
+        ]
+        return Full_Stack_Development
+            .concat( General_Programming ) 
+            .concat( Creative_Skills )
+            .concat( Soft_Skills );
+    }
+}
+export default Resume;
