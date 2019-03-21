@@ -3,7 +3,7 @@ export default ({ coderFonts, coderColors }) => {
         resumeMain: {
             position: 'relative',
             width: '100%',
-            height: 'calc(100% - 35px)',
+            height: 'calc(100% - 65px)',
             display: 'flex',
             color: 'white',
             ...coderFonts,
@@ -18,6 +18,28 @@ export default ({ coderFonts, coderColors }) => {
                 '&:focus': {
                     backgroundColor: 'rgba(50,50,50,0.7)',
                     color: '#fff',
+                },
+            },
+        },
+        footer: {
+            width: '100%',
+            height: '30px',
+            color: 'white',
+            backgroundColor: coderColors.codeBlue,
+            display: 'flex',
+            alignItems: 'center',
+            '& p': {
+                fontSize: 16,
+                maxWidth: 'max-content',
+                width: '100%',
+                height: 'fit-content',
+                textAlign: 'left',
+                overflowX: 'auto',
+                overflowY: 'hidden',
+                whiteSpace: 'nowrap',
+                marginLeft: 10,
+                '&::-webkit-scrollbar': {
+                    height: '0px !important',
                 },
             },
         },
@@ -46,33 +68,48 @@ export default ({ coderFonts, coderColors }) => {
             width: '100%',
             height: '100%',
             flexGrow: 1,
-            '& [role="tablist"]': {
+            '& [class="react-tabs"]': {
                 display: 'flex',
+                flexDirection: 'column',
                 width: '100%',
-                overflowX: 'auto',
-                overflowY: 'hidden',
-                backgroundColor: 'rgba(50, 50, 50, 0.15)',
-                '& [role="tab"]': {
+                height: '100%',
+                alignDontent: 'stretch',
+                '& [role="tablist"]': {
                     display: 'flex',
-                    backgroundColor: 'rgba(50, 50, 50, 0.25)',
-                    color: '#eee',
-                    padding: '15px',
-                    cursor: 'pointer',
-                    outline: 0,
-                    '& svg': {
-                        width: '30px',
-                        marginRight: '10px',
+                    width: '100%',
+                    minHeight: 'max-content',
+                    overflowX: 'auto',
+                    overflowY: 'hidden',
+                    backgroundColor: 'rgba(50, 50, 50, 0.15)',
+                    '& [role="tab"]': {
+                        display: 'flex',
+                        backgroundColor: 'rgba(50, 50, 50, 0.25)',
+                        color: '#eee',
+                        padding: '15px',
+                        cursor: 'pointer',
                         outline: 0,
+                        '& p': {
+                            whiteSpace: 'nowrap',
+                        },
+                        '& svg': {
+                            width: '30px',
+                            marginRight: '10px',
+                            outline: 0,
+                        },
+                        '&:hover': {
+                            backgroundColor: 'rgba(50, 50, 50, 0.55)',
+                        },
+                        '&:focus': {
+                            backgroundColor: 'rgba(50, 50, 50, 0.55)',
+                        },
                     },
-                    '&:hover': {
-                        backgroundColor: 'rgba(50, 50, 50, 0.55)',
-                    },
-                    '&:focus': {
+                    '& [aria-selected="true"]': {
                         backgroundColor: 'rgba(50, 50, 50, 0.55)',
                     },
                 },
-                '& [aria-selected="true"]': {
-                    backgroundColor: 'rgba(50, 50, 50, 0.55)',
+
+                '& [role="tabpanel"]': {
+                    overflow: 'auto',
                 },
             },
         },
@@ -102,7 +139,7 @@ export default ({ coderFonts, coderColors }) => {
             },
         },
         sidebar: {
-            maxWidth: 320,
+            width: 320,
             height: '100%',
             overflowX: 'auto',
             overflowY: 'auto',
@@ -124,7 +161,8 @@ export default ({ coderFonts, coderColors }) => {
         },
         sidebarFiles: {
             height: 'max-content',
-            width: 'max-content',
+            minWidth: 'max-content',
+            maxWidth: '100%',
             overflow: 'hidden',
             '& button': {
                 display: 'flex',
@@ -173,6 +211,10 @@ export default ({ coderFonts, coderColors }) => {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            pointerEvents: 'none',
             '& svg': {
                 width: '50%',
                 height: '50%',

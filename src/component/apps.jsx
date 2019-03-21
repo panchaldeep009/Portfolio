@@ -3,10 +3,14 @@ import PropTypes from 'prop-types';
 import { Transition, config } from 'react-spring/renderprops';
 import withStyles from 'react-jss';
 
-import AppBar from '../ui/AppBar';
-import Window from '../ui/Window';
-
 import Styles from '../styles/container/HomeSection';
+
+const AppBar = React.lazy(() => {
+    return import(/* Code: "AppBar" */ '../ui/AppBar');
+});
+const Window = React.lazy(() => {
+    return import(/* Code: "Window" */ '../ui/Window');
+});
 
 const Apps = ({ allApps, router }) => {
     const { appBar } = allApps;
@@ -76,13 +80,18 @@ const Apps = ({ allApps, router }) => {
                                                 close: app.close,
                                             }}
                                         >
-                                            <app.content
-                                                changeTitle={title => {
-                                                    changeTitle(app.id, title);
-                                                }}
-                                                thisApp={app}
-                                                changeApps={setApps}
-                                            />
+                                            <React.Suspense fallback>
+                                                <app.content
+                                                    changeTitle={title => {
+                                                        changeTitle(
+                                                            app.id,
+                                                            title,
+                                                        );
+                                                    }}
+                                                    thisApp={app}
+                                                    changeApps={setApps}
+                                                />
+                                            </React.Suspense>
                                         </Window>
                                     );
                                 })

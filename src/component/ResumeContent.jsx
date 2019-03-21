@@ -1,6 +1,9 @@
 import React from 'react';
 import allFiles from '../data/resumeFiles';
-import CodeEditor from '../ui/CodeEditor';
+
+const CodeEditor = React.lazy(() => {
+    return import(/* Code: "CodeEditor" */ '../ui/CodeEditor');
+});
 
 const Resume = props => {
     return <CodeEditor allFiles={allFiles} {...props} />;

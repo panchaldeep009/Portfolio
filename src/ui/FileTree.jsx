@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { FaFolder, FaFolderOpen } from 'react-icons/fa';
 import { DiGit, DiGitBranch } from 'react-icons/di';
@@ -23,7 +24,7 @@ const dirIcon = (type, name, showFiles) => {
     };
     return icons[type];
 };
-const FolderList = (tree, activeFile, handleOpenFiles, classes) => {
+const FolderList = ({ tree, activeFile, handleOpenFiles, classes }) => {
     const [treeData, setTree] = React.useState(tree);
     React.useEffect(
         () => {
@@ -127,5 +128,11 @@ const FolderList = (tree, activeFile, handleOpenFiles, classes) => {
         }
     });
     return <React.Fragment>{childs}</React.Fragment>;
+};
+FolderList.propTypes = {
+    classes: PropTypes.objectOf(PropTypes.any),
+    tree: PropTypes.objectOf(PropTypes.any),
+    handleOpenFiles: PropTypes.func,
+    activeFile: PropTypes.objectOf(PropTypes.any),
 };
 export default FolderList;

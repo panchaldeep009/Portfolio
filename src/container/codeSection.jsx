@@ -2,9 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'react-jss';
 
-import Apps from '../component/apps';
-
-import Layer from '../ui/Layer';
 import Animation from '../ui/Animation';
 
 import Styles, { sectionStyle } from '../styles/container/HomeSection';
@@ -15,7 +12,15 @@ import myAvatar from '../assets/svg/myAvatarShape.svg';
 import codeIcon from '../assets/svg/codeIcon.svg';
 import galleryIcon from '../assets/svg/galleryIcon.svg';
 
-import ResumeContent from '../component/ResumeContent';
+const Apps = React.lazy(() => {
+    return import(/* Code: "Apps" */ '../component/apps');
+});
+const Layer = React.lazy(() => {
+    return import(/* Code: "Layer" */ '../ui/Layer');
+});
+const ResumeContent = React.lazy(() => {
+    return import(/* Code: "ResumeContent" */ '../component/ResumeContent');
+});
 
 const Coder = ({ options, classes, router, cursor }) => {
     const BackgroundAnimation = React.useRef();
@@ -119,7 +124,9 @@ const Coder = ({ options, classes, router, cursor }) => {
                     <h2>&lt;!-- Coder</h2>
                 </div>
             </Layer>
-            <Apps allApps={AllApps} router={router} />
+            <React.Suspense fallback>
+                <Apps allApps={AllApps} router={router} />
+            </React.Suspense>
         </Layer>
     );
 };

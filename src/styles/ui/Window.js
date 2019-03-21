@@ -51,6 +51,7 @@ export default ({
                 marginLeft: 10,
                 maxWidth: '80%',
                 overflow: 'hidden',
+                whiteSpace: 'nowrap',
             },
             ...noSelect,
         },

@@ -55,7 +55,6 @@
         "npm": ">=3"
     },
     "dependencies": {
-        "clone-deep": "^4.0.1",
         "install": "^0.12.2",
         "lodash": "4.17.11",
         "lottie-web": "^5.4.4",
@@ -73,7 +72,6 @@
         "react-router-dom": "^4.3.1",
         "react-sidebar": "^3.0.2",
         "react-spring": "^8.0.12",
-        "react-super-treeview": "^0.3.3",
         "react-swipe-component": "^3.0.0",
         "react-syntax-highlighter": "^10.2.0",
         "react-tabs": "^3.0.0",

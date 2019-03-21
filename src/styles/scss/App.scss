@@ -31,3 +31,17 @@ img {
     background: rgba(#ffffff, 0.25) !important;
     cursor: move !important;
 }
+span[class='react-syntax-highlighter-line-number'] {
+    display: block;
+    width: 50px;
+    text-align: center;
+    color: #aaaaaa;
+    &:nth-child(even) {
+        background-image: linear-gradient(
+            to right,
+            transparent,
+            rgba(#ffffff, 0.05),
+            transparent
+        );
+    }
+}

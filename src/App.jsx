@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import { Swipe } from 'react-swipe-component';
 import withStyles from 'react-jss';
 import { Transition } from 'react-spring/renderprops';
-
-import CodeSection from './container/codeSection';
-import DesignSection from './container/designSection';
-
 import Styles from './styles/App';
+
+const CodeSection = React.lazy(() => {
+    return import(/* webpackChunkName: "CodeSection" */ './container/codeSection');
+});
+const DesignSection = React.lazy(() => {
+    return import(/* webpackChunkName: "DesignSection" */ './container/designSection');
+});
 
 const App = ({ classes, router }) => {
     const swipeURL = ['/code', '/', '/design'];
@@ -38,59 +41,61 @@ const App = ({ classes, router }) => {
     }, []);
 
     return (
-        <Swipe
-            detectTouch
-            onSwipedLeft={() => {
-                onSwipe(1);
-            }}
-            onSwipedRight={() => {
-                onSwipe(-1);
-            }}
-            className={classes.Home}
-        >
-            <Transition
-                items={!router.location.pathname.includes('design')}
-                from={{ opacity: 0 }}
-                enter={{ opacity: 1 }}
-                leave={{ opacity: 0 }}
-            >
-                {show => {
-                    return (
-                        show &&
-                        (style => {
-                            return (
-                                <CodeSection
-                                    cursor={cursor}
-                                    router={router}
-                                    options={style}
-                                />
-                            );
-                        })
-                    );
+        <React.Suspense fallback={<div>Loading</div>}>
+            <Swipe
+                detectTouch
+                onSwipedLeft={() => {
+                    onSwipe(1);
                 }}
-            </Transition>
-            <Transition
-                items={!router.location.pathname.includes('code')}
-                from={{ opacity: 0 }}
-                enter={{ opacity: 1 }}
-                leave={{ opacity: 0 }}
-            >
-                {show => {
-                    return (
-                        show &&
-                        (style => {
-                            return (
-                                <DesignSection
-                                    cursor={cursor}
-                                    router={router}
-                                    options={style}
-                                />
-                            );
-                        })
-                    );
+                onSwipedRight={() => {
+                    onSwipe(-1);
                 }}
-            </Transition>
-        </Swipe>
+                className={classes.Home}
+            >
+                <Transition
+                    items={!router.location.pathname.includes('design')}
+                    from={{ opacity: 0 }}
+                    enter={{ opacity: 1 }}
+                    leave={{ opacity: 0 }}
+                >
+                    {show => {
+                        return (
+                            show &&
+                            (style => {
+                                return (
+                                    <CodeSection
+                                        cursor={cursor}
+                                        router={router}
+                                        options={style}
+                                    />
+                                );
+                            })
+                        );
+                    }}
+                </Transition>
+                <Transition
+                    items={!router.location.pathname.includes('code')}
+                    from={{ opacity: 0 }}
+                    enter={{ opacity: 1 }}
+                    leave={{ opacity: 0 }}
+                >
+                    {show => {
+                        return (
+                            show &&
+                            (style => {
+                                return (
+                                    <DesignSection
+                                        cursor={cursor}
+                                        router={router}
+                                        options={style}
+                                    />
+                                );
+                            })
+                        );
+                    }}
+                </Transition>
+            </Swipe>
+        </React.Suspense>
     );
 };
 

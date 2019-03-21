@@ -8,12 +8,17 @@ import { DiCode, DiGit } from 'react-icons/di';
 import { MdClose } from 'react-icons/md';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
-import Code from './CodeHighlighter';
 import iconOf from '../data/icons';
+import { fetchGit, fetchFileContent } from '../data/resumeFiles';
 
 import Styles from '../styles/ui/codeEditor';
-import { fetchGit, fetchFileContent } from '../data/resumeFiles';
-import FolderList from './FileTree';
+
+const Code = React.lazy(() => {
+    return import(/* Code: "Code" */ './CodeHighlighter');
+});
+const FileTree = React.lazy(() => {
+    return import(/* Code: "FileTree" */ './FileTree');
+});
 
 const Resume = ({ classes, allFiles, changeTitle, thisApp }) => {
     const [sidebarStatus, openSideBar] = React.useState(false);
@@ -37,7 +42,7 @@ const Resume = ({ classes, allFiles, changeTitle, thisApp }) => {
         }
 
         if (mainSection.current !== undefined) {
-            if (mainSection.current.offsetWidth < 600) {
+            if (mainSection.current.offsetWidth < 1024) {
                 openSideBar(!sidebarStatus);
             }
         } else {
@@ -82,7 +87,7 @@ const Resume = ({ classes, allFiles, changeTitle, thisApp }) => {
         let docked = sidebarStatus;
         if (openFiles.length !== 0) {
             if (mainSection.current !== undefined) {
-                if (mainSection.current.offsetWidth > 600) {
+                if (mainSection.current.offsetWidth > 1024) {
                     docked = true;
                 }
             }
@@ -149,12 +154,14 @@ const Resume = ({ classes, allFiles, changeTitle, thisApp }) => {
     const sideBar = (
         <div className={classes.sidebar} data-file-list="active">
             <div className={classes.sidebarFiles}>
-                {FolderList(
-                    folders,
-                    openFiles[currentFileIndex],
-                    handleOpenFiles,
-                    classes,
-                )}
+                <React.Suspense fallback={<div />}>
+                    <FileTree
+                        tree={folders}
+                        activeFile={openFiles[currentFileIndex]}
+                        handleOpenFiles={handleOpenFiles}
+                        classes={classes}
+                    />
+                </React.Suspense>
             </div>
         </div>
     );
@@ -225,7 +232,9 @@ const Resume = ({ classes, allFiles, changeTitle, thisApp }) => {
                                     <TabPanel
                                         key={'tab_content_' + dir + '/' + name}
                                     >
-                                        {content}
+                                        <React.Suspense fallback>
+                                            {content}
+                                        </React.Suspense>
                                     </TabPanel>
                                 );
                             })}
@@ -237,6 +246,13 @@ const Resume = ({ classes, allFiles, changeTitle, thisApp }) => {
                         )}
                     </Sidebar>
                 </div>
+            </div>
+            <div className={classes.footer}>
+                <p>
+                    {
+                        'function dayRepeat() { while(!success) { eat(); code(); sleep(); dayRepeat();}}'
+                    }
+                </p>
             </div>
         </React.Fragment>
     );

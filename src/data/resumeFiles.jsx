@@ -48,8 +48,11 @@ const Files = () => {
         thisTree.forEach((thisNode, i) => {
             const newNode = thisNode;
             newNode.id = i;
-            newNode.dir = parentId + '/' + thisNode.name;
-            newNode.isExpandable = thisNode.type === 'dir';
+            if (parentId !== '') {
+                newNode.dir = parentId + '/' + thisNode.name;
+            } else {
+                newNode.dir = thisNode.name;
+            }
             if (newNode.type === 'dir') {
                 newNode.isExpanded = true;
             }
