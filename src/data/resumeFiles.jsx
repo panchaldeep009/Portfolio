@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { DiJavascript1, DiPhp, DiNpm } from 'react-icons/di';
 
 import codeText from './raw/codeMain.txt';
 import codeExpAndEdu from './raw/codeExpAndEdu.txt';
@@ -10,33 +9,33 @@ const Files = () => {
     const defaultLoading = <div>Loading..</div>;
     const LocalFiles = [
         {
-            dirName: 'Resume',
-            showFiles: true,
+            name: 'Resume',
             type: 'dir',
-            files: [
+            url: null,
+            children: [
                 {
                     name: 'resume.js',
-                    icon: <DiJavascript1 style={{ color: 'yellow' }} />,
+                    type: 'file',
                     content: defaultLoading,
                     url: codeText,
                 },
                 {
                     name: 'exp_and_edu.php',
-                    icon: <DiPhp style={{ color: 'skyblue' }} />,
-                    content: defaultLoading,
+                    type: 'file',
+                    content: '',
                     url: codeExpAndEdu,
                 },
                 {
-                    name: 'experience.json',
-                    icon: <DiNpm style={{ color: 'red' }} />,
+                    name: 'experience_package.json',
+                    type: 'file',
                     content: defaultLoading,
                     url: exps,
                 },
             ],
         },
     ].sort((a, b) => {
-        const nameA = a.dirName.toUpperCase();
-        const nameB = b.dirName.toUpperCase();
+        const nameA = a.name.toUpperCase();
+        const nameB = b.name.toUpperCase();
         if (nameA < nameB) {
             return -1;
         }
@@ -45,6 +44,22 @@ const Files = () => {
         }
         return 0;
     });
+    const findNode = (thisTree, parentId) => {
+        thisTree.forEach((thisNode, i) => {
+            const newNode = thisNode;
+            newNode.id = i;
+            newNode.dir = parentId + '/' + thisNode.name;
+            newNode.isExpandable = thisNode.type === 'dir';
+            if (newNode.type === 'dir') {
+                newNode.isExpanded = true;
+            }
+            if (newNode.children && newNode.children.length > 0) {
+                findNode(newNode.children, newNode.dir);
+            }
+            return newNode;
+        });
+    };
+    findNode(LocalFiles, '');
     return LocalFiles;
 };
 
@@ -64,17 +79,30 @@ const fetchGit = callBack => {
             const repos = [];
             data.forEach(repo => {
                 repos.push({
-                    dirName: repo.name,
-                    showFiles: false,
+                    name: repo.name,
                     type: 'repo',
-                    files: [],
-                    files_url:
+                    dir: repo.name,
+                    children: [],
+                    update: repo.updated_at,
+                    url:
                         'https://api.github.com/repos/' +
                         repo.full_name +
-                        '/contents',
+                        '/branches',
                 });
             });
-            callBack(repos);
+            callBack(
+                repos.sort((a, b) => {
+                    const nameA = a.update.toUpperCase();
+                    const nameB = b.update.toUpperCase();
+                    if (nameA < nameB) {
+                        return 1;
+                    }
+                    if (nameA > nameB) {
+                        return -1;
+                    }
+                    return 0;
+                }),
+            );
         });
     callBack([]);
 };
@@ -85,33 +113,110 @@ const fetchGitFiles = (url, parentDirName, callBack) => {
             return data.json();
         })
         .then(data => {
-            const dirs = [];
             const files = [];
-            data.forEach(repo => {
-                if (repo.type === 'file') {
-                    files.push({
+            const thisFiles = data.tree ? data.tree : data;
+            thisFiles.forEach(repo => {
+                files.push({
+                    ...(repo.commit && {
                         name: repo.name,
-                        icon: <DiJavascript1 style={{ color: 'yellow' }} />,
-                        content: defaultLoading,
-                        url: repo.download_url,
-                    });
-                } else if (repo.type === 'dir') {
-                    dirs.push({
-                        dirName: parentDirName + '/' + repo.name,
-                        showFiles: false,
-                        type: 'dir',
-                        files: [],
-                        files_url:
+                        dir: parentDirName + '/' + repo.name,
+                        type: 'branch',
+                        children: defaultLoading,
+                        url:
                             'https://api.github.com/repos/panchaldeep009/' +
+                            parentDirName.split('/')[0] +
+                            '/git/trees/' +
+                            repo.commit.sha,
+                    }),
+                    ...(repo.type === 'blob' && {
+                        name: repo.path,
+                        dir: parentDirName + '/' + repo.path,
+                        type: 'file',
+                        content: defaultLoading,
+                        url:
+                            'https://raw.githubusercontent.com/panchaldeep009/' +
                             parentDirName +
-                            '/contents/' +
+                            '/' +
                             repo.path,
-                    });
-                }
+                    }),
+                    ...(repo.type === 'tree' && {
+                        name: repo.path,
+                        dir: parentDirName + '/' + repo.path,
+                        type: 'dir',
+                        children: defaultLoading,
+                        url: repo.url,
+                    }),
+                });
             });
-            callBack({ files, dirs });
+            callBack(
+                files.sort((a, b) => {
+                    const nameA = a.type + a.dir.toUpperCase();
+                    const nameB = b.type + b.dir.toUpperCase();
+                    if (nameA < nameB) {
+                        return -1;
+                    }
+                    if (nameA > nameB) {
+                        return 1;
+                    }
+                    return 0;
+                }),
+            );
         });
-    callBack({ files: [], dirs: [] });
+    callBack([]);
 };
-
-export { fetchGit, fetchGitFiles };
+const fetchFileContent = (currentFile, callback) => {
+    const fileLang = currentFile.name.substring(
+        currentFile.name.indexOf('.') + 1,
+    );
+    if (
+        [
+            'md',
+            'js',
+            'jsx',
+            'vue',
+            'json',
+            'php',
+            'html',
+            'hbs',
+            'css',
+            'sass',
+            'scss',
+            'xml',
+            'py',
+            'js',
+            'map',
+            'txt',
+            'sql',
+        ].includes(fileLang)
+    ) {
+        fetch(currentFile.url)
+            .then(data => {
+                return data.text();
+            })
+            .then(text => {
+                callback(text);
+            });
+    } else {
+        callback(currentFile.url);
+    }
+};
+const replaceNested = (array, action, callBack) => {
+    const newArray = array.slice(0);
+    const findNode = thisTree => {
+        thisTree.forEach(thisNode => {
+            action(thisNode);
+            if (
+                thisNode.isExpanded &&
+                thisNode.children &&
+                thisNode.children.length > 0
+            ) {
+                findNode(thisNode.children, thisNode.dir);
+            }
+        });
+    };
+    findNode(newArray);
+    if (callBack) {
+        callBack(newArray);
+    }
+};
+export { fetchGit, fetchGitFiles, fetchFileContent, replaceNested };

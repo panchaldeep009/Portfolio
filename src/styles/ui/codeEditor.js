@@ -5,6 +5,7 @@ export default ({ coderFonts, coderColors }) => {
             width: '100%',
             height: 'calc(100% - 35px)',
             display: 'flex',
+            color: 'white',
             ...coderFonts,
             '& button': {
                 outline: 0,
@@ -140,8 +141,11 @@ export default ({ coderFonts, coderColors }) => {
                     fontSize: 14,
                 },
                 '& svg': {
-                    width: 25,
-                    minWidth: 25,
+                    width: 'auto',
+                    minWidth: 10,
+                    maxWidth: 20,
+                    minHeight: 10,
+                    maxHeight: 20,
                 },
             },
             '& [data-selected="true"]': {
@@ -151,6 +155,16 @@ export default ({ coderFonts, coderColors }) => {
             '& [data-dir-active="true"]': {
                 backgroundColor: 'rgba(50,50,50,0.5)',
                 color: '#fff',
+            },
+            '& [class="super-treeview-node-content"]': {
+                position: 'relative',
+                '& [class*="super-treeview-triangle-btn"]': {
+                    position: 'absolute',
+                    width: '100%',
+                    height: '100%',
+                    top: 0,
+                    left: 0,
+                },
             },
         },
         emptyState: {
