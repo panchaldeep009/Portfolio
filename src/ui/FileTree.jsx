@@ -131,7 +131,10 @@ const FolderList = ({ tree, activeFile, handleOpenFiles, classes }) => {
 };
 FolderList.propTypes = {
     classes: PropTypes.objectOf(PropTypes.any),
-    tree: PropTypes.objectOf(PropTypes.any),
+    tree: PropTypes.oneOfType([
+        PropTypes.objectOf(PropTypes.any),
+        PropTypes.arrayOf(PropTypes.any),
+    ]),
     handleOpenFiles: PropTypes.func,
     activeFile: PropTypes.objectOf(PropTypes.any),
 };

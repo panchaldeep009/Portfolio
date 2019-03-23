@@ -7,6 +7,9 @@ import { FaFileCode } from 'react-icons/fa';
 import { DiCode, DiGit } from 'react-icons/di';
 import { MdClose } from 'react-icons/md';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import Typist from 'react-typist';
+import DragScrollProvider from 'drag-scroll-provider';
+import 'react-typist/dist/Typist.css';
 
 import iconOf from '../data/icons';
 import { fetchGit, fetchFileContent } from '../data/resumeFiles';
@@ -24,6 +27,7 @@ const Resume = ({ classes, allFiles, changeTitle, thisApp }) => {
     const [sidebarStatus, openSideBar] = React.useState(false);
     const [fileSystem, setFileSystem] = React.useState('local');
     const mainSection = React.useRef();
+    const mainSectionFooter = React.useRef();
     const [folders, setFolder] = React.useState(allFiles());
     const [openFiles, addFiles] = React.useState([]);
     const [currentFileIndex, openFile] = React.useState(0);
@@ -247,12 +251,47 @@ const Resume = ({ classes, allFiles, changeTitle, thisApp }) => {
                     </Sidebar>
                 </div>
             </div>
-            <div className={classes.footer}>
-                <p>
-                    {
-                        'function dayRepeat() { while(!success) { eat(); code(); sleep(); dayRepeat();}}'
-                    }
-                </p>
+            <div className={classes.footer} ref={mainSectionFooter}>
+                <DragScrollProvider>
+                    {({ onMouseDown, ref }) => {
+                        return (
+                            <div
+                                data-footer
+                                ref={ref}
+                                onMouseDown={onMouseDown}
+                                role="button"
+                                tabIndex={0}
+                            >
+                                <Typist
+                                    cursor={{
+                                        show: true,
+                                        blink: true,
+                                        element: '█',
+                                        hideWhenDone: true,
+                                        hideWhenDoneDelay: 1000,
+                                    }}
+                                    onCharacterTyped={() => {
+                                        if (
+                                            mainSectionFooter.current.querySelector(
+                                                'div',
+                                            )
+                                        ) {
+                                            mainSectionFooter.current
+                                                .querySelector('div')
+                                                .scrollTo({
+                                                    left: 50000,
+                                                });
+                                        }
+                                    }}
+                                >
+                                    {
+                                        'function dayRepeat() { while(!success) { eat(); code(); sleep(); dayRepeat();}}'
+                                    }
+                                </Typist>
+                            </div>
+                        );
+                    }}
+                </DragScrollProvider>
             </div>
         </React.Fragment>
     );

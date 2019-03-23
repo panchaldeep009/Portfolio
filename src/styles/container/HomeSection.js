@@ -1,6 +1,7 @@
 export default ({
     device,
     view,
+    colors,
     location,
     coderFonts,
     secondHading,
@@ -57,6 +58,92 @@ export default ({
         },
         avatarImg: {
             width: device.mobile ? 200 : Math.min(400, view.width / 2.5),
+        },
+        nameTag: {
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            pointerEvents: 'none',
+            ...(device.mobile && {
+                justifyContent: 'space-evenly',
+                flexDirection: 'column',
+            }),
+            ...coderFonts,
+        },
+        greeting: {
+            width:
+                'calc(50% - ' +
+                (device.mobile ? 200 : Math.min(400, view.width / 2.5)) / 3.5 +
+                'px)',
+            display: 'flex',
+            justifyContent: 'flex-end',
+            whiteSpace: 'nowrap',
+            color: coderColors.codeGreen,
+            fontSize: 14,
+            '& div': {
+                transform: 'rotate(-90deg)',
+            },
+            ...(device.mobile && {
+                justifyContent: 'center',
+                '& div': {
+                    transform: 'rotate(0deg)',
+                },
+            }),
+            ...(device.tabletUp && {
+                fontSize: 20,
+            }),
+        },
+        name: {
+            width:
+                'calc(50% - ' +
+                (device.mobile ? 200 : Math.min(400, view.width / 2.5)) / 3.5 +
+                'px)',
+            display: 'flex',
+            justifyContent: 'flex-start',
+            ...(device.mobile && {
+                justifyContent: 'center',
+                width: '100%',
+            }),
+            color: colors.bright,
+            fontSize: 16,
+            ...(device.tabletUp && {
+                fontSize: 20,
+            }),
+            '& [data-name]': {
+                '& span': {
+                    color: coderColors.codeYellow,
+                },
+                '& [data-punch]': {
+                    color: coderColors.codeBlue,
+                },
+            },
+            '& span': {
+                fontWeight: 900,
+            },
+            '& h3': {
+                fontSize: 20,
+                ...(device.tabletUp && {
+                    fontSize: 30,
+                }),
+                marginBottom: 15,
+                '& span': {
+                    color: coderColors.codePink,
+                },
+            },
+            '& [data-title]': {
+                marginTop: 15,
+                color: coderColors.codeLightGreen,
+                '& span': {
+                    color: coderColors.codeRed,
+                },
+            },
+            '& [data-name-group]': {
+                display: 'flex',
+                flexDirection: 'column',
+                width: 'max-content',
+                '& strong': {
+                    display: 'inline-flex',
+                },
+            },
         },
     };
 };

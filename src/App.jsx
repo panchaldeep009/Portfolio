@@ -4,6 +4,7 @@ import { Swipe } from 'react-swipe-component';
 import withStyles from 'react-jss';
 import { Transition } from 'react-spring/renderprops';
 import Styles from './styles/App';
+import Layer from './ui/Layer';
 
 const CodeSection = React.lazy(() => {
     return import(/* webpackChunkName: "CodeSection" */ './container/codeSection');
@@ -39,9 +40,9 @@ const App = ({ classes, router }) => {
             });
         };
     }, []);
-
+    const Loading = <Layer className={classes.Loading}>Loading...</Layer>;
     return (
-        <React.Suspense fallback={<div>Loading</div>}>
+        <React.Suspense fallback={Loading}>
             <Swipe
                 detectTouch
                 onSwipedLeft={() => {

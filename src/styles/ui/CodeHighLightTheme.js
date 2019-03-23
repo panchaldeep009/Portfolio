@@ -39,6 +39,7 @@ export default {
         minHeight: 'max-content',
         width: 'max-content',
         height: '100%',
+        userSelect: 'text',
     },
     ':not(pre) > code[class*="language-"]': {
         padding: '.2em',

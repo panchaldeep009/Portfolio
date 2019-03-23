@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'react-jss';
 
+import Typist from 'react-typist';
 import Animation from '../ui/Animation';
 
 import Styles, { sectionStyle } from '../styles/container/HomeSection';
@@ -12,6 +13,8 @@ import myAvatar from '../assets/svg/myAvatarShape.svg';
 import codeIcon from '../assets/svg/codeIcon.svg';
 import galleryIcon from '../assets/svg/galleryIcon.svg';
 
+import 'react-typist/dist/Typist.css';
+
 const Apps = React.lazy(() => {
     return import(/* Code: "Apps" */ '../component/apps');
 });
@@ -20,6 +23,9 @@ const Layer = React.lazy(() => {
 });
 const ResumeContent = React.lazy(() => {
     return import(/* Code: "ResumeContent" */ '../component/ResumeContent');
+});
+const PortfolioGallery = React.lazy(() => {
+    return import(/* Code: "ResumeContent" */ '../component/PortfolioGallery');
 });
 
 const Coder = ({ options, classes, router, cursor }) => {
@@ -53,7 +59,7 @@ const Coder = ({ options, classes, router, cursor }) => {
                 close: () => {
                     router.history.push('/code');
                 },
-                content: <div>Gallery App</div>,
+                content: PortfolioGallery,
             },
         ],
     };
@@ -100,6 +106,41 @@ const Coder = ({ options, classes, router, cursor }) => {
                     alt="my_avatar"
                 />
             </Layer>
+            {router.location.pathname.includes('code') && (
+                <Layer className={classes.nameTag}>
+                    <div className={classes.greeting}>
+                        <div>&#47;&#47; Hello World</div>
+                    </div>
+                    <div className={classes.name}>
+                        <div data-name-group>
+                            <h3>
+                                I<span>&quot;</span>m
+                            </h3>
+                            <strong data-name>
+                                <span> &#123;</span> &nbsp;DEEP_PANCHAL&nbsp;
+                                <span> &#125;</span>
+                                <span data-punch>&#59;</span>
+                            </strong>
+                            <strong data-title>
+                                <span>&lt;&#63;</span>
+                                <Typist
+                                    cursor={{
+                                        show: true,
+                                        blink: true,
+                                        element: '█',
+                                        hideWhenDone: true,
+                                        hideWhenDoneDelay: 1000,
+                                    }}
+                                >
+                                    A_Web_Developer&ensp;
+                                    <Typist.Backspace count={1} delay={500} />
+                                </Typist>
+                                <span>&#47;&gt;</span>
+                            </strong>
+                        </div>
+                    </div>
+                </Layer>
+            )}
             <Layer options={{ pointerEvents: 'none' }}>
                 <Animation
                     options={{
