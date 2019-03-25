@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import { HashRouter as Router, Route } from 'react-router-dom';
 
 import App from './App.jsx';
-import ThemeProvider from './styles/Theme';
+import Theme from './styles/Theme';
 
 import 'reset-css';
 import './styles/scss/App.scss';
 
 ReactDOM.render(
-    <ThemeProvider>
+    <Theme>
         <Router>
             <Route
                 render={router => {
@@ -17,6 +17,6 @@ ReactDOM.render(
                 }}
             />
         </Router>
-    </ThemeProvider>,
+    </Theme>,
     document.getElementById('app'),
 );

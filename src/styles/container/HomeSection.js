@@ -7,6 +7,7 @@ export default ({
     secondHading,
     coderColors,
     noSelect,
+    designerFonts,
 }) => {
     return {
         coderButton: {
@@ -66,6 +67,10 @@ export default ({
             ...(device.mobile && {
                 justifyContent: 'space-evenly',
                 flexDirection: 'column',
+                ...(location.includes('design') && {
+                    width: '80%',
+                    justifyContent: 'center',
+                }),
             }),
             ...coderFonts,
         },
@@ -79,14 +84,28 @@ export default ({
             whiteSpace: 'nowrap',
             color: coderColors.codeGreen,
             fontSize: 14,
-            '& div': {
-                transform: 'rotate(-90deg)',
-            },
+            ...(location.includes('code') && {
+                '& div': {
+                    transform: 'rotate(-90deg)',
+                },
+            }),
+            ...(location.includes('design') && {
+                '& div': {
+                    width: '400px !important',
+                    transform: 'translate(150%, -50px)',
+                },
+            }),
             ...(device.mobile && {
                 justifyContent: 'center',
                 '& div': {
                     transform: 'rotate(0deg)',
                 },
+                ...(location.includes('design') && {
+                    width: '80%',
+                    '& div': {
+                        transform: 'translate(5%, -25px)',
+                    },
+                }),
             }),
             ...(device.tabletUp && {
                 fontSize: 20,
@@ -143,6 +162,24 @@ export default ({
                 '& strong': {
                     display: 'inline-flex',
                 },
+                ...(location.includes('design') && {
+                    ...designerFonts,
+                    color: colors.dark,
+                    fontWeight: 900,
+                    width: '75%',
+                    maxWidth: '250px !important',
+                    transform: 'translate(15%, 20px)',
+                    ...(device.mobile && {
+                        transform: 'translate0, 0)',
+                        width: '50%',
+                    }),
+                    '& div': {
+                        textAlign: 'left',
+                    },
+                    '& span': {
+                        textAlign: 'left',
+                    },
+                }),
             },
         },
     };

@@ -12,11 +12,12 @@ const Window = ({
     handleActions,
     title,
     icon,
+    size,
 }) => {
     const thisWindow = React.useRef();
     const [state, setState] = React.useState({
-        width: '1024px',
-        height: '90vh',
+        width: size.width + 'px',
+        height: size.height + 'vh',
         x: -5,
         y: 0,
     });
@@ -126,6 +127,7 @@ Window.propTypes = {
         PropTypes.node,
     ]),
     handleActions: PropTypes.objectOf(PropTypes.any),
+    size: PropTypes.objectOf(PropTypes.any),
     title: PropTypes.string,
     icon: PropTypes.string,
 };

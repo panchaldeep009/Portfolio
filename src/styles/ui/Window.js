@@ -8,14 +8,13 @@ export default ({
     designerColors,
     noSelect,
 }) => {
+    const windoWidth = location.includes('/contact') ? 400 : 1024;
     return {
         window: {
             position: 'absolute',
             top: 25,
-            width: 1024,
-            left: view.width > 1024 ? (view.width - 1024) / 2 : 5,
+            left: view.width > windoWidth ? (view.width - windoWidth) / 2 : 5,
             transformOrigin: '50% 50%',
-
             borderRadius: 5,
             overflow: 'hidden',
             ...(location.includes('code') && {

@@ -14,6 +14,7 @@ const Window = React.lazy(() => {
 
 const Apps = ({ allApps, router }) => {
     const { appBar } = allApps;
+    // const [allA, setAllA] = React.useState(allApps);
     const [apps, setApps] = React.useState(
         allApps.apps
             .map(app => {
@@ -40,6 +41,10 @@ const Apps = ({ allApps, router }) => {
         },
         [router],
     );
+    const windowSize = {
+        width: 1024,
+        height: 90,
+    };
     return (
         <React.Fragment>
             <Transition
@@ -79,6 +84,9 @@ const Apps = ({ allApps, router }) => {
                                             handleActions={{
                                                 close: app.close,
                                             }}
+                                            size={
+                                                app.size ? app.size : windowSize
+                                            }
                                         >
                                             <React.Suspense fallback>
                                                 <app.content
@@ -89,7 +97,9 @@ const Apps = ({ allApps, router }) => {
                                                         );
                                                     }}
                                                     thisApp={app}
+                                                    allApp={apps}
                                                     changeApps={setApps}
+                                                    router={router}
                                                 />
                                             </React.Suspense>
                                         </Window>

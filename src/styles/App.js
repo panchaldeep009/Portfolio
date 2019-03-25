@@ -12,6 +12,9 @@ export default ({ colors, coderFonts }) => {
             backgroundColor: colors.primary,
             color: colors.bright,
             ...coderFonts,
+            '& div': {
+                height: '110%',
+            },
         },
     };
 };

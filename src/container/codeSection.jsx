@@ -9,11 +9,11 @@ import Styles, { sectionStyle } from '../styles/container/HomeSection';
 
 import Background from '../assets/animation_data/codeBackground.json';
 import Spark from '../assets/animation_data/codeOpenSparks.json';
+import Logo from '../assets/svg/logoWhite.svg';
 import myAvatar from '../assets/svg/myAvatarShape.svg';
 import codeIcon from '../assets/svg/codeIcon.svg';
 import galleryIcon from '../assets/svg/galleryIcon.svg';
-
-import 'react-typist/dist/Typist.css';
+import contactIcon from '../assets/svg/contact.svg';
 
 const Apps = React.lazy(() => {
     return import(/* Code: "Apps" */ '../component/apps');
@@ -27,11 +27,13 @@ const ResumeContent = React.lazy(() => {
 const PortfolioGallery = React.lazy(() => {
     return import(/* Code: "ResumeContent" */ '../component/PortfolioGallery');
 });
+const ContactForm = React.lazy(() => {
+    return import(/* Code: "ResumeContent" */ '../component/ContactForm');
+});
 
 const Coder = ({ options, classes, router, cursor }) => {
     const BackgroundAnimation = React.useRef();
     const SparkAnimation = React.useRef();
-
     const AllApps = {
         appBar: router.location.pathname.includes('/code'),
         apps: [
@@ -61,9 +63,25 @@ const Coder = ({ options, classes, router, cursor }) => {
                 },
                 content: PortfolioGallery,
             },
+            {
+                id: 'code_app_3',
+                name: 'Contact me',
+                icon: contactIcon,
+                open: () => {
+                    router.history.push('/code/contact');
+                },
+                openState: router.location.pathname.includes('/code/contact'),
+                close: () => {
+                    router.history.push('/code');
+                },
+                content: ContactForm,
+                size: {
+                    width: 500,
+                    height: 70,
+                },
+            },
         ],
     };
-
     React.useEffect(
         () => {
             if (BackgroundAnimation.current !== undefined) {
@@ -101,6 +119,17 @@ const Coder = ({ options, classes, router, cursor }) => {
                 }}
             >
                 <img
+                    style={{
+                        position: 'absolute',
+                        width: '100%',
+                        height: 60,
+                        top: 50,
+                        left: 0,
+                    }}
+                    src={Logo}
+                    alt="logo"
+                />
+                <img
                     className={classes.avatarImg}
                     src={myAvatar}
                     alt="my_avatar"
@@ -114,7 +143,7 @@ const Coder = ({ options, classes, router, cursor }) => {
                     <div className={classes.name}>
                         <div data-name-group>
                             <h3>
-                                I<span>&quot;</span>m
+                                I<span>&apos;</span>m
                             </h3>
                             <strong data-name>
                                 <span> &#123;</span> &nbsp;DEEP_PANCHAL&nbsp;

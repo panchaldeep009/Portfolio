@@ -3,8 +3,14 @@ import PropTypes from 'prop-types';
 import { Swipe } from 'react-swipe-component';
 import withStyles from 'react-jss';
 import { Transition } from 'react-spring/renderprops';
+
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+
 import Styles from './styles/App';
 import Layer from './ui/Layer';
+import Animation from './ui/Animation';
+import LoadingAnimation from './assets/animation_data/loadingScreen.json';
+import { Dark, Light } from './styles/Theme/MuiTheme';
 
 const CodeSection = React.lazy(() => {
     return import(/* webpackChunkName: "CodeSection" */ './container/codeSection');
@@ -40,63 +46,77 @@ const App = ({ classes, router }) => {
             });
         };
     }, []);
-    const Loading = <Layer className={classes.Loading}>Loading...</Layer>;
+    const Loading = (
+        <Layer className={classes.Loading}>
+            <Animation
+                options={{
+                    animationData: LoadingAnimation,
+                    autoplay: true,
+                    loop: false,
+                }}
+            />
+        </Layer>
+    );
     return (
-        <React.Suspense fallback={Loading}>
-            <Swipe
-                detectTouch
-                onSwipedLeft={() => {
-                    onSwipe(1);
-                }}
-                onSwipedRight={() => {
-                    onSwipe(-1);
-                }}
-                className={classes.Home}
-            >
-                <Transition
-                    items={!router.location.pathname.includes('design')}
-                    from={{ opacity: 0 }}
-                    enter={{ opacity: 1 }}
-                    leave={{ opacity: 0 }}
-                >
-                    {show => {
-                        return (
-                            show &&
-                            (style => {
-                                return (
-                                    <CodeSection
-                                        cursor={cursor}
-                                        router={router}
-                                        options={style}
-                                    />
-                                );
-                            })
-                        );
+        <MuiThemeProvider
+            theme={router.location.pathname.includes('code') ? Dark : Light}
+        >
+            <React.Suspense fallback={Loading}>
+                <Swipe
+                    detectTouch
+                    onSwipedLeft={() => {
+                        onSwipe(1);
                     }}
-                </Transition>
-                <Transition
-                    items={!router.location.pathname.includes('code')}
-                    from={{ opacity: 0 }}
-                    enter={{ opacity: 1 }}
-                    leave={{ opacity: 0 }}
-                >
-                    {show => {
-                        return (
-                            show &&
-                            (style => {
-                                return (
-                                    <DesignSection
-                                        cursor={cursor}
-                                        router={router}
-                                        options={style}
-                                    />
-                                );
-                            })
-                        );
+                    onSwipedRight={() => {
+                        onSwipe(-1);
                     }}
-                </Transition>
-            </Swipe>
-        </React.Suspense>
+                    className={classes.Home}
+                >
+                    <Transition
+                        items={!router.location.pathname.includes('design')}
+                        from={{ opacity: 0 }}
+                        enter={{ opacity: 1 }}
+                        leave={{ opacity: 0 }}
+                    >
+                        {show => {
+                            return (
+                                show &&
+                                (style => {
+                                    return (
+                                        <CodeSection
+                                            cursor={cursor}
+                                            router={router}
+                                            options={style}
+                                        />
+                                    );
+                                })
+                            );
+                        }}
+                    </Transition>
+                    <Transition
+                        items={!router.location.pathname.includes('code')}
+                        from={{ opacity: 0 }}
+                        enter={{ opacity: 1 }}
+                        leave={{ opacity: 0 }}
+                    >
+                        {show => {
+                            return (
+                                show &&
+                                (style => {
+                                    return (
+                                        <DesignSection
+                                            cursor={cursor}
+                                            router={router}
+                                            options={style}
+                                        />
+                                    );
+                                })
+                            );
+                        }}
+                    </Transition>
+                </Swipe>
+            </React.Suspense>
+        </MuiThemeProvider>
     );
 };
 
