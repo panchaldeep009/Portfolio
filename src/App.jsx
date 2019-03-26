@@ -39,6 +39,34 @@ const App = ({ classes, router }) => {
         window.addEventListener('mousemove', e => {
             setCursor({ x: e.clientX, y: e.clientY });
         });
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener(
+                'deviceorientation',
+                event => {
+                    setCursor({ x: event.gamma * 10, y: event.beta * 10 });
+                },
+                true,
+            );
+        } else if (window.DeviceMotionEvent) {
+            window.addEventListener(
+                'devicemotion',
+                event => {
+                    setCursor({
+                        x: event.acceleration.x * 2,
+                        y: event.acceleration.y * 2,
+                    });
+                },
+                true,
+            );
+        } else {
+            window.addEventListener(
+                'MozOrientation',
+                orientation => {
+                    setCursor({ x: orientation.x * 50, y: orientation.y * 50 });
+                },
+                true,
+            );
+        }
         return () => {
             window.removeEventListener('mousemove', e => {
                 setCursor({ x: e.clientX, y: e.clientY });
