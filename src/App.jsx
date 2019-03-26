@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Swipe } from 'react-swipe-component';
 import withStyles from 'react-jss';
-import { Transition } from 'react-spring/renderprops';
 
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
@@ -72,48 +71,12 @@ const App = ({ classes, router }) => {
                     }}
                     className={classes.Home}
                 >
-                    <Transition
-                        items={!router.location.pathname.includes('design')}
-                        from={{ opacity: 0 }}
-                        enter={{ opacity: 1 }}
-                        leave={{ opacity: 0 }}
-                    >
-                        {show => {
-                            return (
-                                show &&
-                                (style => {
-                                    return (
-                                        <CodeSection
-                                            cursor={cursor}
-                                            router={router}
-                                            options={style}
-                                        />
-                                    );
-                                })
-                            );
-                        }}
-                    </Transition>
-                    <Transition
-                        items={!router.location.pathname.includes('code')}
-                        from={{ opacity: 0 }}
-                        enter={{ opacity: 1 }}
-                        leave={{ opacity: 0 }}
-                    >
-                        {show => {
-                            return (
-                                show &&
-                                (style => {
-                                    return (
-                                        <DesignSection
-                                            cursor={cursor}
-                                            router={router}
-                                            options={style}
-                                        />
-                                    );
-                                })
-                            );
-                        }}
-                    </Transition>
+                    {!router.location.pathname.includes('design') && (
+                        <CodeSection cursor={cursor} router={router} />
+                    )}
+                    {!router.location.pathname.includes('code') && (
+                        <DesignSection cursor={cursor} router={router} />
+                    )}
                 </Swipe>
             </React.Suspense>
         </MuiThemeProvider>

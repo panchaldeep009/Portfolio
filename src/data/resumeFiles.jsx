@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import codeText from './raw/codeMain.txt';
 import codeExpAndEdu from './raw/codeExpAndEdu.txt';
-import exps from './raw/exp.txt';
 
 const Files = () => {
     const defaultLoading = <div>Loading..</div>;
@@ -24,12 +23,6 @@ const Files = () => {
                     type: 'file',
                     content: '',
                     url: codeExpAndEdu,
-                },
-                {
-                    name: 'experience_package.json',
-                    type: 'file',
-                    content: defaultLoading,
-                    url: exps,
                 },
             ],
         },
@@ -74,7 +67,7 @@ Files.propTypes = {
 export default Files;
 
 const fetchGit = callBack => {
-    fetch('https://api.github.com/users/panchaldeep009/repos')
+    fetch('https://api.github.com/users/panchaldeep009/repos?type=all')
         .then(data => {
             return data.json();
         })
@@ -84,7 +77,7 @@ const fetchGit = callBack => {
                 repos.push({
                     name: repo.name,
                     type: 'repo',
-                    dir: repo.name,
+                    dir: repo.full_name,
                     children: [],
                     update: repo.updated_at,
                     url:
@@ -126,8 +119,8 @@ const fetchGitFiles = (url, parentDirName, callBack) => {
                         type: 'branch',
                         children: defaultLoading,
                         url:
-                            'https://api.github.com/repos/panchaldeep009/' +
-                            parentDirName.split('/')[0] +
+                            'https://api.github.com/repos/' +
+                            parentDirName +
                             '/git/trees/' +
                             repo.commit.sha,
                     }),
@@ -137,7 +130,7 @@ const fetchGitFiles = (url, parentDirName, callBack) => {
                         type: 'file',
                         content: defaultLoading,
                         url:
-                            'https://raw.githubusercontent.com/panchaldeep009/' +
+                            'https://raw.githubusercontent.com/' +
                             parentDirName +
                             '/' +
                             repo.path,

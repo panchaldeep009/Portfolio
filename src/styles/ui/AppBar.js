@@ -31,31 +31,30 @@ export default ({ device, colors, coderFonts, designerFonts, location }) => {
             ...(location.includes('code') && coderFonts),
             ...(location.includes('design') && designerFonts),
             '&:hover': {
-                '& $AppName': { opacity: 1 },
+                '& $AppName': { opacity: 1, width: 90 },
                 '& $AppIcon': {
                     transform: 'translateY(-20px)',
                 },
             },
             '&:focus': {
-                '& $AppName': { opacity: 1 },
+                '& $AppName': { opacity: 1, width: 90 },
                 '& $AppIcon': {
                     transform: 'translateY(-20px)',
                 },
             },
         },
         AppName: {
+            width: 0,
+            textAlign: 'center',
             backgroundColor: 'rgba(0,0,0,0.3)',
             padding: '5px 10px',
             transform: 'translateY(0px)',
+            overflow: 'hidden',
             borderRadius: '20px',
             transition: 'all 0.5s',
             opacity: 0,
             whiteSpace: 'nowrap',
             marginTop: '-25px',
-            ...(device.mobile && {
-                opacity: 1,
-                marginTop: '0px',
-            }),
         },
         AppIcon: {
             width: 75,

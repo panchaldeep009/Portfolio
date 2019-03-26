@@ -9,7 +9,6 @@ import { MdClose } from 'react-icons/md';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Typist from 'react-typist';
 import DragScrollProvider from 'drag-scroll-provider';
-import 'react-typist/dist/Typist.css';
 
 import iconOf from '../data/icons';
 import { fetchGit, fetchFileContent } from '../data/resumeFiles';
@@ -91,7 +90,7 @@ const Resume = ({ classes, allFiles, changeTitle, thisApp }) => {
         let docked = sidebarStatus;
         if (openFiles.length !== 0) {
             if (mainSection.current !== undefined) {
-                if (mainSection.current.offsetWidth > 1024) {
+                if (mainSection.current.offsetWidth > 1000) {
                     docked = true;
                 }
             }

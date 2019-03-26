@@ -3,7 +3,7 @@ header('Content-Type: application/json');
 $experience = array(
   "2012 - 2019" => array(
     "Freelance" => [
-      ' - Developed Data Management Web Applications for local Business solutions',
+      ' - Developed Data Management Web Applications for local Enterprize solutions',
       ' - Designed Graphics and Motion Promo video for GYM-Fleet advertising campaign',
       ' - Designed Brands for local Businesses, Retailers',
       ' - Event Photographer providing additional services in image enhancement and corrections'],
@@ -34,7 +34,7 @@ $education = array(
         ' - Basic Components and circuit',
         ' - Logic Gates and Digital fundamentals',
         ' - Telecommunication and Wireless',
-        ' - Advance Meths and applied application',
+        ' - Advance Maths and applied application',
         ' - μController and μProcessor\'s programming',
         ' - Embedded Systems',
         awards_and_project => [

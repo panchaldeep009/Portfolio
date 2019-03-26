@@ -2,15 +2,15 @@ import { Deep_Panchal } from "./world_best/programmers";
 class Resume extends Deep_Panchal  {
     constructor(Career) { super(Career);
         this.Objective = 
-            `A highly talented, creative and ambitious individual seeking
-            a position of ${Full_Stack_Developer}. Bringing six years experience 
-            of Web and Native application development and a deep understanding of 
-            object-oriented programming languages, libraries, and frameworks.`
+            `A highly talented, creative and ambitious ${Full_Stack_Developer}. 
+            Bringing six years experience of Web and Native application development
+            and a deep understanding of object-oriented programming languages, 
+            libraries, and frameworks.`
     }
     get_Experience_and_Eduction(){
 	fetch('exp_and_edu.php') 
-        .then(function(response) { return response.json(); })
-        .then(function(data) { return data; });
+        .then((response) => { return response.json(); })
+        .then((data) => { return data; });
     }
     get_Skills(){
         Full_Stack_Development = {
@@ -19,14 +19,13 @@ class Resume extends Deep_Panchal  {
                 CSS : [
                     CSS_3, SASS, Material_UI, Bootstrap ],
                 JavaScript : [
-                    Ajax, JS_ES6, Object_Oriented_JS,
-                    ReactJS, VueJS, AngularJS, Babel,
-                    WebPack, NodeJS, npm,
+                    React, Redux, VueJS, AngularJS, Babel,
+                    WebPack, NodeJS, Express, JEST, npm,
                     Canvas, Lottie, GreenSock ],
-                SVG, RESETful
+                SVG
             },
             "Back-end": {
-                PHP : [ PHP_5, Laravel ],
+                PHP : [ PHP_5, Laravel, REST ],
                 Database : [ MySQL ],
             },
             "Version_Control" : ['Git']

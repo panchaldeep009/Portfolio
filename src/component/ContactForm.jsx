@@ -90,7 +90,7 @@ const ContactForm = ({ classes }) => {
                             dataForm.append('message', values.name);
 
                             fetch(
-                                `http://deeppanchal.com/php/mail_get.php?name=${encodeURI(
+                                `/php/mail_get.php?name=${encodeURI(
                                     values.name,
                                 )}&email=${encodeURI(
                                     values.email,

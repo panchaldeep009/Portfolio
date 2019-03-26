@@ -27,6 +27,7 @@ export default ({
                 border: '2px solid ' + designerColors.designerDark,
                 backgroundColor: designerColors.designLightTrans(0.9),
             }),
+            transition: 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
         },
         titleBar: {
             display: 'flex',

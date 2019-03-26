@@ -109,8 +109,14 @@ const Portfolio = ({ data, setPortFolio }) => {
                     )}
                 </div>
             </div>
-            <div>
-                <p>{data.photo.item_about}</p>
+            <div
+                style={{
+                    margin: '0 auto',
+                    width: '100%',
+                    maxWidth: 1024,
+                }}
+            >
+                <p style={{ padding: 10 }}>{data.photo.item_about}</p>
             </div>
         </div>
     );

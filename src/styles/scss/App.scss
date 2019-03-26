@@ -49,6 +49,7 @@ span[class='react-syntax-highlighter-line-number'] {
 [class*='Cursor--blinking'] {
     opacity: 1;
     animation: blink 0.25s linear infinite;
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 @keyframes blink {
