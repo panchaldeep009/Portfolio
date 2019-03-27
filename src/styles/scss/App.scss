@@ -1,0 +1,65 @@
+body {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+* {
+    padding: 0;
+    margin: 0;
+}
+img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+}
+::-webkit-scrollbar {
+    width: 5px !important;
+    height: 8px !important;
+}
+::-webkit-scrollbar-track {
+    background: rgba(#ffffff, 0.1) !important;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(#ffffff, 0.15) !important;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(#ffffff, 0.25) !important;
+    cursor: move !important;
+}
+span[class='react-syntax-highlighter-line-number'] {
+    display: block;
+    width: 50px;
+    text-align: center;
+    color: #aaaaaa;
+    &:nth-child(even) {
+        background-image: linear-gradient(
+            to right,
+            transparent,
+            rgba(#ffffff, 0.05),
+            transparent
+        );
+    }
+}
+
+[class*='Cursor--blinking'] {
+    opacity: 1;
+    animation: blink 0.25s linear infinite;
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

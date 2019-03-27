@@ -1,0 +1,172 @@
+/**
+ * VS theme by Andrew Lock (https://andrewlock.net)
+ * Inspired by Visual Studio syntax coloring
+ */
+
+code[class*='language-'],
+pre[class*='language-'] {
+    color: #393a34;
+    font-family: 'Consolas', 'Bitstream Vera Sans Mono', 'Courier New', Courier,
+        monospace;
+    direction: ltr;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    font-size: 0.95em;
+    line-height: 1.2em;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+}
+
+pre[class*='language-']::-moz-selection,
+pre[class*='language-'] ::-moz-selection,
+code[class*='language-']::-moz-selection,
+code[class*='language-'] ::-moz-selection {
+    background: #c1def1;
+}
+
+pre[class*='language-']::selection,
+pre[class*='language-'] ::selection,
+code[class*='language-']::selection,
+code[class*='language-'] ::selection {
+    background: #c1def1;
+}
+
+/* Code blocks */
+pre[class*='language-'] {
+    padding: 1em;
+    margin: 0.5em 0;
+    overflow: auto;
+    border: 1px solid #dddddd;
+    background-color: white;
+}
+
+/* Inline code */
+:not(pre) > code[class*='language-'] {
+    padding: 0.2em;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    background: #f8f8f8;
+    border: 1px solid #dddddd;
+}
+
+:globel .token.comment,
+:globel .token.prolog,
+:globel .token.doctype,
+:globel .token.cdata {
+    color: #008000;
+    font-style: italic;
+}
+
+:globel .token.namespace {
+    opacity: 0.7;
+}
+
+:globel .token.string {
+    color: #a31515;
+}
+
+:globel .token.punctuation,
+:globel .token.operator {
+    color: #393a34; /* no highlight */
+}
+
+:globel .token.url,
+:globel .token.symbol,
+:globel .token.number,
+:globel .token.boolean,
+:globel .token.variable,
+:globel .token.constant,
+:globel .token.inserted {
+    color: #36acaa;
+}
+
+:globel .token.atrule,
+:globel .token.keyword,
+:globel .token.attr-value,
+:globel .language-autohotkey .token.selector,
+:globel .language-json .token.boolean,
+:globel .language-json .token.number,
+code[class*='language-css'] {
+    color: #0000ff;
+}
+
+:globel .token.function {
+    color: #393a34;
+}
+:globel .token.deleted,
+:globel .language-autohotkey .token.tag {
+    color: #9a050f;
+}
+
+:globel .token.selector,
+:globel .language-autohotkey .token.keyword {
+    color: #00009f;
+}
+
+:globel .token.important,
+:globel .token.bold {
+    font-weight: bold;
+}
+
+:globel .token.italic {
+    font-style: italic;
+}
+
+:globel .token.class-name,
+:globel .language-json .token.property {
+    color: #2b91af;
+}
+
+:globel .token.tag,
+:globel .token.selector {
+    color: #800000;
+}
+
+:globel .token.attr-name,
+:globel .token.property,
+:globel .token.regex,
+:globel .token.entity {
+    color: #ff0000;
+}
+
+:globel .token.directive.tag .tag {
+    background: #ffff00;
+    color: #393a34;
+}
+
+/* overrides color-values for the Line Numbers plugin
+  * http://prismjs.com/plugins/line-numbers/
+  */
+:globel .line-numbers .line-numbers-rows {
+    border-right-color: #a5a5a5;
+}
+
+:globel .line-numbers-rows > span:before {
+    color: #2b91af;
+}
+
+/* overrides color-values for the Line Highlight plugin
+ * http://prismjs.com/plugins/line-highlight/
+ */
+:globel .line-highlight {
+    background: rgba(193, 222, 241, 0.2);
+    background: -webkit-linear-gradient(
+        left,
+        rgba(193, 222, 241, 0.2) 70%,
+        rgba(221, 222, 241, 0)
+    );
+    background: linear-gradient(
+        to right,
+        rgba(193, 222, 241, 0.2) 70%,
+        rgba(221, 222, 241, 0)
+    );
+}
