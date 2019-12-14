@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import { CssBaseline } from '@material-ui/core';
-import { Tunnel } from './components/Tunnel';
+import { App } from './components/App';
 
 ReactDOM.render(
   <>
     <CssBaseline />
-    <Tunnel>A</Tunnel>
+    <App />
   </>,
   document.getElementById('root'),
 );
