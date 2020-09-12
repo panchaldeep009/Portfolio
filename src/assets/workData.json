@@ -1,0 +1,1137 @@
+[
+  {
+      "item_id": "27",
+      "item_name": "Flashback 2.0 - A Movies\/TV shows Info App",
+      "item_about": "Flashback 2.0, A school project, an informational web application of movies and TV shows from 1950 to 1990. For which I build back-end that fetches all media data from IMDB and OMDBAPI, trailers from youtube API, and stores in MySQL. additionally, in the newer version, I have build REST API for creating and login user accounts, fetching media data (which returns filtered data based on its rating) and CRUD requests for reviewing each media. Also, contribute for interactive Front-end that made with Vue, styled by Vue material UI and bundled with WebPack. which loads data asynchronously which can filter based on type, year, search name; and each can reviewed by the user. ",
+      "item_date": "15\/03\/2019",
+      "item_resource": "https:\/\/github.com\/portikM\/Roku-Flashback",
+      "item_main_category": "code",
+      "media": [
+          {
+              "media_src": "images\/portfolio_images\/fb2.jpg",
+              "media_type": "image",
+              "media_size": "land",
+              "media_caption": "",
+              "media_details": {
+                  "width": 1920,
+                  "height": 1080
+              }
+          }
+      ],
+      "sub_category": [],
+      "technology": []
+  },
+  {
+      "item_id": "28",
+      "item_name": "FCV 2.0",
+      "item_about": "This is an enterprise web application embedded in an android application, FCV 2.0, which manages data of customers' monthly payments for TV channels subscriptions. Build with React, Redux, M-UI for Front-end and REST API with Laravel and MySQL.",
+      "item_date": "15\/02\/2019",
+      "item_resource": "https:\/\/github.com\/panchaldeep009\/FCVDataManagmentApp\/",
+      "item_main_category": "code",
+      "media": [
+          {
+              "media_src": "images\/portfolio_images\/fcv2_1.jpg",
+              "media_type": "image",
+              "media_size": "land",
+              "media_caption": "",
+              "media_details": {
+                  "width": 1920,
+                  "height": 1080
+              }
+          },
+          {
+              "media_src": "images\/portfolio_images\/fcv2_2.jpg",
+              "media_type": "image",
+              "media_size": "land",
+              "media_caption": "",
+              "media_details": {
+                  "width": 1920,
+                  "height": 1080
+              }
+          }
+      ],
+      "sub_category": [],
+      "technology": []
+  },
+  {
+      "item_id": "20",
+      "item_name": "My Demo Reel 2018",
+      "item_about": "This is a Demo reel of school projects I did in 2018.",
+      "item_date": "07\/12\/2018",
+      "item_resource": "https:\/\/vimeo.com\/305247815",
+      "item_main_category": "design",
+      "media": [
+          {
+              "media_src": "https:\/\/player.vimeo.com\/video\/305247815",
+              "media_type": "video",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_thumb": "http:\/\/i.vimeocdn.com\/video\/744700613_640.jpg",
+              "media_details": {
+                  "width": 640,
+                  "height": 360
+              }
+          }
+      ],
+      "sub_category": [
+          {
+              "sub_category_id": "7",
+              "sub_category_name": "Motion Design"
+          }
+      ],
+      "technology": [
+          {
+              "technology_id": "21",
+              "technology_name": "Adobe After Effects"
+          }
+      ]
+  },
+  {
+      "item_id": "10",
+      "item_name": "Flashback 1.0 - A Movies\/TV shows Info App",
+      "item_about": "Flashback 1.0, A school project, is informational web application of movies and TV shows from 1950 to 1990. For which I build server side program that fetches all media data from IMDB and OMDBAPI, trailer from youtube api, and stores in MySQL. Also I made interactive front-end made with Vue, JavaScript framework; which loads data asynchronously which can filter based on type, year, search name by viewer.",
+      "item_date": "5\/12\/2018",
+      "item_resource": "https:\/\/github.com\/portikM\/Roku-Flashback",
+      "item_main_category": "code",
+      "media": [
+          {
+              "media_src": "images\/portfolio_images\/flashback.jpg",
+              "media_type": "image",
+              "media_size": "land",
+              "media_caption": "",
+              "media_details": {
+                  "width": 1000,
+                  "height": 671
+              }
+          }
+      ],
+      "sub_category": [
+          {
+              "sub_category_id": "1",
+              "sub_category_name": "Front-end Web Development"
+          },
+          {
+              "sub_category_id": "2",
+              "sub_category_name": "Back-end Web Development"
+          }
+      ],
+      "technology": [
+          {
+              "technology_id": "2",
+              "technology_name": "JavaScript"
+          },
+          {
+              "technology_id": "3",
+              "technology_name": "HTML"
+          },
+          {
+              "technology_id": "11",
+              "technology_name": "SASS"
+          },
+          {
+              "technology_id": "13",
+              "technology_name": "Vue"
+          },
+          {
+              "technology_id": "4",
+              "technology_name": "PHP"
+          },
+          {
+              "technology_id": "5",
+              "technology_name": "MySQL"
+          }
+      ]
+  },
+  {
+      "item_id": "19",
+      "item_name": "Aston Martin Car Promo",
+      "item_about": "This a school project, to materialize and rig a sport car in cinema4D, in order to embedded in interactive website that promotes that car brand.",
+      "item_date": "05\/12\/2018",
+      "item_resource": "https:\/\/vimeo.com\/305167354",
+      "item_main_category": "design",
+      "media": [
+          {
+              "media_src": "https:\/\/player.vimeo.com\/video\/305167354",
+              "media_type": "video",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_thumb": "http:\/\/i.vimeocdn.com\/video\/744593740_640.jpg",
+              "media_details": {
+                  "width": 640,
+                  "height": 360
+              }
+          }
+      ],
+      "sub_category": [
+          {
+              "sub_category_id": "7",
+              "sub_category_name": "Motion Design"
+          }
+      ],
+      "technology": [
+          {
+              "technology_id": "25",
+              "technology_name": "Cinema 4D"
+          }
+      ]
+  },
+  {
+      "item_id": "22",
+      "item_name": "Branding of A Infuser Bottle",
+      "item_about": "This a school project of Brading a Infuser Bottle, where I modeled this infuser bottle in cinema4D and create features explaining video as a part of this bottle marketing campaign.",
+      "item_date": "20\/11\/2018",
+      "item_resource": "https:\/\/vimeo.com\/304495460",
+      "item_main_category": "design",
+      "media": [
+          {
+              "media_src": "https:\/\/player.vimeo.com\/video\/304495460",
+              "media_type": "video",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_thumb": "http:\/\/i.vimeocdn.com\/video\/743732844_640.jpg",
+              "media_details": {
+                  "width": 640,
+                  "height": 360
+              }
+          }
+      ],
+      "sub_category": [
+          {
+              "sub_category_id": "7",
+              "sub_category_name": "Motion Design"
+          }
+      ],
+      "technology": [
+          {
+              "technology_id": "25",
+              "technology_name": "Cinema 4D"
+          }
+      ]
+  },
+  {
+      "item_id": "21",
+      "item_name": "Soccer League TV commercial",
+      "item_about": "This is a school project to create 3D TVC of soccer league in Cinema4D",
+      "item_date": "10\/11\/2018",
+      "item_resource": "https:\/\/vimeo.com\/304495579",
+      "item_main_category": "design",
+      "media": [
+          {
+              "media_src": "https:\/\/player.vimeo.com\/video\/304495579",
+              "media_type": "video",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_thumb": "http:\/\/i.vimeocdn.com\/video\/743733045_640.jpg",
+              "media_details": {
+                  "width": 640,
+                  "height": 360
+              }
+          }
+      ],
+      "sub_category": [
+          {
+              "sub_category_id": "7",
+              "sub_category_name": "Motion Design"
+          }
+      ],
+      "technology": [
+          {
+              "technology_id": "25",
+              "technology_name": "Cinema 4D"
+          }
+      ]
+  },
+  {
+      "item_id": "7",
+      "item_name": "Depth Map Generator",
+      "item_about": "This is an experimental JavaScript program that trying into generate depth map from two stereo images to distinguish background from image ",
+      "item_date": "21\/10\/2018",
+      "item_resource": "https:\/\/github.com\/panchaldeep009\/DepthMapGeneratorJS",
+      "item_main_category": "code",
+      "media": [
+          {
+              "media_src": "images\/portfolio_images\/depthMap.JPG",
+              "media_type": "image",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_details": {
+                  "width": 1000,
+                  "height": 997
+              }
+          }
+      ],
+      "sub_category": [
+          {
+              "sub_category_id": "1",
+              "sub_category_name": "Front-end Web Development"
+          }
+      ],
+      "technology": [
+          {
+              "technology_id": "2",
+              "technology_name": "JavaScript"
+          },
+          {
+              "technology_id": "7",
+              "technology_name": "Canvas JS"
+          }
+      ]
+  },
+  {
+      "item_id": "25",
+      "item_name": "Energy Drink",
+      "item_about": "This is a school project to create A 3D Energy Drink Promo in Cinema4D, additionally I have use RealFlow for water simulation and Rendered using Octane.",
+      "item_date": "20\/10\/2018",
+      "item_resource": "",
+      "item_main_category": "design",
+      "media": [
+          {
+              "media_src": "images\/portfolio_images\/EnergyDrink_2.jpg",
+              "media_type": "image",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_details": {
+                  "width": 1000,
+                  "height": 563
+              }
+          },
+          {
+              "media_src": "images\/portfolio_images\/EnergyDrink_1.jpg",
+              "media_type": "image",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_details": {
+                  "width": 1000,
+                  "height": 563
+              }
+          }
+      ],
+      "sub_category": [
+          {
+              "sub_category_id": "7",
+              "sub_category_name": "Motion Design"
+          }
+      ],
+      "technology": [
+          {
+              "technology_id": "25",
+              "technology_name": "Cinema 4D"
+          },
+          {
+              "technology_id": "26",
+              "technology_name": "RealFlow"
+          }
+      ]
+  },
+  {
+      "item_id": "6",
+      "item_name": "Pixels to Text Art",
+      "item_about": "This web program create characters art from raster graphics such as image and video. By replaces each pixels to text character based on pixel density and color with help of JS and Canvas.",
+      "item_date": "19\/10\/2018",
+      "item_resource": "https:\/\/github.com\/panchaldeep009\/interactive_svg_infographic",
+      "item_main_category": "code",
+      "media": [
+          {
+              "media_src": "images\/portfolio_images\/imageToText.JPG",
+              "media_type": "image",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_details": {
+                  "width": 1000,
+                  "height": 1015
+              }
+          }
+      ],
+      "sub_category": [
+          {
+              "sub_category_id": "1",
+              "sub_category_name": "Front-end Web Development"
+          },
+          {
+              "sub_category_id": "3",
+              "sub_category_name": "Python"
+          }
+      ],
+      "technology": [
+          {
+              "technology_id": "2",
+              "technology_name": "JavaScript"
+          },
+          {
+              "technology_id": "7",
+              "technology_name": "Canvas JS"
+          },
+          {
+              "technology_id": "14",
+              "technology_name": "Python"
+          },
+          {
+              "technology_id": "15",
+              "technology_name": "Python OpenCV"
+          }
+      ]
+  },
+  {
+      "item_id": "11",
+      "item_name": "Purevolume",
+      "item_about": "PUREVOLUME, A school project, is a media platform that delivers a diverse range of content. For Which, I have developed interactivity and stylist Website with JavaScript and CSS3.",
+      "item_date": "13\/10\/2018",
+      "item_resource": "https:\/\/github.com\/daniellebutters37\/purevolume.project",
+      "item_main_category": "code",
+      "media": [
+          {
+              "media_src": "images\/portfolio_images\/purevolume_1.jpg",
+              "media_type": "image",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_details": {
+                  "width": 1000,
+                  "height": 877
+              }
+          },
+          {
+              "media_src": "images\/portfolio_images\/purevolume_2.jpg",
+              "media_type": "image",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_details": {
+                  "width": 1000,
+                  "height": 620
+              }
+          },
+          {
+              "media_src": "images\/portfolio_images\/purevolume_2_1.jpg",
+              "media_type": "image",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_details": {
+                  "width": 1000,
+                  "height": 780
+              }
+          },
+          {
+              "media_src": "images\/portfolio_images\/purevolume_3.jpg",
+              "media_type": "image",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_details": {
+                  "width": 1000,
+                  "height": 509
+              }
+          },
+          {
+              "media_src": "images\/portfolio_images\/purevolume_1_h.jpg",
+              "media_type": "image",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_details": {
+                  "width": 1000,
+                  "height": 2189
+              }
+          },
+          {
+              "media_src": "images\/portfolio_images\/purevolume_2_2.jpg",
+              "media_type": "image",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_details": {
+                  "width": 1000,
+                  "height": 1894
+              }
+          }
+      ],
+      "sub_category": [
+          {
+              "sub_category_id": "1",
+              "sub_category_name": "Front-end Web Development"
+          }
+      ],
+      "technology": [
+          {
+              "technology_id": "2",
+              "technology_name": "JavaScript"
+          },
+          {
+              "technology_id": "3",
+              "technology_name": "HTML"
+          },
+          {
+              "technology_id": "11",
+              "technology_name": "SASS"
+          }
+      ]
+  },
+  {
+      "item_id": "5",
+      "item_name": "Interactive SVG Infographic",
+      "item_about": "This an Interactive web Info graphic of Movies and its genres. This generates SVG illustration of real data fetched from IMDb, with a JavaScript function that draws the SVG path from point to point by using great algorithm build possible by trigonometry which allows to strokes \r\ncurves and finding exact position of svg points.  ",
+      "item_date": "01\/09\/2018",
+      "item_resource": "https:\/\/github.com\/panchaldeep009\/interactive_svg_infographic",
+      "item_main_category": "code",
+      "media": [
+          {
+              "media_src": "images\/portfolio_images\/info_graphic_1.jpg",
+              "media_type": "image",
+              "media_size": "large",
+              "media_caption": "",
+              "media_details": {
+                  "width": 1000,
+                  "height": 918
+              }
+          },
+          {
+              "media_src": "images\/portfolio_images\/info_graphic_2.jpg",
+              "media_type": "image",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_details": {
+                  "width": 1000,
+                  "height": 1152
+              }
+          }
+      ],
+      "sub_category": [
+          {
+              "sub_category_id": "1",
+              "sub_category_name": "Front-end Web Development"
+          }
+      ],
+      "technology": [
+          {
+              "technology_id": "2",
+              "technology_name": "JavaScript"
+          },
+          {
+              "technology_id": "6",
+              "technology_name": "SVG"
+          }
+      ]
+  },
+  {
+      "item_id": "4",
+      "item_name": "Starship Troopers Game",
+      "item_about": "This a game of Movie, Starship Troopers, made with JavaScript and HTML Canvas in which player do score by shooting bugs. By Default first game avatar can control by user input and other avatars are auto controlled by a JavaScript function. Thanks to math's trigonometry functions that allows game players and bugs to move omnidirectional.",
+      "item_date": "23\/08\/2018",
+      "item_resource": "https:\/\/github.com\/panchaldeep009\/STGame",
+      "item_main_category": "code",
+      "media": [
+          {
+              "media_src": "images\/portfolio_images\/starship-toopers-game.jpg",
+              "media_type": "image",
+              "media_size": "normal",
+              "media_caption": "troopers game",
+              "media_details": {
+                  "width": 1000,
+                  "height": 1038
+              }
+          }
+      ],
+      "sub_category": [
+          {
+              "sub_category_id": "1",
+              "sub_category_name": "Front-end Web Development"
+          }
+      ],
+      "technology": [
+          {
+              "technology_id": "2",
+              "technology_name": "JavaScript"
+          },
+          {
+              "technology_id": "7",
+              "technology_name": "Canvas JS"
+          }
+      ]
+  },
+  {
+      "item_id": "24",
+      "item_name": "Cosmetic Mockups",
+      "item_about": "This a school project to models cosmetic products for mockups.",
+      "item_date": "20\/08\/2018",
+      "item_resource": "",
+      "item_main_category": "design",
+      "media": [
+          {
+              "media_src": "images\/portfolio_images\/cosmetics1.jpg",
+              "media_type": "image",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_details": {
+                  "width": 1000,
+                  "height": 563
+              }
+          },
+          {
+              "media_src": "images\/portfolio_images\/cosmetics2.jpg",
+              "media_type": "image",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_details": {
+                  "width": 1000,
+                  "height": 563
+              }
+          },
+          {
+              "media_src": "images\/portfolio_images\/cosmetics3.jpg",
+              "media_type": "image",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_details": {
+                  "width": 1000,
+                  "height": 563
+              }
+          }
+      ],
+      "sub_category": [
+          {
+              "sub_category_id": "7",
+              "sub_category_name": "Motion Design"
+          }
+      ],
+      "technology": [
+          {
+              "technology_id": "25",
+              "technology_name": "Cinema 4D"
+          }
+      ]
+  },
+  {
+      "item_id": "23",
+      "item_name": "India's Independence Day 3D flag",
+      "item_about": "This video made for India's Independence Day. It has picture frames of Indian freedom fighters and 3D cloths flag simulated and render in Cinema4D ",
+      "item_date": "15\/08\/2018",
+      "item_resource": "https:\/\/vimeo.com\/304494367",
+      "item_main_category": "design",
+      "media": [
+          {
+              "media_src": "https:\/\/player.vimeo.com\/video\/304494367",
+              "media_type": "video",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_thumb": "http:\/\/i.vimeocdn.com\/video\/743731324_640.jpg",
+              "media_details": {
+                  "width": 640,
+                  "height": 360
+              }
+          },
+          {
+              "media_src": "https:\/\/player.vimeo.com\/video\/304495297",
+              "media_type": "video",
+              "media_size": "normal",
+              "media_caption": "making",
+              "media_thumb": "http:\/\/i.vimeocdn.com\/video\/743732670_640.jpg",
+              "media_details": {
+                  "width": 640,
+                  "height": 400
+              }
+          }
+      ],
+      "sub_category": [
+          {
+              "sub_category_id": "7",
+              "sub_category_name": "Motion Design"
+          }
+      ],
+      "technology": [
+          {
+              "technology_id": "25",
+              "technology_name": "Cinema 4D"
+          }
+      ]
+  },
+  {
+      "item_id": "3",
+      "item_name": "Auto Multiplayer Snake Game",
+      "item_about": "This is a classic snake game I have made with JavaScript and HTML elements with an additional feature that game has more than one snake chasing one food and competing with each other and all those snakes are controlled by a JavaScript algorithm.",
+      "item_date": "10\/07\/2018",
+      "item_resource": "https:\/\/github.com\/panchaldeep009\/snake-game-js",
+      "item_main_category": "code",
+      "media": [
+          {
+              "media_src": "images\/portfolio_images\/snake-game-js.jpg",
+              "media_type": "image",
+              "media_size": "normal",
+              "media_caption": "Snake Game Screen shot",
+              "media_details": {
+                  "width": 1000,
+                  "height": 1038
+              }
+          }
+      ],
+      "sub_category": [
+          {
+              "sub_category_id": "1",
+              "sub_category_name": "Front-end Web Development"
+          }
+      ],
+      "technology": [
+          {
+              "technology_id": "2",
+              "technology_name": "JavaScript"
+          },
+          {
+              "technology_id": "3",
+              "technology_name": "HTML"
+          }
+      ]
+  },
+  {
+      "item_id": "1",
+      "item_name": "Interactive 3D Letters",
+      "item_about": "This is an Mouse Interactive 3D letters web app, made from html elements with 3D transformation properties of CSS controlled by JavaScript's mouse event",
+      "item_date": "24\/06\/2018",
+      "item_resource": "https:\/\/github.com\/panchaldeep009\/interactive-3d-letters-from-div",
+      "item_main_category": "code",
+      "media": [
+          {
+              "media_src": "images\/portfolio_images\/3d-live-letters.jpg",
+              "media_type": "image",
+              "media_size": "normal",
+              "media_caption": "3D letters",
+              "media_details": {
+                  "width": 1000,
+                  "height": 1038
+              }
+          }
+      ],
+      "sub_category": [
+          {
+              "sub_category_id": "1",
+              "sub_category_name": "Front-end Web Development"
+          }
+      ],
+      "technology": [
+          {
+              "technology_id": "1",
+              "technology_name": "CSS"
+          },
+          {
+              "technology_id": "2",
+              "technology_name": "JavaScript"
+          },
+          {
+              "technology_id": "3",
+              "technology_name": "HTML"
+          },
+          {
+              "technology_id": "11",
+              "technology_name": "SASS"
+          }
+      ]
+  },
+  {
+      "item_id": "8",
+      "item_name": "SVG Social Animated Icons",
+      "item_about": "This is SVG social icon set, which animates on mouse hover made with JavaScript",
+      "item_date": "09\/06\/2018",
+      "item_resource": "https:\/\/github.com\/panchaldeep009\/SVG-ICONS-SET",
+      "item_main_category": "code",
+      "media": [
+          {
+              "media_src": "images\/portfolio_images\/svg-icon.JPG",
+              "media_type": "image",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_details": {
+                  "width": 1000,
+                  "height": 846
+              }
+          }
+      ],
+      "sub_category": [
+          {
+              "sub_category_id": "1",
+              "sub_category_name": "Front-end Web Development"
+          }
+      ],
+      "technology": [
+          {
+              "technology_id": "1",
+              "technology_name": "CSS"
+          },
+          {
+              "technology_id": "2",
+              "technology_name": "JavaScript"
+          },
+          {
+              "technology_id": "6",
+              "technology_name": "SVG"
+          }
+      ]
+  },
+  {
+      "item_id": "26",
+      "item_name": "Dot to the Horizon",
+      "item_about": "This a school project to design a movie poster and website from random images.",
+      "item_date": "05\/02\/2018",
+      "item_resource": "",
+      "item_main_category": "design",
+      "media": [
+          {
+              "media_src": "images\/portfolio_images\/doth_poster.jpg",
+              "media_type": "image",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_details": {
+                  "width": 1000,
+                  "height": 1756
+              }
+          },
+          {
+              "media_src": "images\/portfolio_images\/doth_ui.jpg",
+              "media_type": "image",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_details": {
+                  "width": 1000,
+                  "height": 1219
+              }
+          }
+      ],
+      "sub_category": [
+          {
+              "sub_category_id": "6",
+              "sub_category_name": "Graphics Design"
+          }
+      ],
+      "technology": [
+          {
+              "technology_id": "22",
+              "technology_name": "Adobe Photoshop"
+          }
+      ]
+  },
+  {
+      "item_id": "15",
+      "item_name": "Wish You Happy Diwali",
+      "item_about": "This is a festival wishing video made in AfterEffects.",
+      "item_date": "19\/10\/2017",
+      "item_resource": "https:\/\/www.youtube.com\/watch?v=2VJ4UyYXqXI",
+      "item_main_category": "design",
+      "media": [
+          {
+              "media_src": "https:\/\/www.youtube.com\/embed\/2VJ4UyYXqXI",
+              "media_type": "video",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_thumb": "https:\/\/img.youtube.com\/vi\/2VJ4UyYXqXI\/hqdefault.jpg",
+              "media_details": {
+                  "width": 480,
+                  "height": 360
+              }
+          }
+      ],
+      "sub_category": [
+          {
+              "sub_category_id": "7",
+              "sub_category_name": "Motion Design"
+          }
+      ],
+      "technology": [
+          {
+              "technology_id": "21",
+              "technology_name": "Adobe After Effects"
+          }
+      ]
+  },
+  {
+      "item_id": "16",
+      "item_name": "Happy New Year Wishing",
+      "item_about": "This is a festival wishing video made in AfterEffects.",
+      "item_date": "18\/10\/2017",
+      "item_resource": "https:\/\/www.youtube.com\/watch?v=y3NOS8ji3yk",
+      "item_main_category": "design",
+      "media": [
+          {
+              "media_src": "https:\/\/www.youtube.com\/embed\/y3NOS8ji3yk",
+              "media_type": "video",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_thumb": "https:\/\/img.youtube.com\/vi\/y3NOS8ji3yk\/hqdefault.jpg",
+              "media_details": {
+                  "width": 480,
+                  "height": 360
+              }
+          }
+      ],
+      "sub_category": [
+          {
+              "sub_category_id": "7",
+              "sub_category_name": "Motion Design"
+          }
+      ],
+      "technology": [
+          {
+              "technology_id": "21",
+              "technology_name": "Adobe After Effects"
+          }
+      ]
+  },
+  {
+      "item_id": "14",
+      "item_name": "Happy Dhanterash wishing video",
+      "item_about": "This is a festival wishing video made in AfterEffects.",
+      "item_date": "17\/10\/2017",
+      "item_resource": "https:\/\/www.youtube.com\/watch?v=1VSYwarqpeo",
+      "item_main_category": "design",
+      "media": [
+          {
+              "media_src": "https:\/\/www.youtube.com\/embed\/1VSYwarqpeo",
+              "media_type": "video",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_thumb": "https:\/\/img.youtube.com\/vi\/1VSYwarqpeo\/hqdefault.jpg",
+              "media_details": {
+                  "width": 480,
+                  "height": 360
+              }
+          }
+      ],
+      "sub_category": [
+          {
+              "sub_category_id": "7",
+              "sub_category_name": "Motion Design"
+          }
+      ],
+      "technology": [
+          {
+              "technology_id": "21",
+              "technology_name": "Adobe After Effects"
+          }
+      ]
+  },
+  {
+      "item_id": "17",
+      "item_name": "Wishing Happy Kali Chaudas",
+      "item_about": "This is a festival wishing video made in AfterEffects.",
+      "item_date": "15\/10\/2017",
+      "item_resource": "https:\/\/www.youtube.com\/watch?v=7ql2WcGI1-w",
+      "item_main_category": "design",
+      "media": [
+          {
+              "media_src": "https:\/\/www.youtube.com\/embed\/7ql2WcGI1-w",
+              "media_type": "video",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_thumb": "https:\/\/img.youtube.com\/vi\/7ql2WcGI1-w\/hqdefault.jpg",
+              "media_details": {
+                  "width": 480,
+                  "height": 360
+              }
+          }
+      ],
+      "sub_category": [
+          {
+              "sub_category_id": "7",
+              "sub_category_name": "Motion Design"
+          }
+      ],
+      "technology": [
+          {
+              "technology_id": "21",
+              "technology_name": "Adobe After Effects"
+          }
+      ]
+  },
+  {
+      "item_id": "18",
+      "item_name": "Name with Fire Turbulence | Blender",
+      "item_about": "This animation I made in blender to test Turbulence plugin to generate fire effect.",
+      "item_date": "10\/07\/2016",
+      "item_resource": "https:\/\/www.youtube.com\/watch?v=7yGArnuvDm4",
+      "item_main_category": "design",
+      "media": [
+          {
+              "media_src": "https:\/\/www.youtube.com\/embed\/7yGArnuvDm4",
+              "media_type": "video",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_thumb": "https:\/\/img.youtube.com\/vi\/7yGArnuvDm4\/hqdefault.jpg",
+              "media_details": {
+                  "width": 480,
+                  "height": 360
+              }
+          }
+      ],
+      "sub_category": [
+          {
+              "sub_category_id": "7",
+              "sub_category_name": "Motion Design"
+          }
+      ],
+      "technology": [
+          {
+              "technology_id": "24",
+              "technology_name": "Blender"
+          }
+      ]
+  },
+  {
+      "item_id": "13",
+      "item_name": "FCV ",
+      "item_about": "This is an enterprise web application embedded in android appication, FCV 1.0, which manages data of customers' monthly payments for TV channels subscriptions. Build with PHP and MySQL for data management, JavaScript for interactivity and styled by Bootstrap. It also has functionality to print datasheets wireless to printer.",
+      "item_date": "01\/01\/2016",
+      "item_resource": "https:\/\/github.com\/panchaldeep009\/FCVDataManagmentApp\/tree\/old_application",
+      "item_main_category": "code",
+      "media": [
+          {
+              "media_src": "images\/portfolio_images\/fcv_1.jpg",
+              "media_type": "image",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_details": {
+                  "width": 1000,
+                  "height": 685
+              }
+          },
+          {
+              "media_src": "images\/portfolio_images\/fcv_2.jpg",
+              "media_type": "image",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_details": {
+                  "width": 1000,
+                  "height": 685
+              }
+          },
+          {
+              "media_src": "images\/portfolio_images\/fcv_3.jpg",
+              "media_type": "image",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_details": {
+                  "width": 1000,
+                  "height": 685
+              }
+          }
+      ],
+      "sub_category": [
+          {
+              "sub_category_id": "2",
+              "sub_category_name": "Back-end Web Development"
+          },
+          {
+              "sub_category_id": "5",
+              "sub_category_name": "Android"
+          }
+      ],
+      "technology": [
+          {
+              "technology_id": "2",
+              "technology_name": "JavaScript"
+          },
+          {
+              "technology_id": "3",
+              "technology_name": "HTML"
+          },
+          {
+              "technology_id": "4",
+              "technology_name": "PHP"
+          },
+          {
+              "technology_id": "5",
+              "technology_name": "MySQL"
+          },
+          {
+              "technology_id": "1",
+              "technology_name": "CSS"
+          },
+          {
+              "technology_id": "18",
+              "technology_name": "jQuery"
+          },
+          {
+              "technology_id": "19",
+              "technology_name": "Bootstrap"
+          },
+          {
+              "technology_id": "20",
+              "technology_name": "Java ( Android )"
+          }
+      ]
+  },
+  {
+      "item_id": "12",
+      "item_name": "eFeed.in",
+      "item_about": "eFeed (educational feed) was a peer networking web application, for students to share notes and study materials with each other. Additionally, it has features like messaging portal, notice board, etc. This is my first hosted web application, created in 2012 with PHP, Javascript, Bootstrap and MySQL. I take down this web application in 2015 for its poor build.   ",
+      "item_date": "15\/04\/2013",
+      "item_resource": "data\/porfoilio_resources\/efeed.in.zip",
+      "item_main_category": "code",
+      "media": [
+          {
+              "media_src": "images\/portfolio_images\/efeed.jpg",
+              "media_type": "image",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_details": {
+                  "width": 1000,
+                  "height": 514
+              }
+          },
+          {
+              "media_src": "images\/portfolio_images\/efeed_1.jpg",
+              "media_type": "image",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_details": {
+                  "width": 1000,
+                  "height": 959
+              }
+          },
+          {
+              "media_src": "images\/portfolio_images\/efeed_2.jpg",
+              "media_type": "image",
+              "media_size": "normal",
+              "media_caption": "",
+              "media_details": {
+                  "width": 1000,
+                  "height": 603
+              }
+          }
+      ],
+      "sub_category": [
+          {
+              "sub_category_id": "1",
+              "sub_category_name": "Front-end Web Development"
+          },
+          {
+              "sub_category_id": "2",
+              "sub_category_name": "Back-end Web Development"
+          }
+      ],
+      "technology": [
+          {
+              "technology_id": "2",
+              "technology_name": "JavaScript"
+          },
+          {
+              "technology_id": "3",
+              "technology_name": "HTML"
+          },
+          {
+              "technology_id": "1",
+              "technology_name": "CSS"
+          },
+          {
+              "technology_id": "4",
+              "technology_name": "PHP"
+          },
+          {
+              "technology_id": "5",
+              "technology_name": "MySQL"
+          },
+          {
+              "technology_id": "17",
+              "technology_name": "Ajax"
+          },
+          {
+              "technology_id": "18",
+              "technology_name": "jQuery"
+          },
+          {
+              "technology_id": "19",
+              "technology_name": "Bootstrap"
+          }
+      ]
+  }
+]

@@ -5,6 +5,7 @@ import withStyles from 'react-jss';
 
 import Styles from '../styles/ui/gallery';
 import Portfolio from './PortfolioPice';
+import workData from '../assets/workData.json';
 
 const PortfolioGallery = ({ classes }) => {
     const host = 'http://deeppanchal.com/';
@@ -32,13 +33,7 @@ const PortfolioGallery = ({ classes }) => {
             return data.item_main_category === category;
         });
     useEffect(() => {
-        fetch(host + 'php/data.php')
-            .then(data => {
-                return data.json();
-            })
-            .then(data => {
-                setPortFolio([...portFolio, ...data]);
-            });
+        setPortFolio([...portFolio, ...workData]);
     }, []);
     const portFolioItem = (e, data) => {
         setPortFolioSingle(data);

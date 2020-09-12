@@ -50,19 +50,14 @@
         "url": "https://github.com/panchaldeep009/portfolio/issues"
     },
     "homepage": "http://www.deeppanchal.com",
-    "engines": {
-        "node": ">=8",
-        "npm": ">=3"
-    },
     "dependencies": {
         "@material-ui/core": "^3.9.2",
         "@material-ui/styles": "^3.0.0-alpha.10",
         "drag-scroll-provider": "^1.0.6",
         "install": "^0.12.2",
-        "lodash": "4.17.11",
+        "lodash": ">=4.17.19",
         "lottie-web": "^5.4.4",
         "markdown-to-jsx": "^6.9.3",
-        "npm": "^6.9.0",
         "prop-types": "^15.6.2",
         "re-resizable": "^4.11.0",
         "react": "^16.8.3",
@@ -135,7 +130,7 @@
         "koa-connect": "^2.0.1",
         "lint-staged": "8.1.0",
         "mini-css-extract-plugin": "0.5.0",
-        "node-sass": "4.11.0",
+        "node-sass": ">=4.13.1",
         "npm-check-updates": "^2.14.2",
         "prettier": "1.15.3",
         "pretty-quick": "1.8.0",
